@@ -51,6 +51,55 @@
     --shadow-lg: 0 8px 32px rgba(11,59,96,0.16);
   }
 
+  html.dark {
+    --white:     #0f172a;
+    --off-white: #1e293b;
+    --gray-50:   #1e293b;
+    --gray-100:  #334155;
+    --gray-300:  #64748b;
+    --gray-500:  #94a3b8;
+    --gray-700:  #cbd5e1;
+    --gray-900:  #f1f5f9;
+    --blue-light:#1e3a5f;
+    --gold-light:#2a2010;
+    --red-light: #2d0a0a;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+  }
+  html.dark body { background: #0f172a; color: #e2e8f0; }
+  html.dark .site-header { background: #0f172a; border-color: var(--blue); }
+  html.dark .product-card { background: #1e293b; border-color: #334155; }
+  html.dark .price-card { background: #1e293b; border-color: #334155; }
+  html.dark .price-card.featured { background: linear-gradient(160deg,#1f1a0a,#2a2210); }
+  html.dark .price-card.featured-blue { background: linear-gradient(160deg,#0f1e33,#1a2d4a); }
+  html.dark .feature-item { background: #1e293b; border-color: #334155; }
+  html.dark .faq-q { background: #1e293b; }
+  html.dark .faq-item.open .faq-q { background: var(--blue); }
+  html.dark .faq-a { background: #1e293b; }
+  html.dark .quick-stat { background: #1e293b; border-color: #334155; }
+  html.dark .step-image-placeholder { background: #1e293b; border-color: #334155; }
+  html.dark .nav-link { color: #cbd5e1; }
+  html.dark .nav-link:hover { background: #1e293b; border-color: #334155; color: var(--white); }
+  html.dark .mobile-nav { background: #0f172a; border-color: var(--blue); }
+  html.dark .breadcrumb { color: rgba(255,255,255,0.45); }
+  html.dark .pricing-block-header { border-color: #334155; }
+  html.dark .warning-box { background: #1a1500; }
+
+  /* Dark mode toggle button */
+  .dark-toggle {
+    background: none;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-md);
+    padding: 7px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .dark-toggle:hover { border-color: var(--gold); background: var(--gold-light); }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -1085,6 +1134,146 @@
     .faq-item.open .faq-a { padding: 16px 18px 18px; }
   }
 
+  /* ── PRODUCTS FILTER BAR ────────────────────── */
+  .products-filter-bar {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px; flex-wrap: wrap;
+  }
+  .search-wrap {
+    position: relative; flex: 1; min-width: 200px;
+  }
+  .search-icon {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%); font-size: 15px; pointer-events: none;
+  }
+  .products-search {
+    width: 100%; padding: 10px 42px 10px 16px;
+    font-family: 'Cairo', sans-serif; font-size: 14px;
+    border: 1.5px solid var(--gray-100); border-radius: var(--radius-lg);
+    background: var(--white); color: var(--gray-900);
+    transition: border-color 0.2s; outline: none;
+  }
+  .products-search:focus { border-color: var(--blue); }
+  .filter-tabs { display: flex; gap: 8px; }
+  .filter-tab {
+    font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 600;
+    padding: 8px 18px; border-radius: 40px; border: 1.5px solid var(--gray-100);
+    background: var(--white); color: var(--gray-500); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-tab:hover { border-color: var(--blue); color: var(--blue); }
+  .filter-tab.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .products-empty {
+    grid-column: 1/-1; text-align: center;
+    padding: 60px 20px; color: var(--gray-300); font-size: 15px;
+  }
+
+  /* ── SCROLL ANIMATIONS ──────────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+                transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.18s; }
+  .reveal-delay-3 { transition-delay: 0.26s; }
+  .reveal-delay-4 { transition-delay: 0.34s; }
+
+  /* ── WHATSAPP CHAT WIDGET ───────────────────── */
+  .wa-fab {
+    position: fixed; bottom: 28px; left: 28px;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    border: none; cursor: pointer; z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s;
+  }
+  .wa-fab:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.6); }
+  .wa-fab .wa-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--red); color: #fff;
+    font-size: 10px; font-weight: 800;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #fff;
+  }
+  .wa-panel {
+    position: fixed; bottom: 100px; left: 28px;
+    width: 320px; background: var(--white);
+    border-radius: 18px; z-index: 998;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    overflow: hidden; display: none;
+    flex-direction: column;
+    animation: waPanelIn 0.3s cubic-bezier(0.22,1,0.36,1);
+    border: 1.5px solid var(--gray-100);
+  }
+  .wa-panel.open { display: flex; }
+  @keyframes waPanelIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .wa-panel-header {
+    background: #075E54; color: #fff;
+    padding: 16px 18px; display: flex;
+    align-items: center; gap: 12px;
+  }
+  .wa-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: #25D366; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .wa-header-info .wa-name { font-size: 14px; font-weight: 700; }
+  .wa-header-info .wa-status { font-size: 11px; opacity: 0.75; }
+  .wa-panel-close {
+    margin-right: auto; background: none; border: none;
+    color: rgba(255,255,255,0.7); font-size: 20px;
+    cursor: pointer; line-height: 1; padding: 0 4px;
+  }
+  .wa-panel-close:hover { color: #fff; }
+  .wa-chat-body {
+    padding: 18px 16px; flex: 1;
+    background: #ECE5DD; min-height: 180px;
+    display: flex; flex-direction: column; gap: 10px;
+    direction: rtl;
+  }
+  .wa-bubble {
+    background: #fff; border-radius: 12px 12px 4px 12px;
+    padding: 10px 14px; font-size: 13px; color: #111;
+    line-height: 1.6; max-width: 90%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .wa-bubble strong { color: #075E54; }
+  .wa-menu { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .wa-menu-btn {
+    background: #fff; border: 1.5px solid #25D366;
+    color: #075E54; font-family: 'Cairo', sans-serif;
+    font-size: 13px; font-weight: 700;
+    padding: 10px 14px; border-radius: 10px;
+    cursor: pointer; text-align: right;
+    transition: all 0.18s; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .wa-menu-btn:hover { background: #e8fdf0; border-color: #075E54; }
+  .wa-menu-btn .wa-arrow { opacity: 0.5; font-size: 12px; }
+  .wa-back-btn {
+    background: none; border: none;
+    font-family: 'Cairo', sans-serif; font-size: 12px;
+    color: #075E54; cursor: pointer; padding: 0;
+    font-weight: 600; margin-bottom: 4px;
+    text-align: right; display: flex; align-items: center; gap: 4px;
+  }
+  .wa-back-btn:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .wa-fab { bottom: 20px; left: 16px; width: 52px; height: 52px; font-size: 24px; }
+    .wa-panel { left: 12px; right: 12px; width: auto; bottom: 88px; }
+    .products-filter-bar { flex-direction: column; align-items: stretch; }
+    .filter-tabs { justify-content: center; }
+  }
+
   /* ── FOOTER ─────────────────────────────────── */
   .site-footer {
     background: var(--blue);
@@ -1280,6 +1469,7 @@
       <a class="nav-link" onclick="document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'})">المكتبة / المنتجات</a>
       <a class="nav-link accent" onclick="showOffers()" style="cursor:pointer">عروض حصرية</a>
     </nav>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="تبديل المظهر">🌙</button>
     <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="القائمة">
       <span></span><span></span><span></span>
     </button>
@@ -1316,14 +1506,26 @@
   <!-- PRODUCTS SECTION -->
   <section class="section products-section" id="products-anchor">
     <div class="section-inner">
-      <span class="section-label">مكتبة البرامج</span>
-      <h2 class="section-title">برامجنا <span>المتاحة</span></h2>
-      <div class="divider"></div>
+      <span class="section-label reveal">مكتبة البرامج</span>
+      <h2 class="section-title reveal reveal-delay-1">برامجنا <span>المتاحة</span></h2>
+      <div class="divider reveal reveal-delay-2"></div>
 
-      <div class="products-grid">
+      <div class="products-filter-bar">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input class="products-search" id="productsSearch" type="text" placeholder="ابحث عن منتج..." oninput="filterProducts()" />
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all"    onclick="setFilter(this,'all')">الكل</button>
+          <button class="filter-tab"        data-filter="active" onclick="setFilter(this,'active')">متاح الآن</button>
+          <button class="filter-tab"        data-filter="soon"   onclick="setFilter(this,'soon')">قريباً</button>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
 
         <!-- CARD 1: KHEDMA BANK -->
-        <div class="product-card" onclick="showProduct()">
+        <div class="product-card" data-name="khedma bank بنك أسئلة" data-status="active" onclick="showProduct()">
           <div class="product-card-thumb">
             <img alt="Khedma Bank" src="img/img_02.png" style="display: block;">
             <div class="thumb-icon" style="opacity: 0; pointer-events: none;"><span onclick="event.stopPropagation()" style="opacity: 0; pointer-events: none;">بنك</span></div>
@@ -1344,7 +1546,7 @@
         </div>
 
         <!-- CARD 2: COMING SOON -->
-        <div class="product-card coming-soon" style="pointer-events:auto; cursor:default;">
+        <div class="product-card coming-soon" data-name="khedma bank kids أطفال" data-status="soon" style="pointer-events:auto; cursor:default;">
           <div class="product-card-thumb" style="cursor:default; position:relative;">
             <div class="coming-soon-overlay"><span>قريباً</span></div>
             <div class="thumb-icon"><span>📖</span></div>
@@ -2400,5 +2602,157 @@
     if (e.key === 'ArrowLeft')  lbNav(1);
   });
 window.addEventListener('load', initLightbox);
+
+  /* ══ DARK MODE ══════════════════════════════ */
+  const darkToggle = document.getElementById('darkToggle');
+  function toggleDark() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    darkToggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('4k-dark', isDark ? '1' : '0');
+  }
+  if (localStorage.getItem('4k-dark') === '1') {
+    document.documentElement.classList.add('dark');
+    if (darkToggle) darkToggle.textContent = '☀️';
+  }
+
+  /* ══ PRODUCTS FILTER & SEARCH ═══════════════ */
+  let activeFilter = 'all';
+  function filterProducts() {
+    const q = (document.getElementById('productsSearch') || {value:''}).value.trim().toLowerCase();
+    document.querySelectorAll('#productsGrid .product-card').forEach(card => {
+      const name   = (card.dataset.name   || '').toLowerCase();
+      const status = (card.dataset.status || '');
+      const matchQ = !q || name.includes(q);
+      const matchF = activeFilter === 'all' || status === activeFilter;
+      card.style.display = (matchQ && matchF) ? '' : 'none';
+    });
+    const visible = [...document.querySelectorAll('#productsGrid .product-card')].filter(c => c.style.display !== 'none');
+    let empty = document.getElementById('productsEmpty');
+    if (!visible.length) {
+      if (!empty) {
+        empty = document.createElement('p');
+        empty.id = 'productsEmpty'; empty.className = 'products-empty';
+        empty.textContent = 'لا توجد نتائج مطابقة';
+        document.getElementById('productsGrid').appendChild(empty);
+      }
+    } else if (empty) empty.remove();
+  }
+  function setFilter(btn, filter) {
+    activeFilter = filter;
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterProducts();
+  }
+
+  /* ══ SCROLL ANIMATIONS ═══════════════════════ */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  function markReveal() {
+    const sels = ['.product-card','.feature-item','.price-card','.quick-stat','.gallery-item','.activation-step','.faq-item','.offer-card','.warning-box','.download-inner','.fomo-box','.counter-bar','.countdown-wrap','.pricing-block-header'];
+    sels.forEach(sel => {
+      document.querySelectorAll(sel + ':not(.reveal)').forEach((el, i) => {
+        el.classList.add('reveal');
+        const mod = i % 4;
+        if (mod === 1) el.classList.add('reveal-delay-1');
+        if (mod === 2) el.classList.add('reveal-delay-2');
+        if (mod === 3) el.classList.add('reveal-delay-3');
+      });
+    });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  }
+  window.addEventListener('load', markReveal);
+  const _origShowProduct = window.showProduct;
+  window.showProduct = function() { _origShowProduct(); setTimeout(markReveal, 60); };
+  const _origShowOffers = window.showOffers;
+  window.showOffers = function() { _origShowOffers(); setTimeout(markReveal, 60); };
+
+  /* ══ WHATSAPP WIDGET ════════════════════════ */
+  const _WA = '201207737965';
+  function toggleWaPanel() {
+    const panel = document.getElementById('waPanel');
+    panel.classList.toggle('open');
+    const badge = document.querySelector('.wa-badge');
+    if (badge) badge.style.display = 'none';
+  }
+  function waSend(msg) {
+    window.open('https://wa.me/' + _WA + '?text=' + encodeURIComponent(msg), '_blank');
+    document.getElementById('waPanel').classList.remove('open');
+  }
+  function waShowOffers() {
+    document.getElementById('waChatBody').innerHTML = `
+      <div class="wa-bubble"><strong>العروض الحصرية 🔥</strong><br>اختر العرض المناسب لك:</div>
+      <div class="wa-menu">
+        <button class="wa-back-btn" onclick="waReset()">← رجوع</button>
+        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن عرض الباقة الأساسية Early Bird بسعر 149 جنيه')"><span>⭐ الأساسية — 149 جنيه</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن عرض الباقة الذهبية Early Bird بسعر 349 جنيه')"><span>🥇 الذهبية — 349 جنيه</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن عرض الباقة VIP المخصصة Early Bird بسعر 499 جنيه')"><span>💎 VIP المخصصة — 499 جنيه</span><span class="wa-arrow">←</span></button>
+      </div>`;
+  }
+  function waShowProducts() {
+    document.getElementById('waChatBody').innerHTML = `
+      <div class="wa-bubble"><strong>منتجاتنا 📦</strong><br>اختر المنتج:</div>
+      <div class="wa-menu">
+        <button class="wa-back-btn" onclick="waReset()">← رجوع</button>
+        <button class="wa-menu-btn" onclick="waShowKhedmaBank()"><span>🏦 Khedma Bank</span><span class="wa-arrow">←</span></button>
+      </div>`;
+  }
+  function waShowKhedmaBank() {
+    document.getElementById('waChatBody').innerHTML = `
+      <div class="wa-bubble"><strong>Khedma Bank 🏦</strong><br>اختر الخطة المناسبة:</div>
+      <div class="wa-menu">
+        <button class="wa-back-btn" onclick="waShowProducts()">← رجوع</button>
+        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة الخادم لـ Khedma Bank — 199 جنيه (جهاز واحد)')"><span>الخادم — 199 ج / جهاز واحد</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة الذهبية لـ Khedma Bank — 449 جنيه (3 أجهزة)')"><span>🥇 الذهبية — 449 ج / 3 أجهزة</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة VIP لـ Khedma Bank — 699 جنيه (3 أجهزة + تخصيص)')"><span>💎 VIP — 699 ج / 3 أجهزة + تخصيص</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة مخصصة لـ Khedma Bank (أجهزة غير محدودة)')"><span>🏢 مخصص — تواصل للسعر</span><span class="wa-arrow">←</span></button>
+      </div>`;
+  }
+  function waReset() {
+    document.getElementById('waChatBody').innerHTML = `
+      <div class="wa-bubble">أهلاً بك! 👋<br>كيف يمكنني مساعدتك؟</div>
+      <div class="wa-menu">
+        <button class="wa-menu-btn" onclick="waShowOffers()"><span>🔥 آخر العروض الحصرية</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waShowProducts()"><span>📦 منتجاتنا وأسعارها</span><span class="wa-arrow">←</span></button>
+      </div>`;
+  }
+  document.addEventListener('click', e => {
+    const panel = document.getElementById('waPanel');
+    const fab   = document.getElementById('waFab');
+    if (panel && panel.classList.contains('open') && !panel.contains(e.target) && !fab.contains(e.target))
+      panel.classList.remove('open');
+  });
 </script>
+<!-- ══ WHATSAPP CHAT WIDGET ══════════════════ -->
+<button class="wa-fab" id="waFab" onclick="toggleWaPanel()" aria-label="تواصل معنا">
+  💬
+  <span class="wa-badge">1</span>
+</button>
+
+<div class="wa-panel" id="waPanel">
+  <div class="wa-panel-header">
+    <div class="wa-avatar">🤝</div>
+    <div class="wa-header-info">
+      <div class="wa-name">4Khedma — الدعم</div>
+      <div class="wa-status">متاح الآن ✓</div>
+    </div>
+    <button class="wa-panel-close" onclick="toggleWaPanel()">✕</button>
+  </div>
+  <div class="wa-chat-body" id="waChatBody">
+    <div class="wa-bubble">
+      أهلاً بك! 👋<br>كيف يمكنني مساعدتك؟ اختر من القائمة:
+    </div>
+    <div class="wa-menu" id="waMainMenu">
+      <button class="wa-menu-btn" onclick="waShowOffers()">
+        <span>🔥 آخر العروض الحصرية</span>
+        <span class="wa-arrow">←</span>
+      </button>
+      <button class="wa-menu-btn" onclick="waShowProducts()">
+        <span>📦 منتجاتنا وأسعارها</span>
+        <span class="wa-arrow">←</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 </body></html>
