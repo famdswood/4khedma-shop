@@ -1407,6 +1407,67 @@
     .hero { padding: 140px 60px 120px; }
     .hero-headline { font-size: 80px; }
   }
+
+  /* ── OFFER ALERT BANNER ─────────────────── */
+  .offer-alert-banner {
+    background: linear-gradient(90deg, #7a0a0a 0%, #a01515 40%, #7a0a0a 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+  .offer-alert-banner:hover { filter: brightness(1.1); }
+  .offer-alert-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+    animation: iconBounce 1.8s ease-in-out infinite;
+  }
+  @keyframes iconBounce {
+    0%,100% { transform: translateY(0) scale(1); }
+    40%      { transform: translateY(-4px) scale(1.15); }
+    60%      { transform: translateY(-2px) scale(1.08); }
+  }
+  .offer-alert-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .offer-alert-text strong {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1.3;
+  }
+  .offer-alert-text span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.78);
+    font-weight: 500;
+  }
+  .offer-alert-cta {
+    background: var(--gold);
+    color: var(--blue);
+    font-family: 'Cairo', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 8px 18px;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.18s;
+  }
+  .offer-alert-banner:hover .offer-alert-cta { background: #e8c43a; }
+  @media (max-width: 600px) {
+    .offer-alert-banner { padding: 12px 14px; gap: 10px; }
+    .offer-alert-text strong { font-size: 13px; }
+    .offer-alert-cta { font-size: 12px; padding: 7px 13px; }
+  }
+  @media (max-width: 400px) {
+    .offer-alert-text span { display: none; }
+  }
 </style>
 </head>
 <body style="">
@@ -1544,7 +1605,15 @@
     <span class="breadcrumb">4Khedma <span>› Khedma Bank</span></span>
   </div>
 
-  <!-- SHOWCASE -->
+  <!-- OFFER ALERT BANNER -->
+  <div class="offer-alert-banner" onclick="showOffers()">
+    <span class="offer-alert-icon">🔥</span>
+    <div class="offer-alert-text">
+      <strong>عروض Early Bird شغّالة دلوقتي على Khedma Bank!</strong>
+      <span>وفّر لغاية 200 جنيه — متاح لـ 46 نسخة فقط قبل ما الأسعار ترجع رسمية</span>
+    </div>
+    <span class="offer-alert-cta">شوف العروض ←</span>
+  </div>
   <section class="showcase-section">
     <div class="showcase-inner">
       <div class="showcase-header">
@@ -2497,7 +2566,7 @@
     document.getElementById('view-product').classList.remove('active');
     document.getElementById('view-offers').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
-    ctaShow();
+    ctaHide();
   }
   function showMain() {
     closeMobileNav();
@@ -2505,7 +2574,7 @@
     document.getElementById('view-product').classList.remove('active');
     document.getElementById('view-offers').classList.remove('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    ctaHide();
+    ctaShow();
   }
   function showProduct() {
     closeMobileNav();
@@ -2636,6 +2705,8 @@
         cta.classList.remove('visible');
       });
     }
+    // Show on initial load since main view is active by default
+    ctaShow();
   })();
 
   /* ─── LIGHTBOX ───────────────────────────── */
