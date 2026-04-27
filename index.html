@@ -274,6 +274,28 @@
   }
   .hero-cta:hover { background: #e8c43a; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,175,55,0.5); }
 
+  /* ── HERO ENTRANCE ANIMATIONS ───────────────── */
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    animation: heroFadeUp 0.65s cubic-bezier(0.22,1,0.36,1) both;
+    animation-delay: 0.1s;
+  }
+  .hero-headline {
+    animation: heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    animation-delay: 0.28s;
+  }
+  .hero-sub {
+    animation: heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    animation-delay: 0.44s;
+  }
+  .hero-cta {
+    animation: heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    animation-delay: 0.58s;
+  }
+
   /* ── SECTION SCAFFOLDING ────────────────────── */
   .section { padding: 88px 40px; }
   .section-inner { max-width: 1200px; margin: 0 auto; }
@@ -789,11 +811,32 @@
     border-radius: var(--radius-xl);
     padding: 30px 26px 28px;
     position: relative;
-    transition: all 0.22s;
+    transition: all 0.28s cubic-bezier(0.22,1,0.36,1);
     display: flex;
     flex-direction: column;
   }
-  .price-card:hover { border-color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .price-card:hover {
+    border-color: var(--blue);
+    box-shadow: 0 12px 40px rgba(11,59,96,0.18);
+    transform: translateY(-6px) scale(1.015);
+  }
+  .price-card:hover .plan-price {
+    color: var(--blue-mid);
+  }
+  .price-card:hover .btn-buy:not(.gold):not(.red):not(.outline) {
+    background: var(--blue-mid);
+    letter-spacing: 0.01em;
+  }
+  .price-card.featured:hover {
+    border-color: var(--gold-dark);
+    box-shadow: 0 12px 40px rgba(212,175,55,0.32);
+  }
+  .price-card.featured-blue:hover {
+    border-color: var(--blue-mid);
+    box-shadow: 0 12px 40px rgba(11,59,96,0.22);
+  }
+  .price-card .plan-price { transition: color 0.25s ease; }
+  .price-card .btn-buy    { transition: all 0.25s cubic-bezier(0.22,1,0.36,1); }
   .price-card.featured {
     border-color: var(--gold);
     background: linear-gradient(160deg, #fffdf4 0%, #fff8e0 100%);
@@ -968,6 +1011,78 @@
     font-size: 14px;
     color: var(--gray-700);
     line-height: 1.75;
+  }
+
+  /* ── FAQ ────────────────────────────────────── */
+  .faq-section { padding: 88px 40px; background: var(--white); }
+  .faq-inner { max-width: 860px; margin: 0 auto; }
+  .faq-list { display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.22s, box-shadow 0.22s;
+  }
+  .faq-item:hover { border-color: var(--gold); }
+  .faq-item.open  { border-color: var(--blue); box-shadow: var(--shadow-md); }
+  .faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--off-white);
+    border: none;
+    padding: 20px 24px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--blue);
+    cursor: pointer;
+    text-align: right;
+    transition: background 0.2s;
+  }
+  .faq-item.open .faq-q { background: var(--blue); color: var(--white); }
+  .faq-q:hover { background: var(--blue-light); }
+  .faq-item.open .faq-q:hover { background: var(--blue); }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; line-height: 1;
+    transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+    color: var(--blue);
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--blue);
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.38s cubic-bezier(0.22,1,0.36,1), padding 0.3s;
+    padding: 0 24px;
+    background: var(--white);
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding: 20px 24px 22px; }
+  .faq-a p {
+    font-size: 14px;
+    color: var(--gray-700);
+    line-height: 1.85;
+    margin: 0;
+  }
+
+  /* ── FAQ RESPONSIVE ─────────────────────────── */
+  @media (max-width: 900px) { .faq-section { padding: 64px 20px; } }
+  @media (max-width: 600px) {
+    .faq-section { padding: 44px 16px; }
+    .faq-q { font-size: 14px; padding: 16px 18px; }
+    .faq-a { padding: 0 18px; }
+    .faq-item.open .faq-a { padding: 16px 18px 18px; }
   }
 
   /* ── FOOTER ─────────────────────────────────── */
@@ -1625,6 +1740,78 @@
     </div>
   </section>
 
+  <!-- ══ FAQ ══════════════════════════════════════ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <span class="section-label">لديك تساؤل؟</span>
+      <h2 class="section-title">الأسئلة الشائعة <span>بإجابات واضحة</span></h2>
+      <div class="divider"></div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>ما الفرق بين النسخة الديمو والنسخة الأساسية؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>النسخة الديمو مجانية وتتيح لك تجربة البرنامج بشكل محدود — تصفح عدد من الأسئلة وتجربة واجهة اللعب. النسخة الأساسية (بعد التفعيل) تفتح المكتبة الكاملة بأكثر من 2500 سؤال مع جميع أوضاع اللعب ودعم اللغة العربية الكامل.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>هل البرنامج يشتغل على ويندوز 11؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>نعم، البرنامج متوافق مع ويندوز 10 وويندوز 11 بالكامل. لا يحتاج إلى أي برامج إضافية للتشغيل — فقط قم بالتثبيت وشغّله مباشرةً.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>هل مفتاح التفعيل مرتبط بجهاز واحد فقط؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>نعم، كل مفتاح تفعيل مرتبط بالجهاز الذي فُعِّل عليه أول مرة. في حالة تغيير الجهاز أو إعادة التثبيت تواصل مع الدعم الفني مع إثبات الشراء وسيتم مساعدتك فوراً. الباقة الذهبية والـ VIP تدعم حتى 3 أجهزة.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>كيف أستلم مفتاح التفعيل بعد الشراء؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>بعد إتمام الدفع عبر واتساب، يتم إرسال مفتاح التفعيل الخاص بك خلال دقائق معدودة على نفس المحادثة. لا حاجة لانتظار طويل أو خطوات معقدة.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>هل يوجد تحديثات مستقبلية؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>نعم، جميع التحديثات المستقبلية على نفس الإصدار مجانية لحاملي النسخة الأساسية. يشمل ذلك أسئلة جديدة وميزات إضافية تُضاف دورياً.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>هل يمكنني استخدام البرنامج بدون إنترنت؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>نعم تماماً. البرنامج يعمل بشكل كامل بدون اتصال بالإنترنت بعد التثبيت والتفعيل — مناسب للاستخدام في قاعات الكنيسة وأي مكان آخر.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <p class="footer-text">© 2026 <span class="gold">4Khedma</span> — Fam Dawood — جميع الحقوق محفوظة</p>
@@ -1985,6 +2172,15 @@
 
 <script>
   /* ─── HAMBURGER MENU ────────────────────── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all open items
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    // Open clicked if it was closed
+    if (!isOpen) item.classList.add('open');
+  }
+
   function toggleMobileNav() {
     const nav = document.getElementById('mobile-nav');
     const btn = document.getElementById('hamburger-btn');
