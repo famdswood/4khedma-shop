@@ -1904,6 +1904,16 @@
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
+            <span>💳 إزاي بدفع؟ وهل الدفع آمن؟</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>الدفع بيتم مباشرةً عبر <strong>واتساب</strong> — مفيش موقع دفع إلكتروني أو بيانات بنكية على الإنترنت. بعد ما تضغط "شراء الآن" هتتحول لمحادثة واتساب معانا، بنتفق على طريقة الدفع المناسبة ليك (إنستا باي / فودافون كاش / تحويل بنكي)، وبعد التأكيد بنبعتلك مفتاح التفعيل على نفس المحادثة في دقائق.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
             <span>ما الفرق بين النسخة الديمو والنسخة الأساسية؟</span>
             <span class="faq-icon">+</span>
           </button>
@@ -2036,12 +2046,26 @@
   position:relative; transition:all 0.22s; display:flex; flex-direction:column;
 }
 .offer-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--gold); }
-.offer-card.hot { border-color:var(--gold); background:linear-gradient(160deg,#fffdf4,#fff8e0); box-shadow:0 4px 28px rgba(212,175,55,0.22); }
+.offer-card.hot {
+  border-color:var(--gold); border-width: 2.5px;
+  background:linear-gradient(160deg,#fffdf4,#fff8e0);
+  box-shadow:0 6px 36px rgba(212,175,55,0.35);
+  transform: scale(1.03);
+  z-index: 2;
+}
+.offer-card.hot:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 14px 44px rgba(212,175,55,0.45); }
 .offer-top-badge {
-  position:absolute; top:-13px; right:50%; transform:translateX(50%);
-  background:var(--red); color:var(--white);
-  font-size:10px; font-weight:800; letter-spacing:0.1em;
-  padding:4px 18px; border-radius:40px; white-space:nowrap;
+  position:absolute; top:-18px; right:50%; transform:translateX(50%);
+  background: linear-gradient(90deg, var(--red), #e63535);
+  color:var(--white);
+  font-size:12px; font-weight:900; letter-spacing:0.08em;
+  padding:6px 22px; border-radius:40px; white-space:nowrap;
+  box-shadow: 0 3px 12px rgba(185,28,28,0.45);
+  animation: badgePulse 2.2s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%,100% { box-shadow: 0 3px 12px rgba(185,28,28,0.4); }
+  50%      { box-shadow: 0 3px 22px rgba(185,28,28,0.75); }
 }
 .offer-card .plan-name { font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray-500); margin-bottom:10px; }
 .price-row { display:flex; align-items:flex-end; gap:12px; margin-bottom:6px; }
@@ -2119,6 +2143,73 @@
   .cd-sep { font-size: 20px; margin-bottom: 10px; }
   .offers-headline { font-size: clamp(22px, 6vw, 38px); }
   .price-new { font-size: 36px; }
+}
+
+/* ── STICKY CTA BAR ─────────────────────── */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 500;
+  background: linear-gradient(90deg, #0B3B60 0%, #0d4a79 50%, #0B3B60 100%);
+  border-top: 2px solid var(--gold);
+  padding: 10px 24px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 -4px 24px rgba(11,59,96,0.35);
+  animation: ctaSlideUp 0.45s cubic-bezier(0.22,1,0.36,1) both;
+}
+.sticky-cta.visible { display: flex; }
+@keyframes ctaSlideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.sticky-cta-left {
+  display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;
+}
+.sticky-cta-label {
+  font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+}
+.sticky-cta-timer {
+  display: flex; align-items: center; gap: 4px;
+}
+.sticky-cd-cell {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 6px; padding: 3px 8px; min-width: 38px;
+}
+.sticky-cd-num {
+  font-size: 17px; font-weight: 900; color: var(--gold); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.sticky-cd-lbl { font-size: 9px; color: rgba(255,255,255,0.5); font-weight: 600; }
+.sticky-cd-sep { font-size: 16px; font-weight: 900; color: rgba(212,175,55,0.5); margin-bottom: 8px; }
+.sticky-cta-badge {
+  background: var(--red); color: #fff;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.06em;
+  padding: 3px 10px; border-radius: 40px; white-space: nowrap; flex-shrink: 0;
+}
+.sticky-cta-btn {
+  background: var(--gold); color: var(--blue);
+  font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 800;
+  padding: 10px 24px; border-radius: var(--radius-md); border: none;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(212,175,55,0.4);
+}
+.sticky-cta-btn:hover { background: #e8c43a; transform: translateY(-1px); }
+.sticky-cta-close {
+  background: none; border: none; color: rgba(255,255,255,0.4);
+  font-size: 18px; cursor: pointer; padding: 0 0 0 8px; flex-shrink: 0; line-height: 1;
+}
+.sticky-cta-close:hover { color: rgba(255,255,255,0.8); }
+@media (max-width: 600px) {
+  .sticky-cta { padding: 8px 14px; gap: 10px; }
+  .sticky-cta-label { display: none; }
+  .sticky-cta-btn { font-size: 13px; padding: 9px 18px; }
+  .sticky-cd-num { font-size: 15px; }
+  .sticky-cd-cell { min-width: 32px; padding: 3px 5px; }
 }
 
 /* ── COUNTDOWN ───────────────────────────────── */
@@ -2489,6 +2580,8 @@
         document.getElementById('cd-mins').textContent  = '00';
         document.getElementById('cd-secs').textContent  = '00';
         if (note) note.textContent = 'انتهى عرض الإطلاق — الأسعار الرسمية سارية الآن';
+        // update sticky too
+        ['scd-days','scd-hours','scd-mins','scd-secs'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = '00'; });
         return;
       }
 
@@ -2502,10 +2595,52 @@
       document.getElementById('cd-mins').textContent  = pad(mins);
       document.getElementById('cd-secs').textContent  = pad(secs);
 
+      // sync sticky countdown
+      const sd = document.getElementById('scd-days');   if(sd) sd.textContent = pad(days);
+      const sh = document.getElementById('scd-hours');  if(sh) sh.textContent = pad(hours);
+      const sm = document.getElementById('scd-mins');   if(sm) sm.textContent = pad(mins);
+      const ss = document.getElementById('scd-secs');   if(ss) ss.textContent = pad(secs);
+
       if (note) note.textContent = '';
       setTimeout(tick, 1000);
     }
     tick();
+  })();
+
+  /* ─── STICKY CTA ─────────────────────────── */
+  (function() {
+    let ctaDismissed = false;
+    const cta = document.getElementById('stickyCta');
+
+    function updateCtaVisibility() {
+      if (ctaDismissed || !cta) return;
+      const offersActive  = document.getElementById('view-offers')  && document.getElementById('view-offers').classList.contains('active');
+      const productActive = document.getElementById('view-product') && document.getElementById('view-product').classList.contains('active');
+      if (offersActive || productActive) {
+        cta.classList.add('visible');
+      } else {
+        cta.classList.remove('visible');
+      }
+    }
+
+    // Patch view switching to update CTA
+    const origShowOffers  = window.showOffers;
+    const origShowProduct = window.showProduct;
+    const origShowMain    = window.showMain;
+    window.showOffers  = function() { origShowOffers && origShowOffers();  setTimeout(updateCtaVisibility, 60); };
+    window.showProduct = function() { origShowProduct && origShowProduct(); setTimeout(updateCtaVisibility, 60); };
+    window.showMain    = function() { origShowMain && origShowMain();    setTimeout(updateCtaVisibility, 60); };
+
+    // Close button sets flag
+    const closeBtn = cta ? cta.querySelector('.sticky-cta-close') : null;
+    if (closeBtn) closeBtn.addEventListener('click', () => { ctaDismissed = true; });
+
+    // Also show after scrolling past hero on offers/product views
+    window.addEventListener('scroll', () => {
+      if (!ctaDismissed) updateCtaVisibility();
+    }, { passive: true });
+
+    updateCtaVisibility();
   })();
 
   /* ─── LIGHTBOX ───────────────────────────── */
@@ -2700,6 +2835,26 @@ window.addEventListener('load', initLightbox);
       panel.classList.remove('open');
   });
 </script>
+<!-- ══ STICKY CTA BAR ══════════════════════ -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-left">
+    <span class="sticky-cta-badge">🔥 Early Bird</span>
+    <span class="sticky-cta-label">العرض ينتهي خلال:</span>
+    <div class="sticky-cta-timer">
+      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-days">--</span><span class="sticky-cd-lbl">يوم</span></div>
+      <span class="sticky-cd-sep">:</span>
+      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-hours">--</span><span class="sticky-cd-lbl">ساعة</span></div>
+      <span class="sticky-cd-sep">:</span>
+      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-mins">--</span><span class="sticky-cd-lbl">دقيقة</span></div>
+      <span class="sticky-cd-sep">:</span>
+      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-secs">--</span><span class="sticky-cd-lbl">ثانية</span></div>
+    </div>
+    <span class="sticky-cta-badge" style="background:rgba(212,175,55,0.2);color:var(--gold);border:1px solid rgba(212,175,55,0.4);">46 نسخة متبقية</span>
+  </div>
+  <button class="sticky-cta-btn" onclick="document.getElementById('pricing-hub') ? document.getElementById('pricing-hub').scrollIntoView({behavior:'smooth'}) : showOffers()">احجز الآن ←</button>
+  <button class="sticky-cta-close" onclick="document.getElementById('stickyCta').classList.remove('visible'); document.getElementById('stickyCta').style.display='none';" title="إغلاق">✕</button>
+</div>
+
 <!-- ══ WHATSAPP CHAT WIDGET ══════════════════ -->
 <button class="wa-fab" id="waFab" onclick="toggleWaPanel()" aria-label="تواصل معنا">
   💬
