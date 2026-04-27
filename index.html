@@ -1465,6 +1465,191 @@
   @media (max-width: 400px) {
     .offer-alert-text span { display: none; }
   }
+
+  /* ══ ENHANCED ANIMATIONS ═══════════════════════════ */
+
+  /* ── Hero ambient orbs ── */
+  .hero { isolation: isolate; }
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    animation: orbAppear 1.4s ease forwards, orbFloat var(--dur, 8s) ease-in-out infinite;
+  }
+  .hero-orb-1 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 70%);
+    top: -100px; right: -80px;
+    --dur: 7s;
+    animation-delay: 0.8s, 1.2s;
+  }
+  .hero-orb-2 {
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    bottom: -50px; left: 8%;
+    --dur: 10s;
+    animation-delay: 1s, 1.5s;
+  }
+  .hero-orb-3 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+    top: 35%; left: -50px;
+    --dur: 12s;
+    animation-delay: 1.2s, 1.8s;
+  }
+  @keyframes orbAppear { to { opacity: 1; } }
+  @keyframes orbFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%       { transform: translateY(-24px) scale(1.06); }
+  }
+
+  /* ── Hero CTA shimmer ── */
+  .hero-cta { overflow: hidden; }
+  .hero-cta::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -120%;
+    width: 55%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+    animation: btnShimmer 3.5s ease-in-out infinite;
+    animation-delay: 2.2s;
+    pointer-events: none;
+  }
+  @keyframes btnShimmer {
+    0%       { left: -120%; }
+    40%, 100% { left: 180%; }
+  }
+
+  /* ── Product card shimmer sweep on hover ── */
+  .product-card { position: relative; }
+  .product-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 35%, rgba(212,175,55,0.1) 50%, transparent 65%);
+    transform: translateX(-100%);
+    transition: none;
+    pointer-events: none;
+    border-radius: var(--radius-xl);
+    z-index: 1;
+  }
+  .product-card:hover::after { animation: cardSweep 0.65s ease forwards; }
+  @keyframes cardSweep {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(200%);  }
+  }
+
+  /* ── Showcase image float ── */
+  .showcase-cover img {
+    animation: imgFloat 7s ease-in-out infinite;
+  }
+  @keyframes imgFloat {
+    0%, 100% { transform: translateY(0);     filter: drop-shadow(0 8px 28px rgba(11,59,96,0.22)); }
+    50%       { transform: translateY(-14px); filter: drop-shadow(0 22px 52px rgba(11,59,96,0.34)); }
+  }
+
+  /* ── Showcase meta slide-in ── */
+  .showcase-meta {
+    animation: metaSlideIn 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    animation-delay: 0.15s;
+  }
+  @keyframes metaSlideIn {
+    from { opacity: 0; transform: translateX(28px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .showcase-cover {
+    animation: coverSlideIn 0.75s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes coverSlideIn {
+    from { opacity: 0; transform: translateX(-28px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── Pricing featured card pulse glow ── */
+  .price-card.featured {
+    animation: featuredGlow 4s ease-in-out infinite;
+  }
+  @keyframes featuredGlow {
+    0%, 100% { box-shadow: 0 4px 24px rgba(212,175,55,0.22); }
+    50%       { box-shadow: 0 10px 48px rgba(212,175,55,0.52); }
+  }
+
+  /* ── btn-gold continuous shine ── */
+  .btn-gold { overflow: hidden; }
+  .btn-gold::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -120%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+    animation: goldShine 4.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+    pointer-events: none;
+  }
+  @keyframes goldShine {
+    0%       { left: -120%; }
+    35%, 100% { left: 200%; }
+  }
+
+  /* ── Gallery image zoom on hover ── */
+  .gallery-item { overflow: hidden; }
+  .gallery-item img {
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+  .gallery-item:hover img { transform: scale(1.07); }
+
+  /* ── Header scroll shadow ── */
+  .site-header { transition: box-shadow 0.35s ease; }
+  .site-header.scrolled { box-shadow: 0 4px 28px rgba(11,59,96,0.16); }
+
+  /* ── Stats counter pop ── */
+  .quick-stat.counted .val {
+    animation: statPop 0.45s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes statPop {
+    from { transform: scale(0.65); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+
+  /* ── Feature items icon bounce on hover ── */
+  .feature-item:hover .feature-marker {
+    animation: markerBounce 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes markerBounce {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.25) rotate(-6deg); }
+    100% { transform: scale(1); }
+  }
+
+  /* ── FAQ icon spin ── */
+  .faq-item .faq-icon { transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background 0.3s, border-color 0.3s, color 0.3s; }
+
+  /* ── Footer grid pattern ── */
+  .site-footer { position: relative; overflow: hidden; }
+  .site-footer::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg,  transparent, transparent 39px, rgba(212,175,55,0.05) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(212,175,55,0.05) 40px);
+    pointer-events: none;
+  }
+
+  /* ── Price card buy button fill on hover ── */
+  .price-card .btn-buy {
+    position: relative; overflow: hidden;
+  }
+  .price-card .btn-buy::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 100%;
+    background: rgba(255,255,255,0.1);
+    transition: width 0.3s ease;
+    pointer-events: none;
+  }
+  .price-card .btn-buy:hover::after { width: 100%; }
 </style>
 </head>
 <body style="">
@@ -1505,6 +1690,9 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">منصة برامج الخدمة الكنسية الأرثوذكسية</span>
       <h1 class="hero-headline">
@@ -2714,6 +2902,40 @@ window.addEventListener('load', initLightbox);
   window.showProduct = function() { _origShowProduct(); setTimeout(markReveal, 60); };
   const _origShowOffers = window.showOffers;
   window.showOffers = function() { _origShowOffers(); setTimeout(markReveal, 60); };
+
+  /* ══ HEADER SCROLL SHADOW ══════════════════ */
+  window.addEventListener('scroll', () => {
+    const h = document.querySelector('.site-header');
+    if (h) h.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  /* ══ STATS COUNTER ANIMATION ════════════════ */
+  function animateCounter(el, target, suffix, duration) {
+    const start = Date.now();
+    const tick = () => {
+      const progress = Math.min((Date.now() - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const stat = e.target;
+      if (stat._counted) return;
+      stat._counted = true;
+      stat.classList.add('counted');
+      const valEl = stat.querySelector('.val');
+      if (!valEl) return;
+      const raw    = valEl.textContent.trim();
+      const num    = parseInt(raw.replace(/\D/g, ''));
+      const suffix = raw.replace(/[0-9]/g, '');
+      if (!isNaN(num)) animateCounter(valEl, num, suffix, 1300);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.quick-stat').forEach(el => statsObserver.observe(el));
 
   /* ══ WHATSAPP WIDGET ════════════════════════ */
   const _WA = '201207737965';
