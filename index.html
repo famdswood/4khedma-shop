@@ -350,7 +350,8 @@
   }
   .product-card-thumb {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/7;
+    max-height: 200px;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -1143,11 +1144,8 @@
     font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,0.5);
     transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s, bottom 0.3s;
   }
-  .sticky-cta.visible ~ * .wa-fab,
-  body:has(.sticky-cta.visible) .wa-fab { bottom: 82px; }
   @media (max-width: 600px) {
     .wa-fab { bottom: 20px; left: 16px; width: 52px; height: 52px; font-size: 24px; }
-    body:has(.sticky-cta.visible) .wa-fab { bottom: 76px; }
   }
   .wa-fab:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.6); }
   .wa-fab .wa-badge {
@@ -2221,71 +2219,7 @@
 }
 
 /* ── STICKY CTA BAR ─────────────────────── */
-.sticky-cta {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 500;
-  background: linear-gradient(90deg, #0B3B60 0%, #0d4a79 50%, #0B3B60 100%);
-  border-top: 2px solid var(--gold);
-  padding: 10px 24px;
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  box-shadow: 0 -4px 24px rgba(11,59,96,0.35);
-  animation: ctaSlideUp 0.45s cubic-bezier(0.22,1,0.36,1) both;
-}
-.sticky-cta.visible { display: flex; }
-@keyframes ctaSlideUp {
-  from { transform: translateY(100%); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
-}
-.sticky-cta-left {
-  display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;
-}
-.sticky-cta-label {
-  font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.75);
-  white-space: nowrap;
-}
-.sticky-cta-timer {
-  display: flex; align-items: center; gap: 4px;
-}
-.sticky-cd-cell {
-  display: flex; flex-direction: column; align-items: center;
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(212,175,55,0.4);
-  border-radius: 6px; padding: 3px 8px; min-width: 38px;
-}
-.sticky-cd-num {
-  font-size: 17px; font-weight: 900; color: var(--gold); line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.sticky-cd-lbl { font-size: 9px; color: rgba(255,255,255,0.5); font-weight: 600; }
-.sticky-cd-sep { font-size: 16px; font-weight: 900; color: rgba(212,175,55,0.5); margin-bottom: 8px; }
-.sticky-cta-badge {
-  background: var(--red); color: #fff;
-  font-size: 10px; font-weight: 800; letter-spacing: 0.06em;
-  padding: 3px 10px; border-radius: 40px; white-space: nowrap; flex-shrink: 0;
-}
-.sticky-cta-btn {
-  background: var(--gold); color: var(--blue);
-  font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 800;
-  padding: 10px 24px; border-radius: var(--radius-md); border: none;
-  cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
-  box-shadow: 0 2px 12px rgba(212,175,55,0.4);
-}
-.sticky-cta-btn:hover { background: #e8c43a; transform: translateY(-1px); }
-.sticky-cta-close {
-  background: none; border: none; color: rgba(255,255,255,0.4);
-  font-size: 18px; cursor: pointer; padding: 0 0 0 8px; flex-shrink: 0; line-height: 1;
-}
-.sticky-cta-close:hover { color: rgba(255,255,255,0.8); }
-@media (max-width: 600px) {
-  .sticky-cta { padding: 8px 14px; gap: 10px; }
-  .sticky-cta-label { display: none; }
-  .sticky-cta-btn { font-size: 13px; padding: 9px 18px; }
-  .sticky-cd-num { font-size: 15px; }
-  .sticky-cd-cell { min-width: 32px; padding: 3px 5px; }
-}
+
 
 /* ── COUNTDOWN ───────────────────────────────── */
 .countdown-wrap {
@@ -2550,23 +2484,12 @@
     window.open(`https://wa.me/201207737965?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  /* ─── VIEW SWITCHING ─────────────────────── */
-  function ctaShow() {
-    var bar = document.getElementById('stickyCta');
-    if (bar && !bar._dismissed) bar.classList.add('visible');
-  }
-  function ctaHide() {
-    var bar = document.getElementById('stickyCta');
-    if (bar) bar.classList.remove('visible');
-  }
-
-  function showOffers() {
+  /* ─── VIEW SWITCHING ─────────────────────── */function showOffers() {
     closeMobileNav();
     document.getElementById('view-main').classList.remove('active');
     document.getElementById('view-product').classList.remove('active');
     document.getElementById('view-offers').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
-    ctaHide();
   }
   function showMain() {
     closeMobileNav();
@@ -2574,14 +2497,12 @@
     document.getElementById('view-product').classList.remove('active');
     document.getElementById('view-offers').classList.remove('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    ctaShow();
   }
   function showProduct() {
     closeMobileNav();
     document.getElementById('view-main').classList.remove('active');
     document.getElementById('view-product').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
-    ctaShow();
   }
 /* ─── WHATSAPP CHECKOUT ──────────────────── */
   const WA_NUMBER = '201207737965';
@@ -2667,8 +2588,6 @@
         document.getElementById('cd-mins').textContent  = '00';
         document.getElementById('cd-secs').textContent  = '00';
         if (note) note.textContent = 'انتهى عرض الإطلاق — الأسعار الرسمية سارية الآن';
-        // update sticky too
-        ['scd-days','scd-hours','scd-mins','scd-secs'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = '00'; });
         return;
       }
 
@@ -2682,31 +2601,10 @@
       document.getElementById('cd-mins').textContent  = pad(mins);
       document.getElementById('cd-secs').textContent  = pad(secs);
 
-      // sync sticky countdown
-      const sd = document.getElementById('scd-days');   if(sd) sd.textContent = pad(days);
-      const sh = document.getElementById('scd-hours');  if(sh) sh.textContent = pad(hours);
-      const sm = document.getElementById('scd-mins');   if(sm) sm.textContent = pad(mins);
-      const ss = document.getElementById('scd-secs');   if(ss) ss.textContent = pad(secs);
-
       if (note) note.textContent = '';
       setTimeout(tick, 1000);
     }
     tick();
-  })();
-
-  /* ─── STICKY CTA DISMISS ─────────────────── */
-  (function() {
-    var cta = document.getElementById('stickyCta');
-    if (!cta) return;
-    var closeBtn = cta.querySelector('.sticky-cta-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
-        cta._dismissed = true;
-        cta.classList.remove('visible');
-      });
-    }
-    // Show on initial load since main view is active by default
-    ctaShow();
   })();
 
   /* ─── LIGHTBOX ───────────────────────────── */
@@ -2901,25 +2799,6 @@ window.addEventListener('load', initLightbox);
       panel.classList.remove('open');
   });
 </script>
-<!-- ══ STICKY CTA BAR ══════════════════════ -->
-<div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta-left">
-    <span class="sticky-cta-badge">🔥 Early Bird</span>
-    <span class="sticky-cta-label">العرض ينتهي خلال:</span>
-    <div class="sticky-cta-timer">
-      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-days">--</span><span class="sticky-cd-lbl">يوم</span></div>
-      <span class="sticky-cd-sep">:</span>
-      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-hours">--</span><span class="sticky-cd-lbl">ساعة</span></div>
-      <span class="sticky-cd-sep">:</span>
-      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-mins">--</span><span class="sticky-cd-lbl">دقيقة</span></div>
-      <span class="sticky-cd-sep">:</span>
-      <div class="sticky-cd-cell"><span class="sticky-cd-num" id="scd-secs">--</span><span class="sticky-cd-lbl">ثانية</span></div>
-    </div>
-    <span class="sticky-cta-badge" style="background:rgba(212,175,55,0.2);color:var(--gold);border:1px solid rgba(212,175,55,0.4);">46 نسخة متبقية</span>
-  </div>
-  <button class="sticky-cta-btn" onclick="var ph=document.getElementById('pricing-hub'); var oc=document.querySelector('.offers-cards-section'); if(ph&&ph.offsetParent!==null){ph.scrollIntoView({behavior:'smooth'})}else if(oc&&oc.offsetParent!==null){oc.scrollIntoView({behavior:'smooth'})}">احجز الآن ←</button>
-  <button class="sticky-cta-close" onclick="this.closest('.sticky-cta')._dismissed=true; this.closest('.sticky-cta').classList.remove('visible');" title="إغلاق">✕</button>
-</div>
 
 <!-- ══ WHATSAPP CHAT WIDGET ══════════════════ -->
 <button class="wa-fab" id="waFab" onclick="toggleWaPanel()" aria-label="تواصل معنا">
