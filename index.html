@@ -1475,6 +1475,7 @@
     border-radius: 50%;
     pointer-events: none;
     opacity: 0;
+    will-change: transform, opacity;
     animation: orbAppear 1.4s ease forwards, orbFloat var(--dur, 8s) ease-in-out infinite;
   }
   .hero-orb-1 {
@@ -1505,20 +1506,21 @@
   }
 
   /* ── Hero CTA shimmer ── */
-  .hero-cta { overflow: hidden; }
+  .hero-cta { overflow: hidden; position: relative; }
   .hero-cta::after {
     content: '';
     position: absolute;
-    top: 0; left: -120%;
+    top: 0; left: 0;
     width: 55%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+    transform: translateX(-200%);
     animation: btnShimmer 3.5s ease-in-out infinite;
     animation-delay: 2.2s;
     pointer-events: none;
   }
   @keyframes btnShimmer {
-    0%       { left: -120%; }
-    40%, 100% { left: 180%; }
+    0%        { transform: translateX(-200%); }
+    40%, 100% { transform: translateX(360%);  }
   }
 
   /* ── Product card shimmer sweep on hover ── */
@@ -1529,7 +1531,6 @@
     inset: 0;
     background: linear-gradient(110deg, transparent 35%, rgba(212,175,55,0.1) 50%, transparent 65%);
     transform: translateX(-100%);
-    transition: none;
     pointer-events: none;
     border-radius: var(--radius-xl);
     z-index: 1;
@@ -1542,32 +1543,17 @@
 
   /* ── Showcase image float ── */
   .showcase-cover img {
+    will-change: transform;
     animation: imgFloat 7s ease-in-out infinite;
   }
   @keyframes imgFloat {
-    0%, 100% { transform: translateY(0);     filter: drop-shadow(0 8px 28px rgba(11,59,96,0.22)); }
-    50%       { transform: translateY(-14px); filter: drop-shadow(0 22px 52px rgba(11,59,96,0.34)); }
-  }
-
-  /* ── Showcase meta slide-in ── */
-  .showcase-meta {
-    animation: metaSlideIn 0.7s cubic-bezier(0.22,1,0.36,1) both;
-    animation-delay: 0.15s;
-  }
-  @keyframes metaSlideIn {
-    from { opacity: 0; transform: translateX(28px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .showcase-cover {
-    animation: coverSlideIn 0.75s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  @keyframes coverSlideIn {
-    from { opacity: 0; transform: translateX(-28px); }
-    to   { opacity: 1; transform: translateX(0); }
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-14px); }
   }
 
   /* ── Pricing featured card pulse glow ── */
   .price-card.featured {
+    will-change: box-shadow;
     animation: featuredGlow 4s ease-in-out infinite;
   }
   @keyframes featuredGlow {
@@ -1576,20 +1562,21 @@
   }
 
   /* ── btn-gold continuous shine ── */
-  .btn-gold { overflow: hidden; }
+  .btn-gold { overflow: hidden; position: relative; }
   .btn-gold::after {
     content: '';
     position: absolute;
-    top: 0; left: -120%;
+    top: 0; left: 0;
     width: 50%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+    transform: translateX(-200%);
     animation: goldShine 4.5s ease-in-out infinite;
     animation-delay: 1.5s;
     pointer-events: none;
   }
   @keyframes goldShine {
-    0%       { left: -120%; }
-    35%, 100% { left: 200%; }
+    0%        { transform: translateX(-200%); }
+    35%, 100% { transform: translateX(400%);  }
   }
 
   /* ── Gallery image zoom on hover ── */
