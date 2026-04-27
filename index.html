@@ -51,54 +51,7 @@
     --shadow-lg: 0 8px 32px rgba(11,59,96,0.16);
   }
 
-  html.dark {
-    --white:     #0f172a;
-    --off-white: #1e293b;
-    --gray-50:   #1e293b;
-    --gray-100:  #334155;
-    --gray-300:  #64748b;
-    --gray-500:  #94a3b8;
-    --gray-700:  #cbd5e1;
-    --gray-900:  #f1f5f9;
-    --blue-light:#1e3a5f;
-    --gold-light:#2a2010;
-    --red-light: #2d0a0a;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
-    --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
-  }
-  html.dark body { background: #0f172a; color: #e2e8f0; }
-  html.dark .site-header { background: #0f172a; border-color: var(--blue); }
-  html.dark .product-card { background: #1e293b; border-color: #334155; }
-  html.dark .price-card { background: #1e293b; border-color: #334155; }
-  html.dark .price-card.featured { background: linear-gradient(160deg,#1f1a0a,#2a2210); }
-  html.dark .price-card.featured-blue { background: linear-gradient(160deg,#0f1e33,#1a2d4a); }
-  html.dark .feature-item { background: #1e293b; border-color: #334155; }
-  html.dark .faq-q { background: #1e293b; }
-  html.dark .faq-item.open .faq-q { background: var(--blue); }
-  html.dark .faq-a { background: #1e293b; }
-  html.dark .quick-stat { background: #1e293b; border-color: #334155; }
-  html.dark .step-image-placeholder { background: #1e293b; border-color: #334155; }
-  html.dark .nav-link { color: #cbd5e1; }
-  html.dark .nav-link:hover { background: #1e293b; border-color: #334155; color: var(--white); }
-  html.dark .mobile-nav { background: #0f172a; border-color: var(--blue); }
-  html.dark .breadcrumb { color: rgba(255,255,255,0.45); }
-  html.dark .pricing-block-header { border-color: #334155; }
-  html.dark .warning-box { background: #1a1500; }
 
-  /* Dark mode toggle button */
-  .dark-toggle {
-    background: none;
-    border: 1.5px solid var(--gray-100);
-    border-radius: var(--radius-md);
-    padding: 7px 10px;
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 1;
-    transition: all 0.2s;
-    flex-shrink: 0;
-  }
-  .dark-toggle:hover { border-color: var(--gold); background: var(--gold-light); }
 
   html { scroll-behavior: smooth; }
 
@@ -1469,7 +1422,6 @@
       <a class="nav-link" onclick="document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'})">المكتبة / المنتجات</a>
       <a class="nav-link accent" onclick="showOffers()" style="cursor:pointer">عروض حصرية</a>
     </nav>
-    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="تبديل المظهر">🌙</button>
     <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="القائمة">
       <span></span><span></span><span></span>
     </button>
@@ -2404,19 +2356,28 @@
   function buyLaunchOffer(plan, price, originalPrice) {
     const now = new Date();
     const dateStr = now.toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
+    const timeStr = now.toLocaleTimeString('ar-EG', { hour:'2-digit', minute:'2-digit' });
+    // Calculate savings
+    const priceNum = parseInt(price);
+    const origNum  = parseInt(originalPrice);
+    const saving   = (!isNaN(priceNum) && !isNaN(origNum)) ? (origNum - priceNum) + ' جنيه' : '—';
+    const pct      = (!isNaN(priceNum) && !isNaN(origNum)) ? Math.round((origNum - priceNum) / origNum * 100) + '%' : '';
     const msg =
 `🔥 طلب Early Bird — أسبوع الإطلاق — 4Khedma 🔥
 
 ────────────────────
-المنتج       :  Khedma Bank
-الخطة        :  ${plan}
-سعر الإطلاق  :  ${price}
-السعر الرسمي :  ${originalPrice}
+المنتج         :  Khedma Bank
+الخطة          :  ${plan}
+سعر الإطلاق   :  ${price}
+السعر الرسمي  :  ${originalPrice}
+التوفير        :  ${saving} (خصم ${pct})
 ────────────────────
-التاريخ      :  ${dateStr}
+تاريخ الطلب   :  ${dateStr} — ${timeStr}
+انتهاء العرض  :  8 مايو 2026 أو عند نفاد الـ 50 نسخة
+النسخ المتبقية :  46 نسخة فقط
 ────────────────────
 
-أود حجز نسخة Early Bird للخطة المذكورة أعلاه قبل انتهاء الـ 50 نسخة.
+أود حجز نسخة Early Bird للخطة المذكورة أعلاه قبل انتهاء العرض.
 يُرجى التواصل معي لإتمام الدفع والتفعيل.
 
 شكراً — 4Khedma`;
@@ -2447,11 +2408,12 @@
 /* ─── WHATSAPP CHECKOUT ──────────────────── */
   const WA_NUMBER = '201207737965';
 
-  function buyProduct(plan, price) {
+  function buyProduct(plan, price, features) {
     const productName = 'Khedma Bank';
     const now = new Date();
     const dateStr = now.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
     const timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+    const featuresLine = features ? `\nالمميزات  :  ${features}` : '';
 
     const msg =
 `✦ طلب شراء جديد — 4Khedma ✦
@@ -2459,7 +2421,7 @@
 ────────────────────
 المنتج   :  ${productName}
 الخطة    :  ${plan}
-السعر    :  ${price}
+السعر    :  ${price}${featuresLine}
 ────────────────────
 التاريخ  :  ${dateStr}
 الوقت    :  ${timeStr}
@@ -2603,18 +2565,6 @@
   });
 window.addEventListener('load', initLightbox);
 
-  /* ══ DARK MODE ══════════════════════════════ */
-  const darkToggle = document.getElementById('darkToggle');
-  function toggleDark() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    darkToggle.textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('4k-dark', isDark ? '1' : '0');
-  }
-  if (localStorage.getItem('4k-dark') === '1') {
-    document.documentElement.classList.add('dark');
-    if (darkToggle) darkToggle.textContent = '☀️';
-  }
-
   /* ══ PRODUCTS FILTER & SEARCH ═══════════════ */
   let activeFilter = 'all';
   function filterProducts() {
@@ -2680,45 +2630,72 @@ window.addEventListener('load', initLightbox);
     document.getElementById('waPanel').classList.remove('open');
   }
   function waShowOffers() {
+    document.getElementById('waPanel')._skipClose = true;
+    const deadline = '8 مايو 2026';
     document.getElementById('waChatBody').innerHTML = `
-      <div class="wa-bubble"><strong>العروض الحصرية 🔥</strong><br>اختر العرض المناسب لك:</div>
+      <div class="wa-bubble">
+        <strong>🔥 عروض Early Bird — أسبوع الإطلاق</strong><br>
+        متاحة لـ <strong>أول 50 نسخة فقط</strong><br>
+        ⏰ تنتهي: <strong style="color:#B91C1C">${deadline}</strong> · متبقي <strong>46 نسخة</strong>
+      </div>
       <div class="wa-menu">
-        <button class="wa-back-btn" onclick="waReset()">← رجوع</button>
-        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن عرض الباقة الأساسية Early Bird بسعر 149 جنيه')"><span>⭐ الأساسية — 149 جنيه</span><span class="wa-arrow">←</span></button>
-        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن عرض الباقة الذهبية Early Bird بسعر 349 جنيه')"><span>🥇 الذهبية — 349 جنيه</span><span class="wa-arrow">←</span></button>
-        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن عرض الباقة VIP المخصصة Early Bird بسعر 499 جنيه')"><span>💎 VIP المخصصة — 499 جنيه</span><span class="wa-arrow">←</span></button>
+        <button class="wa-back-btn" onclick="waReset(); event.stopPropagation()">← رجوع</button>
+        <button class="wa-menu-btn" onclick="buyLaunchOffer('الأساسية Early Bird','149 جنيه','199 جنيه'); event.stopPropagation()">
+          <span>⭐ الأساسية — <strong>149 ج</strong> <s style="color:#aaa;font-size:11px">199 ج</s><br><small style="color:#25D366;font-weight:700">خصم 25% — توفير 50 جنيه · جهاز واحد</small></span>
+          <span class="wa-arrow">←</span>
+        </button>
+        <button class="wa-menu-btn" onclick="buyLaunchOffer('الذهبية Early Bird','349 جنيه','449 جنيه'); event.stopPropagation()">
+          <span>🥇 الذهبية — <strong>349 ج</strong> <s style="color:#aaa;font-size:11px">449 ج</s><br><small style="color:#25D366;font-weight:700">توفير 100 جنيه · 3 أجهزة</small></span>
+          <span class="wa-arrow">←</span>
+        </button>
+        <button class="wa-menu-btn" onclick="buyLaunchOffer('VIP المخصصة Early Bird','499 جنيه','699 جنيه'); event.stopPropagation()">
+          <span>💎 VIP المخصصة — <strong>499 ج</strong> <s style="color:#aaa;font-size:11px">699 ج</s><br><small style="color:#25D366;font-weight:700">توفير 200 جنيه · 3 أجهزة + تخصيص بأسم الكنيسة</small></span>
+          <span class="wa-arrow">←</span>
+        </button>
       </div>`;
   }
   function waShowProducts() {
+    document.getElementById('waPanel')._skipClose = true;
     document.getElementById('waChatBody').innerHTML = `
       <div class="wa-bubble"><strong>منتجاتنا 📦</strong><br>اختر المنتج:</div>
       <div class="wa-menu">
-        <button class="wa-back-btn" onclick="waReset()">← رجوع</button>
-        <button class="wa-menu-btn" onclick="waShowKhedmaBank()"><span>🏦 Khedma Bank</span><span class="wa-arrow">←</span></button>
+        <button class="wa-back-btn" onclick="waReset(); event.stopPropagation()">← رجوع</button>
+        <button class="wa-menu-btn" onclick="waShowKhedmaBank(); event.stopPropagation()"><span>🏦 Khedma Bank — بنك الأسئلة الكنسي<br><small style="color:#666">2500+ سؤال · 4 أوضاع لعب · يبدأ من 199 ج</small></span><span class="wa-arrow">←</span></button>
       </div>`;
   }
   function waShowKhedmaBank() {
+    document.getElementById('waPanel')._skipClose = true;
     document.getElementById('waChatBody').innerHTML = `
-      <div class="wa-bubble"><strong>Khedma Bank 🏦</strong><br>اختر الخطة المناسبة:</div>
+      <div class="wa-bubble"><strong>Khedma Bank 🏦</strong><br>اختر الخطة المناسبة:<br><small style="color:#555">كل الخطط: ترخيص مدى الحياة · 2500+ سؤال · كل أوضاع اللعب</small></div>
       <div class="wa-menu">
-        <button class="wa-back-btn" onclick="waShowProducts()">← رجوع</button>
-        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة الخادم لـ Khedma Bank — 199 جنيه (جهاز واحد)')"><span>الخادم — 199 ج / جهاز واحد</span><span class="wa-arrow">←</span></button>
-        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة الذهبية لـ Khedma Bank — 449 جنيه (3 أجهزة)')"><span>🥇 الذهبية — 449 ج / 3 أجهزة</span><span class="wa-arrow">←</span></button>
-        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة VIP لـ Khedma Bank — 699 جنيه (3 أجهزة + تخصيص)')"><span>💎 VIP — 699 ج / 3 أجهزة + تخصيص</span><span class="wa-arrow">←</span></button>
-        <button class="wa-menu-btn" onclick="waSend('مرحباً، أريد الاستفسار عن خطة مخصصة لـ Khedma Bank (أجهزة غير محدودة)')"><span>🏢 مخصص — تواصل للسعر</span><span class="wa-arrow">←</span></button>
+        <button class="wa-back-btn" onclick="waShowProducts(); event.stopPropagation()">← رجوع</button>
+        <button class="wa-menu-btn" onclick="buyProduct('الخادم — جهاز واحد', '199 جنيه', 'جهاز واحد · ترخيص مدى الحياة'); event.stopPropagation()">
+          <span>الخادم — <strong>199 ج</strong><br><small style="color:#666">جهاز واحد فقط</small></span><span class="wa-arrow">←</span>
+        </button>
+        <button class="wa-menu-btn" onclick="buyProduct('الذهبية — 3 أجهزة', '449 جنيه', '3 أجهزة · ترخيص مدى الحياة'); event.stopPropagation()">
+          <span>🥇 الذهبية — <strong>449 ج</strong><br><small style="color:#666">3 أجهزة</small></span><span class="wa-arrow">←</span>
+        </button>
+        <button class="wa-menu-btn" onclick="buyProduct('VIP — 3 أجهزة + تخصيص بأسم الكنيسة', '699 جنيه', '3 أجهزة · تخصيص بأسم الكنيسة أو الخدمة'); event.stopPropagation()">
+          <span>💎 VIP — <strong>699 ج</strong><br><small style="color:#666">3 أجهزة + تخصيص بأسم الكنيسة</small></span><span class="wa-arrow">←</span>
+        </button>
+        <button class="wa-menu-btn" onclick="contactEnterprise(); event.stopPropagation()">
+          <span>🏢 مخصص — تواصل للسعر<br><small style="color:#666">أجهزة غير محدودة · للكنائس والمؤسسات الكبيرة</small></span><span class="wa-arrow">←</span>
+        </button>
       </div>`;
   }
   function waReset() {
+    document.getElementById('waPanel')._skipClose = true;
     document.getElementById('waChatBody').innerHTML = `
       <div class="wa-bubble">أهلاً بك! 👋<br>كيف يمكنني مساعدتك؟</div>
       <div class="wa-menu">
-        <button class="wa-menu-btn" onclick="waShowOffers()"><span>🔥 آخر العروض الحصرية</span><span class="wa-arrow">←</span></button>
-        <button class="wa-menu-btn" onclick="waShowProducts()"><span>📦 منتجاتنا وأسعارها</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waShowOffers(); event.stopPropagation()"><span>🔥 آخر العروض الحصرية</span><span class="wa-arrow">←</span></button>
+        <button class="wa-menu-btn" onclick="waShowProducts(); event.stopPropagation()"><span>📦 منتجاتنا وأسعارها</span><span class="wa-arrow">←</span></button>
       </div>`;
   }
   document.addEventListener('click', e => {
     const panel = document.getElementById('waPanel');
     const fab   = document.getElementById('waFab');
+    if (panel && panel._skipClose) { panel._skipClose = false; return; }
     if (panel && panel.classList.contains('open') && !panel.contains(e.target) && !fab.contains(e.target))
       panel.classList.remove('open');
   });
@@ -2743,11 +2720,11 @@ window.addEventListener('load', initLightbox);
       أهلاً بك! 👋<br>كيف يمكنني مساعدتك؟ اختر من القائمة:
     </div>
     <div class="wa-menu" id="waMainMenu">
-      <button class="wa-menu-btn" onclick="waShowOffers()">
+      <button class="wa-menu-btn" onclick="waShowOffers(); event.stopPropagation()">
         <span>🔥 آخر العروض الحصرية</span>
         <span class="wa-arrow">←</span>
       </button>
-      <button class="wa-menu-btn" onclick="waShowProducts()">
+      <button class="wa-menu-btn" onclick="waShowProducts(); event.stopPropagation()">
         <span>📦 منتجاتنا وأسعارها</span>
         <span class="wa-arrow">←</span>
       </button>
