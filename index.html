@@ -1141,7 +1141,13 @@
     border: none; cursor: pointer; z-index: 999;
     display: flex; align-items: center; justify-content: center;
     font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s;
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s, bottom 0.3s;
+  }
+  .sticky-cta.visible ~ * .wa-fab,
+  body:has(.sticky-cta.visible) .wa-fab { bottom: 82px; }
+  @media (max-width: 600px) {
+    .wa-fab { bottom: 20px; left: 16px; width: 52px; height: 52px; font-size: 24px; }
+    body:has(.sticky-cta.visible) .wa-fab { bottom: 76px; }
   }
   .wa-fab:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.6); }
   .wa-fab .wa-badge {
@@ -2476,12 +2482,22 @@
   }
 
   /* ─── VIEW SWITCHING ─────────────────────── */
+  function ctaShow() {
+    var bar = document.getElementById('stickyCta');
+    if (bar && !bar._dismissed) bar.classList.add('visible');
+  }
+  function ctaHide() {
+    var bar = document.getElementById('stickyCta');
+    if (bar) bar.classList.remove('visible');
+  }
+
   function showOffers() {
     closeMobileNav();
     document.getElementById('view-main').classList.remove('active');
     document.getElementById('view-product').classList.remove('active');
     document.getElementById('view-offers').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
+    ctaShow();
   }
   function showMain() {
     closeMobileNav();
@@ -2489,12 +2505,14 @@
     document.getElementById('view-product').classList.remove('active');
     document.getElementById('view-offers').classList.remove('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    ctaHide();
   }
   function showProduct() {
     closeMobileNav();
     document.getElementById('view-main').classList.remove('active');
     document.getElementById('view-product').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
+    ctaShow();
   }
 /* ─── WHATSAPP CHECKOUT ──────────────────── */
   const WA_NUMBER = '201207737965';
@@ -2607,40 +2625,17 @@
     tick();
   })();
 
-  /* ─── STICKY CTA ─────────────────────────── */
+  /* ─── STICKY CTA DISMISS ─────────────────── */
   (function() {
-    let ctaDismissed = false;
-    const cta = document.getElementById('stickyCta');
-
-    function updateCtaVisibility() {
-      if (ctaDismissed || !cta) return;
-      const offersActive  = document.getElementById('view-offers')  && document.getElementById('view-offers').classList.contains('active');
-      const productActive = document.getElementById('view-product') && document.getElementById('view-product').classList.contains('active');
-      if (offersActive || productActive) {
-        cta.classList.add('visible');
-      } else {
+    var cta = document.getElementById('stickyCta');
+    if (!cta) return;
+    var closeBtn = cta.querySelector('.sticky-cta-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        cta._dismissed = true;
         cta.classList.remove('visible');
-      }
+      });
     }
-
-    // Patch view switching to update CTA
-    const origShowOffers  = window.showOffers;
-    const origShowProduct = window.showProduct;
-    const origShowMain    = window.showMain;
-    window.showOffers  = function() { origShowOffers && origShowOffers();  setTimeout(updateCtaVisibility, 60); };
-    window.showProduct = function() { origShowProduct && origShowProduct(); setTimeout(updateCtaVisibility, 60); };
-    window.showMain    = function() { origShowMain && origShowMain();    setTimeout(updateCtaVisibility, 60); };
-
-    // Close button sets flag
-    const closeBtn = cta ? cta.querySelector('.sticky-cta-close') : null;
-    if (closeBtn) closeBtn.addEventListener('click', () => { ctaDismissed = true; });
-
-    // Also show after scrolling past hero on offers/product views
-    window.addEventListener('scroll', () => {
-      if (!ctaDismissed) updateCtaVisibility();
-    }, { passive: true });
-
-    updateCtaVisibility();
   })();
 
   /* ─── LIGHTBOX ───────────────────────────── */
@@ -2851,8 +2846,8 @@ window.addEventListener('load', initLightbox);
     </div>
     <span class="sticky-cta-badge" style="background:rgba(212,175,55,0.2);color:var(--gold);border:1px solid rgba(212,175,55,0.4);">46 نسخة متبقية</span>
   </div>
-  <button class="sticky-cta-btn" onclick="document.getElementById('pricing-hub') ? document.getElementById('pricing-hub').scrollIntoView({behavior:'smooth'}) : showOffers()">احجز الآن ←</button>
-  <button class="sticky-cta-close" onclick="document.getElementById('stickyCta').classList.remove('visible'); document.getElementById('stickyCta').style.display='none';" title="إغلاق">✕</button>
+  <button class="sticky-cta-btn" onclick="var ph=document.getElementById('pricing-hub'); var oc=document.querySelector('.offers-cards-section'); if(ph&&ph.offsetParent!==null){ph.scrollIntoView({behavior:'smooth'})}else if(oc&&oc.offsetParent!==null){oc.scrollIntoView({behavior:'smooth'})}">احجز الآن ←</button>
+  <button class="sticky-cta-close" onclick="this.closest('.sticky-cta')._dismissed=true; this.closest('.sticky-cta').classList.remove('visible');" title="إغلاق">✕</button>
 </div>
 
 <!-- ══ WHATSAPP CHAT WIDGET ══════════════════ -->
