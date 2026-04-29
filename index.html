@@ -1462,11 +1462,12 @@
     .hamburger { display: flex; }
 
     .hero { padding: 64px 20px 52px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; }
     .hero-visual { order: -1; }
-    .hero-product-img { max-width: 320px; }
+    .hero-product-img { max-width: 300px; margin: 0 auto; display: block; }
     .hero-sub { font-size: 16px; }
     .hero-cta { padding: 14px 36px; font-size: 16px; }
+    .hero-eyebrow { display: inline-block; }
 
     .section { padding: 56px 16px; }
     .section-title { margin-bottom: 36px; }
@@ -1490,26 +1491,42 @@
     .features-section { padding: 56px 16px; }
 
     .products-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-
     .pricing-block-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+    .story-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding: 48px 20px !important; }
+    .story-grid > div:first-child { order: 2; }
+    .story-grid > div:last-child { order: 1; }
+    .story-grid img { width: 80% !important; }
+
+    .site-footer { padding: 40px 24px 28px; }
+    .footer-links { gap: 6px; }
+    .footer-link { font-size: 12px; padding: 5px 12px; }
   }
 
-  /* ── موبايل كبير 600px ─── */
+  /* ── موبايل 600px ─── */
   @media (max-width: 600px) {
     .header-inner { padding: 0 14px; height: 60px; }
     .logo-title { font-size: 18px; }
     .mobile-nav { top: 62px; }
 
-    .hero { padding: 52px 16px 44px; }
-    .hero-inner { gap: 28px; }
+    .hero { padding: 48px 16px 40px; }
+    .hero-inner { gap: 24px; }
     .hero-eyebrow { font-size: 10px; padding: 5px 14px; letter-spacing: 0.1em; }
-    .hero-product-img { max-width: 260px; }
-    .hero-cta { display: block; width: 100%; max-width: 320px; text-align: center; }
+    .hero-product-img { max-width: 240px; }
+    .hero-headline { font-size: clamp(26px, 8vw, 36px); }
+    .hero-sub { font-size: 14px; line-height: 1.8; }
+    .hero-cta { display: block; width: 100%; text-align: center; font-size: 15px; padding: 14px 20px; }
 
     .section { padding: 44px 14px; }
+    .section-title { font-size: clamp(20px, 5vw, 28px); }
+    .section-label { font-size: 10px; }
 
-    .pricing-cards.cols-4 { grid-template-columns: 1fr; }
+    .pricing-cards.cols-4,
     .pricing-cards.cols-3 { grid-template-columns: 1fr; }
+    .price-card { padding: 24px 20px; }
+    .plan-name { font-size: 16px; }
+    .plan-price { font-size: 34px; }
+    .plan-feature-list li { font-size: 13px; }
 
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .activation-steps { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -1521,24 +1538,48 @@
     .download-buttons { flex-direction: column; align-items: stretch; }
     .btn-download { min-width: unset; width: 100%; }
 
-    .showcase-actions { flex-direction: column; }
+    .showcase-actions { flex-direction: column; gap: 10px; }
     .showcase-actions .btn-gold,
     .showcase-actions .btn-primary { width: 100%; text-align: center; }
 
     .warning-box { flex-direction: column; gap: 12px; }
 
     .products-grid { grid-template-columns: 1fr; }
+    .product-card-body { padding: 18px 16px; }
+    .product-name { font-size: 18px; }
+    .product-desc { font-size: 13px; }
+    .product-card-footer { flex-direction: column; gap: 12px; align-items: stretch; }
+    .btn-view { width: 100%; text-align: center; }
+
+    .faq-section { padding: 44px 16px; }
+    .faq-q { font-size: 13px; padding: 14px 16px; }
+    .faq-a p { font-size: 13px; }
+
+    #pricing-hub .pricing-inner > div[style*="toggle"] { gap: 8px !important; flex-wrap: wrap; }
+    #pricing-hub .pricing-inner > div[style*="toggle"] span { font-size: 13px !important; }
+
+    .story-grid { grid-template-columns: 1fr !important; padding: 40px 16px !important; gap: 24px !important; }
+    .story-grid p { font-size: 14px !important; line-height: 1.9 !important; }
+    .story-grid h2 { font-size: 20px !important; white-space: normal !important; }
+    .story-grid img { width: 100% !important; }
+
+    .site-footer { padding: 36px 16px 24px; }
+    .footer-logo { font-size: 18px; }
+    .footer-social-btn { width: 40px; height: 40px; }
+    .footer-links { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .footer-tagline { font-size: 12px; }
+
+    .back-bar { padding: 0 14px; gap: 8px; }
+    .breadcrumb { font-size: 11px; }
   }
 
   /* ── موبايل صغير 400px ─── */
   @media (max-width: 400px) {
     .header-inner { padding: 0 12px; }
-    .logo- { width: 38px; height: 38px; }
-    .logo- img { width: 38px; height: 38px; }
-    .logo- .logo-text-inner { width: 38px; height: 38px; font-size: 11px; }
-
-    .hero { padding: 44px 12px 36px; }
+    .hero { padding: 40px 12px 32px; }
     .hero-eyebrow { font-size: 9px; padding: 4px 10px; }
+    .hero-product-img { max-width: 200px; }
+    .hero-headline { font-size: clamp(22px, 7vw, 30px); }
 
     .section { padding: 36px 12px; }
     .section-title { margin-bottom: 28px; }
@@ -1546,26 +1587,32 @@
     .gallery-grid { grid-template-columns: 1fr; }
     .activation-steps { grid-template-columns: 1fr; }
 
-    .showcase-quick-stats { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .showcase-quick-stats { gap: 6px; }
     .quick-stat { padding: 10px 4px; }
     .quick-stat .val { font-size: 16px; }
     .quick-stat .lbl { font-size: 10px; }
 
     .plan-price { font-size: 30px; }
     .plan-featured-badge { font-size: 9px; padding: 3px 12px; }
+    .price-card { padding: 20px 16px; }
+
+    .products-filter-bar { flex-direction: column; align-items: stretch; }
+    .filter-tabs { flex-wrap: wrap; }
+    .filter-tab { font-size: 12px; padding: 7px 14px; }
 
     .back-bar { padding: 0 12px; gap: 10px; }
-    .breadcrumb { font-size: 11px; }
-
     .warning-box { padding: 16px 14px; }
 
-    .footer-text { font-size: 12px; }
-    /* story section responsive */
-    .story-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding: 48px 20px !important; }
-    .story-grid > div:last-child { order: -1; }
+    .footer-text { font-size: 11px; }
+    .footer-social { gap: 8px; }
+    .footer-social-btn { width: 36px; height: 36px; }
+
+    .story-grid { padding: 32px 12px !important; gap: 20px !important; }
+    .story-grid h2 { font-size: 17px !important; }
+    .story-grid p { font-size: 13px !important; }
   }
 
-  /* ── موبايل صغير جداً 320px ─── */
+  /* ── موبايل صغير جداً 360px ─── */
   @media (max-width: 360px) {
     .logo-title { font-size: 16px; }
     .hero-cta { font-size: 14px; padding: 12px 20px; }
@@ -1573,9 +1620,10 @@
     .btn-buy, .btn-offer-buy { font-size: 14px; padding: 11px; }
     .plan-price { font-size: 28px; }
     .showcase-title { font-size: 20px; }
+    .quick-stat .val { font-size: 14px; }
   }
 
-  /* ── شاشات عريضة جداً 1600px+ ─── */
+  /* ── شاشات عريضة 1600px+ ─── */
   @media (min-width: 1600px) {
     .header-inner { max-width: 1400px; }
     .section-inner { max-width: 1400px; }
@@ -1585,7 +1633,6 @@
     .features-inner { max-width: 1400px; }
     .download-inner { max-width: 820px; }
     .offers-cards-inner { max-width: 1300px; }
-    .body { font-size: 17px; }
   }
 
   /* ── 4K و Ultra-Wide 2560px+ ─── */
@@ -1599,8 +1646,6 @@
     .features-inner,
     .offers-cards-inner { max-width: 1800px; }
     .download-inner { max-width: 1000px; }
-    .hero { padding: 140px 60px 120px; }
-    .hero-headline { font-size: 80px; }
   }
 
   /* ── OFFER ALERT BANNER ─────────────────── */
@@ -2093,7 +2138,7 @@
   </section>
 
   <!-- YOUTUBE VIDEO SECTION -->
-  <section style="padding: 64px 40px; background: #f7f9fc;">
+  <section class="yt-section" style="padding: 64px 40px; background: #f7f9fc;">
     <div style="max-width: 860px; margin: 0 auto; text-align: center;">
       <span class="section-label">مرجع مرئي</span>
       <h2 class="section-title" style="margin-bottom: 8px;">الفيديو المرجعي لبنك الخدمة <span>وشرح شامل!</span></h2>
