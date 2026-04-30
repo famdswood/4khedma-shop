@@ -2765,50 +2765,136 @@
 
 /* ── LIGHTBOX ─────────────────────────────────── */
 .lightbox-overlay {
-  position:fixed; inset:0; z-index:9999;
-  background:rgba(0,0,0,0.92);
-  display:none; align-items:center; justify-content:center;
-  cursor:zoom-out;
-  animation: lbFadeIn 0.2s ease;
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(4, 10, 20, 0.96);
+  display: none; align-items: center; justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-@keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
-.lightbox-overlay.open { display:flex; }
-.lightbox-img-wrap {
-  position:relative; max-width:90vw; max-height:88vh;
-  display:flex; align-items:center; justify-content:center;
+.lightbox-overlay.open { display: flex; }
+.lightbox-overlay.visible { opacity: 1; }
+
+/* ── شريط علوي ── */
+.lb-topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  background: linear-gradient(to bottom, rgba(4,10,20,0.9), transparent);
+  z-index: 2;
 }
-.lightbox-overlay img {
-  max-width:90vw; max-height:85vh;
-  object-fit:contain; border-radius:12px;
-  box-shadow: 0 16px 64px rgba(0,0,0,0.7);
-  display:block;
+.lb-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.06em;
 }
-.lb-close {
-  position:fixed; top:20px; left:28px;
-  background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.25);
-  color:#fff; font-size:22px; font-weight:300;
-  width:44px; height:44px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; transition:background 0.2s; line-height:1;
+.lb-counter-pill {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 5px 16px; border-radius: 40px;
+  letter-spacing: 0.04em;
 }
-.lb-close:hover { background:rgba(255,255,255,0.25); }
-.lb-nav {
-  position:fixed; top:50%; transform:translateY(-50%);
-  background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2);
-  color:#fff; font-size:22px; width:48px; height:48px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; transition:background 0.2s; user-select:none;
+.lb-close-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
 }
-.lb-nav:hover { background:rgba(255,255,255,0.2); }
-.lb-prev { left: 20px; }
-.lb-next { right: 20px; }
-.lb-counter {
-  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-  font-size:13px; color:rgba(255,255,255,0.55); font-weight:500;
-  background:rgba(0,0,0,0.5); padding:6px 18px; border-radius:40px;
+.lb-close-btn:hover { background: rgba(255,60,60,0.35); border-color: rgba(255,60,60,0.5); color: #fff; }
+.lb-close-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+
+/* ── الصورة ── */
+.lb-img-area {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+  padding: 72px 100px 80px;
+  box-sizing: border-box;
 }
-/* make gallery items show zoom cursor when image is loaded */
-.gallery-item.has-img { cursor:zoom-in; }
+.lb-img-wrap {
+  position: relative;
+  max-width: 100%; max-height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+#lb-img {
+  max-width: 100%; max-height: calc(100vh - 160px);
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+  display: block;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+#lb-img.lb-switching { opacity: 0; transform: scale(0.97); }
+
+/* ── أزرار التنقل ── */
+.lb-nav-btn {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.85);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s cubic-bezier(0.22,1,0.36,1);
+  z-index: 3;
+  user-select: none;
+}
+.lb-nav-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--blue);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 28px rgba(212,175,55,0.4);
+}
+.lb-nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.lb-prev-btn { left: 24px; }
+.lb-next-btn { right: 24px; }
+.lb-nav-btn:disabled { opacity: 0.2; pointer-events: none; }
+
+/* ── شريط الثامبنيل ── */
+.lb-thumbs-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  padding: 14px 24px 20px;
+  background: linear-gradient(to top, rgba(4,10,20,0.95), transparent);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+.lb-thumb {
+  width: 52px; height: 40px; border-radius: 8px;
+  object-fit: cover; cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.1);
+  opacity: 0.45;
+  transition: all 0.22s ease;
+  flex-shrink: 0;
+}
+.lb-thumb:hover { opacity: 0.8; border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
+.lb-thumb.lb-thumb-active {
+  opacity: 1;
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(212,175,55,0.4);
+}
+
+@media (max-width: 600px) {
+  .lb-nav-btn { width: 42px; height: 42px; }
+  .lb-nav-btn svg { width: 18px; height: 18px; }
+  .lb-prev-btn { left: 10px; }
+  .lb-next-btn { right: 10px; }
+  .lb-img-area { padding: 64px 60px 90px; }
+  .lb-thumb { width: 40px; height: 32px; }
+  .lb-topbar { padding: 0 16px; }
+}
+.gallery-item.has-img { cursor: zoom-in; }
 </style>
 
 <!-- ════════════════════════════════════
@@ -3096,14 +3182,33 @@
 
 
 <!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox" onclick="lbClose()">
-  <button class="lb-close" onclick="lbClose()">✕</button>
-  <button class="lb-nav lb-prev" onclick="lbNav(-1); event.stopPropagation()">‹</button>
-  <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
-    <img id="lb-img" src="img/img_07.png" alt="">
+<div class="lightbox-overlay" id="lightbox">
+  <!-- شريط علوي -->
+  <div class="lb-topbar">
+    <span class="lb-title">معرض الصور</span>
+    <span class="lb-counter-pill" id="lb-counter">1 / 4</span>
+    <button class="lb-close-btn" onclick="lbClose()" title="إغلاق (Esc)">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
   </div>
-  <button class="lb-nav lb-next" onclick="lbNav(1); event.stopPropagation()">›</button>
-  <div class="lb-counter" id="lb-counter">4 / 4</div>
+
+  <!-- منطقة الصورة -->
+  <div class="lb-img-area" onclick="lbClose()">
+    <div class="lb-img-wrap" onclick="event.stopPropagation()">
+      <img id="lb-img" src="" alt="">
+    </div>
+  </div>
+
+  <!-- أزرار التنقل -->
+  <button class="lb-nav-btn lb-prev-btn" id="lb-prev" onclick="lbNav(-1)" title="السابق (→)">
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <button class="lb-nav-btn lb-next-btn" id="lb-next" onclick="lbNav(1)" title="التالي (←)">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+
+  <!-- شريط الثامبنيل -->
+  <div class="lb-thumbs-bar" id="lb-thumbs"></div>
 </div>
 
 <script>
@@ -3149,31 +3254,65 @@
   let lbImages = [];
   let lbIndex  = 0;
 
-  function lbOpen(src, index) {
-    document.getElementById('lb-img').src = src;
+  function lbOpen(index) {
     lbIndex = index;
-    lbUpdateCounter();
-    document.getElementById('lightbox').classList.add('open');
+    const overlay = document.getElementById('lightbox');
+    overlay.classList.add('open');
+    requestAnimationFrame(() => overlay.classList.add('visible'));
     document.body.style.overflow = 'hidden';
+    lbRender();
+    lbBuildThumbs();
   }
+
   function lbClose() {
-    document.getElementById('lightbox').classList.remove('open');
+    const overlay = document.getElementById('lightbox');
+    overlay.classList.remove('visible');
+    setTimeout(() => overlay.classList.remove('open'), 300);
     document.body.style.overflow = '';
   }
+
   function lbNav(dir) {
     lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
-    document.getElementById('lb-img').src = lbImages[lbIndex];
-    lbUpdateCounter();
-  }
-  function lbUpdateCounter() {
-    document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+    const img = document.getElementById('lb-img');
+    img.classList.add('lb-switching');
+    setTimeout(() => {
+      lbRender();
+      img.classList.remove('lb-switching');
+    }, 200);
   }
 
-  // Wire up gallery items — collect all loaded images
+  function lbRender() {
+    const img = document.getElementById('lb-img');
+    const counter = document.getElementById('lb-counter');
+    const prevBtn = document.getElementById('lb-prev');
+    const nextBtn = document.getElementById('lb-next');
+    img.src = lbImages[lbIndex];
+    counter.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+    // update active thumb
+    document.querySelectorAll('.lb-thumb').forEach((t, i) => {
+      t.classList.toggle('lb-thumb-active', i === lbIndex);
+    });
+    // hide nav if only 1 image
+    prevBtn.style.display = lbImages.length < 2 ? 'none' : '';
+    nextBtn.style.display = lbImages.length < 2 ? 'none' : '';
+  }
+
+  function lbBuildThumbs() {
+    const bar = document.getElementById('lb-thumbs');
+    bar.innerHTML = '';
+    if (lbImages.length < 2) { bar.style.display = 'none'; return; }
+    bar.style.display = '';
+    lbImages.forEach((src, i) => {
+      const t = document.createElement('img');
+      t.src = src; t.className = 'lb-thumb';
+      if (i === lbIndex) t.classList.add('lb-thumb-active');
+      t.onclick = (e) => { e.stopPropagation(); lbIndex = i; lbRender(); };
+      bar.appendChild(t);
+    });
+  }
+
   function initLightbox() {
     lbImages = [];
-
-    // Collect gallery images + step images together
     const allItems = document.querySelectorAll('.gallery-item, .step-image-placeholder');
     allItems.forEach((item) => {
       const img = item.querySelector('img');
@@ -3181,26 +3320,35 @@
         const idx = lbImages.length;
         lbImages.push(img.src);
         item.classList.add('has-img');
-        // Remove any old listener by cloning
         const clone = item.cloneNode(true);
         item.parentNode.replaceChild(clone, item);
         clone.addEventListener('click', (e) => {
           if (e.target.tagName === 'INPUT') return;
-          lbOpen(img.src, lbImages.indexOf(img.src));
+          lbOpen(idx);
         });
       }
     });
   }
 
-  // Re-init after any image swap in gallery
-// Keyboard navigation
   document.addEventListener('keydown', e => {
     if (!document.getElementById('lightbox').classList.contains('open')) return;
     if (e.key === 'Escape')     lbClose();
     if (e.key === 'ArrowRight') lbNav(-1);
     if (e.key === 'ArrowLeft')  lbNav(1);
   });
-window.addEventListener('load', initLightbox);
+
+  // swipe support
+  (function() {
+    let sx = 0;
+    const el = document.getElementById('lightbox');
+    el.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+    el.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 50) lbNav(dx > 0 ? -1 : 1);
+    }, { passive: true });
+  })();
+
+  window.addEventListener('load', initLightbox);
 
   /* ══ PRODUCTS FILTER & SEARCH ═══════════════ */
   let activeFilter = 'all';
