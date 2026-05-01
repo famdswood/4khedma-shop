@@ -322,7 +322,6 @@
     animation: heroImgFloat 6s ease-in-out infinite;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 24px 60px rgba(0,0,0,0.35));
   }
   @keyframes heroImgFloat {
     0%, 100% { transform: translateY(0) rotate(-2deg); }
@@ -1928,7 +1927,7 @@
       <div class="hero-visual">
         <div class="hero-visual-ring"></div>
         <div class="hero-visual-ring"></div>
-        <img loading="eager" decoding="async" class="hero-product-img" src="img/img_01.png" alt="4Khedma">
+        <img loading="eager" decoding="async" width="460" height="460" class="hero-product-img" src="img/img_01.png" alt="4Khedma">
       </div>
     </div>
   </section>
@@ -2555,7 +2554,7 @@
       <p class="footer-tagline">أدوات برمجية مصممة لخدمة الكنيسة الأرثوذكسية</p>
       <div class="footer-links">
         <a class="footer-link" onclick="document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'})">المنتجات</a>
-        <a class="footer-link" onclick="document.getElementById('pricing-hub').scrollIntoView({behavior:'smooth'})">الأسعار</a>
+        <a class="footer-link" onclick="showMain();setTimeout(()=>document.getElementById('pricing-hub').scrollIntoView({behavior:'smooth'}),300)">الأسعار</a>
         <a class="footer-link" onclick="showAbout()">من نحن</a>
         <a class="footer-link" href="https://wa.me/201207737965" target="_blank" rel="noopener noreferrer">تواصل معنا</a>
       </div>
@@ -3034,7 +3033,7 @@
       <p class="footer-tagline">أدوات برمجية مصممة لخدمة الكنيسة الأرثوذكسية</p>
       <div class="footer-links">
         <a class="footer-link" onclick="document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'})">المنتجات</a>
-        <a class="footer-link" onclick="document.getElementById('pricing-hub').scrollIntoView({behavior:'smooth'})">الأسعار</a>
+        <a class="footer-link" onclick="showMain();setTimeout(()=>document.getElementById('pricing-hub').scrollIntoView({behavior:'smooth'}),300)">الأسعار</a>
         <a class="footer-link" onclick="showAbout()">من نحن</a>
         <a class="footer-link" href="https://wa.me/201207737965" target="_blank" rel="noopener noreferrer">تواصل معنا</a>
       </div>
