@@ -296,6 +296,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
   }
   .hero-visual-ring {
     position: absolute;
@@ -322,6 +323,7 @@
     animation: heroImgFloat 6s ease-in-out infinite;
     position: relative;
     z-index: 1;
+    display: block;
   }
   @keyframes heroImgFloat {
     0%, 100% { transform: translateY(0) rotate(-2deg); }
@@ -1469,8 +1471,8 @@
 
     .hero { padding: 64px 20px 52px; }
     .hero-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; }
-    .hero-visual { order: -1; }
-    .hero-product-img { max-width: 300px; margin: 0 auto; display: block; }
+    .hero-visual { order: -1; max-width: 280px; margin: 0 auto; }
+    .hero-product-img { max-width: 280px; margin: 0 auto; display: block; }
     .hero-sub { font-size: 16px; }
     .hero-cta { padding: 14px 36px; font-size: 16px; }
     .hero-eyebrow { display: inline-block; }
@@ -1518,7 +1520,7 @@
     .hero { padding: 48px 16px 40px; }
     .hero-inner { gap: 24px; }
     .hero-eyebrow { font-size: 10px; padding: 5px 14px; letter-spacing: 0.1em; }
-    .hero-product-img { max-width: 240px; }
+    .hero-product-img { max-width: 220px; }
     .hero-headline { font-size: clamp(26px, 8vw, 36px); }
     .hero-sub { font-size: 14px; line-height: 1.8; }
     .hero-cta { display: block; width: 100%; text-align: center; font-size: 15px; padding: 14px 20px; }
@@ -1584,6 +1586,7 @@
     .header-inner { padding: 0 12px; }
     .hero { padding: 40px 12px 32px; }
     .hero-eyebrow { font-size: 9px; padding: 4px 10px; }
+    .hero-visual { max-width: 200px; }
     .hero-product-img { max-width: 200px; }
     .hero-headline { font-size: clamp(22px, 7vw, 30px); }
 
@@ -1927,7 +1930,7 @@
       <div class="hero-visual">
         <div class="hero-visual-ring"></div>
         <div class="hero-visual-ring"></div>
-        <img loading="eager" decoding="async" width="460" height="460" class="hero-product-img" src="img/img_01.png" alt="4Khedma">
+        <img loading="eager" decoding="async" class="hero-product-img" src="img/img_01.png" alt="4Khedma" style="width:100%;max-width:460px;">
       </div>
     </div>
   </section>
