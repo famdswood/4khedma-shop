@@ -79,6 +79,7 @@
     line-height: 1.7;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
 
@@ -1220,7 +1221,7 @@
     padding: 0 24px;
     background: var(--white);
   }
-  .faq-item.open .faq-a { max-height: 300px; padding: 20px 24px 22px; }
+  .faq-item.open .faq-a { max-height: 800px; padding: 20px 24px 22px; }
   .faq-a p {
     font-size: 14px;
     color: var(--gray-700);
@@ -1667,9 +1668,6 @@
     .download-inner { max-width: 1000px; }
   }
 
-  /* ── OFFER ALERT BANNER ─────────────────── */
-  }
-
   /* ══ ENHANCED ANIMATIONS ═══════════════════════════ */
 
   /* ── Hero ambient orbs ── */
@@ -1827,6 +1825,58 @@
     pointer-events: none;
   }
   .price-card .btn-buy:hover::after { width: 100%; }
+
+  /* ══ MOBILE POLISH ═══════════════════════════════════
+     شاشات 600px فأقل — تحسينات شاملة
+  ═══════════════════════════════════════════════════ */
+  @media (max-width: 600px) {
+
+    /* ── Testimonials section ── */
+    #testimonials-anchor { padding: 48px 16px !important; }
+    #testimonials-anchor .section-inner { padding: 0; }
+    #testimonials-anchor > div > div:first-of-type { gap: 16px !important; }
+
+    /* ── Trust badges ── */
+    #testimonials-anchor > div > div[style*="linear-gradient(135deg,var(--blue)"] {
+      padding: 28px 20px !important;
+      gap: 20px !important;
+    }
+
+    /* ── YT section ── */
+    .yt-section { padding: 44px 16px !important; }
+    .yt-section iframe { height: 220px !important; }
+
+    /* ── Story section ── */
+    section[style*="padding: 80px 40px"] {
+      padding: 44px 16px !important;
+    }
+
+    /* ── Pricing toggle ── */
+    .pricing-section { overflow: hidden; }
+
+    /* ── view-about inline sections ── */
+    #view-about section { padding: 64px 16px 48px !important; }
+    #view-about section > div > div[style*="padding:52px"] {
+      padding: 28px 20px !important;
+    }
+    #view-about section > div > div[style*="padding:48px"] {
+      padding: 28px 20px !important;
+      gap: 24px !important;
+    }
+    #view-about .footer-social-btn { width: 40px !important; height: 40px !important; }
+  }
+
+  /* ── موبايل صغير 400px ── */
+  @media (max-width: 400px) {
+    #testimonials-anchor { padding: 36px 12px !important; }
+    .yt-section { padding: 36px 12px !important; }
+    .yt-section iframe { height: 190px !important; }
+    #view-about section { padding: 48px 12px 36px !important; }
+    #view-about section > div > div[style*="padding:52px"],
+    #view-about section > div > div[style*="padding:48px"] {
+      padding: 22px 16px !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -2414,7 +2464,7 @@
 
 
   <!-- ══ TESTIMONIALS + TRUST ══════════════════════ -->
-  <section class="section" id="testimonials-anchor" style="background:var(--off-white);padding:80px 40px;">
+  <section class="section" id="testimonials-anchor" style="background:var(--off-white);">
     <div class="section-inner" style="max-width:1200px;margin:0 auto;">
       <span class="section-label">آراء خدام الكنيسة</span>
       <h2 class="section-title">كلام <span>من القلب</span></h2>
