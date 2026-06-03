@@ -1877,11 +1877,243 @@
       padding: 22px 16px !important;
     }
   }
+
+/* ── Offers Page Grid — Responsive ──────────────────────────── */
+@media (max-width: 700px) {
+  .offers-page-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+}
+@media (min-width: 480px) and (max-width: 700px) {
+  .offers-page-grid {
+    grid-template-columns: repeat(2,1fr) !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PERSISTENT OFFER AWARENESS — Sticky Ribbon + Floating Pill
+══════════════════════════════════════════════════════════════ */
+
+/* ── Sticky Top Offer Ribbon ─────────────────────────────────── */
+#offerRibbon {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: linear-gradient(90deg, #0B3B60 0%, #0d4a79 40%, #0B3B60 100%);
+  border-bottom: 1.5px solid rgba(212,175,55,0.4);
+  padding: 0;
+  overflow: hidden;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+#offerRibbon.ribbon-visible {
+  transform: translateY(0);
+}
+.ribbon-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: ribbonScroll 22s linear infinite;
+  gap: 0;
+  padding: 0;
+}
+.ribbon-track:hover { animation-play-state: paused; }
+@keyframes ribbonScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ribbon-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 28px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.88);
+  border-right: 1px solid rgba(212,175,55,0.2);
+  height: 38px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.ribbon-item:hover { color: var(--gold); }
+.ribbon-item .ri-fire { color: var(--gold); font-size: 13px; }
+.ribbon-item .ri-badge {
+  background: var(--gold);
+  color: #0B3B60;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.ribbon-item .ri-red {
+  color: #fca5a5;
+  font-weight: 800;
+}
+.ribbon-close {
+  position: absolute;
+  left: 10px;
+  top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  z-index: 2;
+  flex-shrink: 0;
+}
+.ribbon-close:hover { background: rgba(185,28,28,0.3); color: #fff; }
+
+/* Push header down when ribbon is visible */
+body.ribbon-open .site-header { top: 38px; }
+body.ribbon-open .mobile-nav  { top: 112px; }
+
+/* ── Floating Deal Pill (bottom-left) ────────────────────────── */
+#floatingDealPill {
+  position: fixed;
+  bottom: 90px;
+  left: 20px;
+  z-index: 998;
+  background: linear-gradient(135deg, #0B3B60 0%, #081e35 100%);
+  border: 1.5px solid rgba(212,175,55,0.55);
+  border-radius: 50px;
+  padding: 10px 18px 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 0 0 rgba(212,175,55,0.3);
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  animation: pillEntrance 0.7s cubic-bezier(0.34,1.56,0.64,1) both, pillPulseRing 3s ease-in-out 3s infinite;
+  opacity: 0;
+  pointer-events: none;
+  direction: rtl;
+}
+#floatingDealPill.pill-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+#floatingDealPill:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 14px 40px rgba(212,175,55,0.3), 0 4px 16px rgba(0,0,0,0.5);
+}
+@keyframes pillEntrance {
+  from { opacity: 0; transform: translateX(-20px) scale(0.85); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes pillPulseRing {
+  0%,100% { box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 0 0 rgba(212,175,55,0.35); }
+  50%      { box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 0 8px rgba(212,175,55,0); }
+}
+.pill-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D4AF37, #a8881c);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+  animation: splashFireFlicker 1.1s ease-in-out infinite;
+}
+.pill-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.pill-text-top {
+  font-family: 'Cairo', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1.2;
+}
+.pill-text-bottom {
+  font-family: 'Cairo', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.2;
+}
+.pill-dismiss {
+  position: absolute;
+  top: -6px; left: -6px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(11,59,96,0.95);
+  border: 1px solid rgba(212,175,55,0.4);
+  color: rgba(255,255,255,0.5);
+  font-size: 9px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  opacity: 0;
+  pointer-events: none;
+}
+#floatingDealPill:hover .pill-dismiss {
+  opacity: 1;
+  pointer-events: auto;
+}
+.pill-dismiss:hover { background: rgba(185,28,28,0.8); color: #fff; border-color: transparent; }
+
+/* ── Product card offer overlay badge ──────────────────────── */
+.product-card .offer-corner-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #B91C1C, #ef4444);
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  z-index: 3;
+  box-shadow: 0 3px 10px rgba(185,28,28,0.5);
+  animation: scarcityPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
 
 <!-- ══════ SITE HEADER ══════ -->
+<!-- ══ PERSISTENT OFFER RIBBON ══════════════════════════════ -->
+<div id="offerRibbon" role="banner" aria-label="عرض الصيف الحصري">
+  <div class="ribbon-track" id="ribbonTrack">
+    <!-- Segment 1 -->
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">🔥</span> عروض صيف 2026 <span class="ri-badge">جديد</span></span>
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">💎</span> VIP <span class="ri-red">499 جنيه</span> بدلاً من 699 — وفّر 200 جنيه!</span>
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">🥇</span> الذهبية <span class="ri-red">349 جنيه</span> بدلاً من 449</span>
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">🏦</span> الخادم <span class="ri-red">149 جنيه</span> بدلاً من 199</span>
+    <span class="ribbon-item" onclick="showOffers()">🎯 العرض مخصص لـ <span class="ri-red">50 كنيسة</span> فقط — لفترة محدودة!</span>
+    <!-- Segment 2 (clone for seamless loop) -->
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">🔥</span> عروض صيف 2026 <span class="ri-badge">جديد</span></span>
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">💎</span> VIP <span class="ri-red">499 جنيه</span> بدلاً من 699 — وفّر 200 جنيه!</span>
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">🥇</span> الذهبية <span class="ri-red">349 جنيه</span> بدلاً من 449</span>
+    <span class="ribbon-item" onclick="showOffers()"><span class="ri-fire">🏦</span> الخادم <span class="ri-red">149 جنيه</span> بدلاً من 199</span>
+    <span class="ribbon-item" onclick="showOffers()">🎯 العرض مخصص لـ <span class="ri-red">50 كنيسة</span> فقط — لفترة محدودة!</span>
+  </div>
+  <button class="ribbon-close" id="ribbonClose" aria-label="إغلاق الشريط">✕</button>
+</div>
+
+<!-- ══ FLOATING DEAL PILL ════════════════════════════════════ -->
+<div id="floatingDealPill" role="button" tabindex="0" aria-label="عرض صيف 2026 — انقر للتفاصيل">
+  <div class="pill-icon">🔥</div>
+  <div class="pill-text">
+    <span class="pill-text-top">عرض صيف 2026</span>
+    <span class="pill-text-bottom">خصومات تصل لـ 200 جنيه</span>
+  </div>
+  <button class="pill-dismiss" id="pillDismiss" aria-label="إخفاء">✕</button>
+</div>
+
 <header class="site-header">
   <div class="header-inner">
     <a class="logo-wrap" onclick="showMain(); closeMobileNav();">
@@ -1927,9 +2159,18 @@
           <span class="gold">مع 4Khedma</span>
         </h1>
         <p class="hero-sub">أدوات برمجية بأفكار مصممة خصيصاً لخدمة الكنيسة الأرثوذكسية</p>
-        <a class="hero-cta" onclick="document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'})">
-          <span>استكشف المنتجات</span>
-        </a>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="hero-cta" onclick="document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'})">
+            <span>استكشف المنتجات</span>
+          </a>
+          <a onclick="showOffers()" style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.12);border:1.5px solid rgba(212,175,55,0.45);color:var(--gold);font-family:Cairo,sans-serif;font-size:15px;font-weight:800;padding:14px 28px;border-radius:var(--radius-lg);cursor:pointer;transition:all 0.25s;text-decoration:none;" onmouseover="this.style.background='rgba(212,175,55,0.2)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(212,175,55,0.12)';this.style.transform=''">
+            🔥 <span>عروض الصيف</span>
+          </a>
+        </div>
+        <div style="margin-top:20px;display:inline-flex;align-items:center;gap:10px;background:rgba(185,28,28,0.15);border:1px solid rgba(185,28,28,0.3);border-radius:10px;padding:9px 16px;cursor:pointer;" onclick="showOffers()">
+          <span style="width:7px;height:7px;border-radius:50%;background:#ef4444;display:inline-block;animation:scarcityPulse 1.2s ease-in-out infinite;flex-shrink:0;"></span>
+          <span style="font-family:Cairo,sans-serif;font-size:12px;font-weight:700;color:#fca5a5;">🎯 خصومات صيف 2026 سارية — وفّر حتى 200 جنيه على Khedma Bank!</span>
+        </div>
       </div>
       <div class="hero-visual">
         <div class="hero-visual-ring"></div>
@@ -1968,7 +2209,7 @@
             <span class="thumb-label" onclick="event.stopPropagation()" style="opacity: 0; pointer-events: none;">انقر لاستبدال الصورة</span>
           </div>
           <div class="product-card-body">
-            <span class="product-badge">متاح الآن</span>
+            <span class="offer-corner-badge">🔥 عرض الصيف</span><span class="product-badge">متاح الآن</span>
             <h3 class="product-name">Khedma Bank</h3>
             <p class="product-desc">بنك الأسئلة الكنسي الشامل — أكثر من 2500 سؤال في تصنيفات متعددة مع أوضاع لعب تفاعلية مصممة لخدمة الشباب.</p>
             <div class="product-card-footer">
@@ -2270,6 +2511,21 @@
         </button>
         <span id="toggle-label-usd" style="font-weight:700;font-size:15px;color:rgba(255,255,255,0.4);">🌍 دولار أمريكي</span>
       </div>
+      <!-- SUMMER 2026 DISCOUNT BANNER -->
+      <div id="summer-discount-banner" style="background:linear-gradient(135deg,rgba(12,45,78,0.95) 0%,rgba(8,30,53,0.98) 100%);border:1.5px solid rgba(212,175,55,0.5);border-radius:16px;padding:18px 24px;margin-bottom:28px;direction:rtl;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(212,175,55,0.12);">
+        <div style="position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(212,175,55,0.07) 50%,transparent 70%);background-size:300% 100%;animation:goldShimmerSweep 4s cubic-bezier(0.4,0,0.6,1) infinite;pointer-events:none;border-radius:16px;"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(212,175,55,0.15);border:1.5px solid rgba(212,175,55,0.4);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#128293;</div>
+          <div>
+            <div style="font-family:Cairo,sans-serif;font-size:14px;font-weight:900;color:var(--gold);margin-bottom:3px;">عروض صيف 2026 سارية الآن!</div>
+            <div style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.65);line-height:1.5;">خصومات تصل لـ <strong style="color:#fca5a5;">200 جنيه</strong> على Khedma Bank — العرض مخصص لـ <strong style="color:#fca5a5;">50 كنيسة</strong> فقط لفترة محدودة</div>
+          </div>
+        </div>
+        <button onclick="showOffers()" style="padding:10px 22px;border-radius:10px;border:none;background:linear-gradient(135deg,#D4AF37 0%,#a8881c 100%);color:#0B3B60;font-family:Cairo,sans-serif;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;transition:all 0.25s;box-shadow:0 4px 16px rgba(212,175,55,0.35);position:relative;flex-shrink:0;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(212,175,55,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(212,175,55,0.35)'">
+          &#128293; شوف العروض الآن
+        </button>
+      </div>
+
       <div class="pricing-block" id="pricing-egp">
         <div class="pricing-block-header">
           <span class="currency-badge egp">أسعار محلية — جنيه مصري</span>
@@ -2765,18 +3021,802 @@
   .lb-topbar { padding: 0 16px; }
 }
 .gallery-item.has-img { cursor: zoom-in; }
+
+/* ══════════════════════════════════════════════════════════════
+   SUMMER 2026 SPLASH OVERLAY — 4Khedma / Khedma Bank
+   Egyptian Arabic Digital Luxury — Full Production CSS
+══════════════════════════════════════════════════════════════ */
+
+/* ── Keyframes ───────────────────────────────────────────────── */
+@keyframes splashBackdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes splashModalIn {
+  from { opacity: 0; transform: scale(0.72) translateY(32px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes splashModalOut {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to   { opacity: 0; transform: scale(0.88) translateY(24px); }
+}
+@keyframes splashBadgePop {
+  0%   { transform: scale(0) rotate(-12deg); opacity: 0; }
+  65%  { transform: scale(1.18) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes splashHeadlineIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes splashSubIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes splashCardIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes goldShimmerSweep {
+  0%   { background-position: -200% center; }
+  100% { background-position: 300% center; }
+}
+@keyframes vipBreathePulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.0), 0 16px 56px rgba(212,175,55,0.25), 0 2px 0 0 rgba(212,175,55,0.6) inset; }
+  50%      { box-shadow: 0 0 0 10px rgba(212,175,55,0.07), 0 24px 72px rgba(212,175,55,0.45), 0 2px 0 0 rgba(212,175,55,0.9) inset; }
+}
+@keyframes scarcityBarFill {
+  from { width: 0%; }
+  to   { width: 72%; }
+}
+@keyframes scarcityPulse {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+@keyframes splashFireFlicker {
+  0%,100% { transform: scaleY(1) rotate(-2deg); }
+  33%      { transform: scaleY(1.12) rotate(2deg); }
+  66%      { transform: scaleY(0.93) rotate(-1deg); }
+}
+@keyframes splashCounterTick {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-3px); }
+  60%  { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
+@keyframes splashRingExpand {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes splashParticleFloat {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+}
+
+/* ── Overlay Backdrop ────────────────────────────────────────── */
+#splashOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  animation: splashBackdropIn 0.45s ease both;
+}
+#splashOverlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 14, 30, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: -1;
+}
+#splashOverlay.splash-closing {
+  animation: splashBackdropIn 0.38s ease reverse both;
+  pointer-events: none;
+}
+#splashOverlay.splash-closing .splash-modal {
+  animation: splashModalOut 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── Modal Container ─────────────────────────────────────────── */
+.splash-modal {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  margin: auto;
+  background: linear-gradient(160deg, #0c2d4e 0%, #081e35 55%, #040e1e 100%);
+  border: 1.5px solid rgba(212,175,55,0.28);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.75),
+    0 0 0 1px rgba(212,175,55,0.12),
+    inset 0 1px 0 rgba(212,175,55,0.18);
+  animation: splashModalIn 0.72s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.05s;
+  direction: rtl;
+}
+
+/* ── Decorative grid lines ────────────────────────────────────── */
+.splash-modal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(212,175,55,0.04) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(212,175,55,0.04) 40px);
+  pointer-events: none;
+  border-radius: 28px;
+}
+
+/* ── Decorative ring glow ────────────────────────────────────── */
+.splash-modal::after {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Close Button ────────────────────────────────────────────── */
+.splash-close-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.14);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.6);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s cubic-bezier(0.22,1,0.36,1);
+  z-index: 10;
+  font-family: 'Cairo', sans-serif;
+  flex-shrink: 0;
+}
+.splash-close-btn:hover {
+  background: rgba(185, 28, 28, 0.25);
+  border-color: rgba(185, 28, 28, 0.55);
+  color: #fff;
+  transform: scale(1.12) rotate(90deg);
+}
+
+/* ── Hero Band ───────────────────────────────────────────────── */
+.splash-hero {
+  position: relative;
+  padding: 40px 40px 28px;
+  text-align: center;
+  overflow: hidden;
+  animation: splashHeadlineIn 0.65s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.22s;
+}
+.splash-campaign-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212,175,55,0.12);
+  border: 1.5px solid rgba(212,175,55,0.38);
+  border-radius: 40px;
+  padding: 6px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  animation: splashBadgePop 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  animation-delay: 0.35s;
+}
+.splash-campaign-badge .badge-fire {
+  display: inline-block;
+  animation: splashFireFlicker 0.9s ease-in-out infinite;
+}
+.splash-headline {
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+  font-size: clamp(17px, 3.2vw, 26px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+}
+.splash-headline .hl-gold { color: var(--gold); }
+.splash-headline .hl-red  { color: #ef4444; }
+.splash-subtitle {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(13px, 1.8vw, 15px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.85;
+  max-width: 580px;
+  margin: 0 auto 26px;
+  animation: splashSubIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.38s;
+}
+.splash-subtitle strong { color: var(--gold); font-weight: 700; }
+
+/* ── Scarcity Counter Block ──────────────────────────────────── */
+.splash-scarcity {
+  margin: 0 40px 28px;
+  background: rgba(185,28,28,0.1);
+  border: 1.5px solid rgba(185,28,28,0.35);
+  border-radius: 14px;
+  padding: 16px 22px 18px;
+  animation: splashSubIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.48s;
+}
+.splash-scarcity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.splash-scarcity-label {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.88);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.splash-scarcity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  flex-shrink: 0;
+  animation: scarcityPulse 1.2s ease-in-out infinite;
+}
+.splash-scarcity-count {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fca5a5;
+  white-space: nowrap;
+}
+.splash-scarcity-count span {
+  color: #ef4444;
+  font-size: 16px;
+  animation: splashCounterTick 2s ease-in-out infinite;
+  display: inline-block;
+}
+.splash-progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+}
+.splash-progress-fill {
+  height: 100%;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #b91c1c 0%, #ef4444 60%, #fca5a5 100%);
+  width: 0%;
+  animation: scarcityBarFill 1.8s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.75s;
+  position: relative;
+}
+.splash-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 20px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55));
+  border-radius: 0 40px 40px 0;
+  animation: scarcityPulse 1.4s ease-in-out infinite;
+}
+.splash-progress-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ── Offer Cards Grid ────────────────────────────────────────── */
+.splash-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 0 24px 28px;
+  animation: splashCardIn 0.65s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.54s;
+}
+
+/* ── Individual Offer Card ───────────────────────────────────── */
+.splash-card {
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 22px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.splash-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(212,175,55,0.45);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+}
+
+/* ── VIP Card Special Styles ─────────────────────────────────── */
+.splash-card.vip-card {
+  background: linear-gradient(160deg, rgba(30,20,5,0.95) 0%, rgba(18,12,2,0.98) 100%);
+  border: 1.5px solid rgba(212,175,55,0.6);
+  animation: vipBreathePulse 3.2s ease-in-out infinite;
+  overflow: hidden;
+}
+.splash-card.vip-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(212,175,55,0.12) 45%,
+    rgba(212,175,55,0.22) 50%,
+    rgba(212,175,55,0.12) 55%,
+    transparent 70%,
+    transparent 100%
+  );
+  background-size: 300% 100%;
+  animation: goldShimmerSweep 3s cubic-bezier(0.4,0,0.6,1) infinite;
+  animation-delay: 1s;
+  pointer-events: none;
+  border-radius: 18px;
+}
+.splash-card.vip-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(212,175,55,0.07) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: 18px;
+}
+.splash-card.vip-card:hover {
+  border-color: rgba(212,175,55,0.9);
+  transform: translateY(-7px) scale(1.03);
+  box-shadow:
+    0 20px 60px rgba(212,175,55,0.25),
+    0 4px 20px rgba(0,0,0,0.6);
+}
+
+/* ── Card: Star Badge ────────────────────────────────────────── */
+.splash-star-badge {
+  position: absolute;
+  top: -1px;
+  right: 18px;
+  background: linear-gradient(135deg, #D4AF37 0%, #a8881c 100%);
+  color: #0B3B60;
+  font-family: 'Cairo', sans-serif;
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 14px rgba(212,175,55,0.5);
+  z-index: 2;
+}
+.splash-popular-badge {
+  position: absolute;
+  top: -1px;
+  right: 18px;
+  background: rgba(59, 130, 246, 0.22);
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  color: #93c5fd;
+  font-family: 'Cairo', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 0 0 10px 10px;
+  z-index: 2;
+}
+
+/* ── Card: Plan Icon ─────────────────────────────────────────── */
+.splash-plan-icon {
+  font-size: 26px;
+  margin-bottom: 10px;
+  display: block;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Card: Plan Name ─────────────────────────────────────────── */
+.splash-plan-name {
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
+}
+.splash-card.vip-card .splash-plan-name { color: var(--gold); }
+
+/* ── Card: Plan Desc ─────────────────────────────────────────── */
+.splash-plan-desc {
+  font-family: 'Cairo', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.48);
+  margin-bottom: 14px;
+  line-height: 1.55;
+  position: relative;
+  z-index: 2;
+}
+.splash-card.vip-card .splash-plan-desc { color: rgba(212,175,55,0.65); }
+
+/* ── Card: Pricing ───────────────────────────────────────────── */
+.splash-pricing {
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2;
+}
+.splash-price-original {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  text-decoration: line-through;
+  text-decoration-color: rgba(185,28,28,0.7);
+  display: block;
+  line-height: 1.3;
+}
+.splash-price-now {
+  font-family: 'Cairo', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.splash-price-now .price-currency {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  vertical-align: super;
+  margin-left: 2px;
+}
+.splash-card.vip-card .splash-price-now { color: var(--gold); }
+.splash-card.vip-card .splash-price-now .price-currency { color: rgba(212,175,55,0.65); }
+
+/* ── Card: Savings Tag ───────────────────────────────────────── */
+.splash-savings-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(185,28,28,0.18);
+  border: 1px solid rgba(185,28,28,0.4);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fca5a5;
+  margin: 4px 0 14px;
+  position: relative;
+  z-index: 2;
+}
+.splash-card.vip-card .splash-savings-tag {
+  background: rgba(212,175,55,0.14);
+  border-color: rgba(212,175,55,0.45);
+  color: var(--gold);
+}
+
+/* ── Card: Feature list ──────────────────────────────────────── */
+.splash-feature-list {
+  list-style: none;
+  padding: 0; margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+.splash-feature-list li {
+  font-family: 'Cairo', sans-serif;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.6);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.45;
+}
+.splash-feature-list li .feat-check {
+  color: #4ade80;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.splash-card.vip-card .splash-feature-list li { color: rgba(212,175,55,0.8); }
+.splash-card.vip-card .splash-feature-list li .feat-check { color: var(--gold); }
+
+/* ── Card: CTA Button ────────────────────────────────────────── */
+.splash-cta-btn {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+  z-index: 2;
+  background: rgba(37,211,102,0.14);
+  border: 1.5px solid rgba(37,211,102,0.35);
+  color: #4ade80;
+}
+.splash-cta-btn:hover {
+  background: rgba(37,211,102,0.22);
+  border-color: rgba(37,211,102,0.6);
+  color: #86efac;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.2);
+}
+.splash-cta-btn:active { transform: translateY(0) scale(0.97); }
+.splash-cta-btn .cta-wa-icon { font-size: 15px; flex-shrink: 0; }
+
+.splash-card.vip-card .splash-cta-btn {
+  background: linear-gradient(135deg, #D4AF37 0%, #a8881c 100%);
+  border-color: transparent;
+  color: #0B3B60;
+  box-shadow: 0 6px 24px rgba(212,175,55,0.35);
+}
+.splash-card.vip-card .splash-cta-btn:hover {
+  background: linear-gradient(135deg, #e8c43a 0%, #c0a020 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(212,175,55,0.5);
+  color: #0B3B60;
+}
+
+/* ── Footer Strip ────────────────────────────────────────────── */
+.splash-footer-strip {
+  padding: 14px 28px;
+  border-top: 1px solid rgba(212,175,55,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  flex-wrap: wrap;
+}
+.splash-footer-strip .sf-gold { color: rgba(212,175,55,0.65); font-weight: 700; }
+.splash-footer-strip .sf-sep { opacity: 0.3; }
+
+/* ── Floating Particles (decorative) ────────────────────────── */
+.splash-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(212,175,55,0.45);
+  pointer-events: none;
+  animation: splashParticleFloat linear infinite;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .splash-hero { padding: 36px 20px 22px; }
+  .splash-scarcity { margin: 0 16px 22px; }
+  .splash-cards-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px 22px;
+    gap: 12px;
+  }
+  .splash-card { padding: 20px 18px 18px; }
+  .splash-card.vip-card { order: -1; }
+  .splash-headline { font-size: clamp(16px, 4.5vw, 21px); }
+  .splash-close-btn { top: 14px; left: 14px; }
+  .splash-price-now { font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .splash-modal { border-radius: 20px; }
+  .splash-hero { padding: 30px 16px 18px; }
+  .splash-scarcity { margin: 0 12px 18px; padding: 14px 16px 16px; }
+  .splash-cards-grid { padding: 0 12px 18px; gap: 10px; }
+  .splash-footer-strip { padding: 12px 16px; font-size: 11px; }
+}
 </style>
 
 <!-- ════════════════════════════════════
-     VIEW 3: EXCLUSIVE LAUNCH OFFERS
+     VIEW 3: SUMMER 2026 OFFERS PAGE
 ═════════════════════════════════════ -->
 <div id="view-offers" class="view">
-  <section style="min-height:100vh;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;padding:40px;text-align:center;direction:rtl;position:relative;overflow:hidden;">
+
+  <!-- BACK BAR -->
+  <div style="background:var(--blue);border-bottom:1px solid rgba(212,175,55,0.18);padding:12px 40px;display:flex;align-items:center;gap:10px;direction:rtl;">
+    <button onclick="showMain()" style="display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.7);font-family:Cairo,sans-serif;font-size:14px;font-weight:700;transition:color 0.2s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      الرئيسية
+    </button>
+    <span style="color:rgba(212,175,55,0.35);font-size:14px;">›</span>
+    <span style="color:var(--gold);font-size:14px;font-family:Cairo,sans-serif;font-weight:600;">عروض صيف 2026</span>
+  </div>
+
+  <!-- HERO BAND -->
+  <section style="background:linear-gradient(160deg,#0B3B60 0%,#081e35 60%,#040e1e 100%);padding:72px 40px 56px;position:relative;overflow:hidden;direction:rtl;">
     <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(212,175,55,0.05) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(212,175,55,0.05) 40px);pointer-events:none;"></div>
-    <div style="font-size:clamp(64px,14vw,140px);font-weight:900;color:var(--gold);letter-spacing:-0.03em;line-height:1;position:relative;">Sold Out</div>
-    <p style="font-size:clamp(16px,2.5vw,22px);color:rgba(255,255,255,0.7);max-width:480px;line-height:1.8;position:relative;">نسخ العرض الحصري انتهت بالكامل.<br>شكراً لكل من دعم المشروع! 🙏</p>
-    <button onclick="showMain()" style="margin-top:16px;background:var(--gold);color:var(--blue);font-family:Cairo,sans-serif;font-size:16px;font-weight:800;padding:14px 40px;border-radius:14px;border:none;cursor:pointer;position:relative;">العودة للرئيسية</button>
+    <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(212,175,55,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="max-width:900px;margin:0 auto;text-align:center;position:relative;">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.12);border:1.5px solid rgba(212,175,55,0.38);border-radius:40px;padding:7px 22px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-family:Cairo,sans-serif;">
+        &#128293; حملة صيف 2026 الحصرية
+      </div>
+      <h1 style="font-family:Cairo,Tajawal,sans-serif;font-size:clamp(24px,4vw,48px);font-weight:900;color:#fff;line-height:1.3;letter-spacing:-0.02em;margin:0 0 18px;">
+        أقوى عروض الصيف من <span style="color:var(--gold);">4Khedma</span>
+        <br>على سيستم <span style="color:var(--gold);">Khedma Bank</span> التفاعلي!
+      </h1>
+      <p style="font-size:clamp(14px,2vw,17px);color:rgba(255,255,255,0.7);max-width:620px;margin:0 auto 16px;line-height:1.9;font-family:Cairo,sans-serif;">
+        انقل مسابقات كنيستك واجتماعك لمستوى برامج التلفزيون بخصومات تصل لـ <strong style="color:var(--gold);">200 جنيه</strong> — العرض مخصص لـ <strong style="color:#fca5a5;">50 كنيسة</strong> فقط لفترة محدودة!
+      </p>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(185,28,28,0.15);border:1.5px solid rgba(185,28,28,0.4);border-radius:10px;padding:10px 20px;font-family:Cairo,sans-serif;font-size:13px;font-weight:700;color:#fca5a5;margin-top:4px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#ef4444;display:inline-block;animation:scarcityPulse 1.2s ease-in-out infinite;flex-shrink:0;"></span>
+        العرض مخصص لـ 50 كنيسة فقط — احجز مكانك قبل الانتهاء
+      </div>
+    </div>
   </section>
+
+  <!-- OFFER CARDS SECTION -->
+  <section style="background:#050f1e;padding:60px 24px 72px;direction:rtl;">
+    <div style="max-width:1000px;margin:0 auto;">
+
+      <div style="text-align:center;margin-bottom:48px;">
+        <span style="display:block;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-family:Cairo,sans-serif;margin-bottom:10px;">عروض حصرية · صيف 2026</span>
+        <h2 style="font-family:Cairo,Tajawal,sans-serif;font-size:clamp(20px,3vw,32px);font-weight:900;color:#fff;letter-spacing:-0.02em;margin:0;">اختر خطتك واستفد من الخصم الآن</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="offers-page-grid">
+
+        <!-- Card 1: Basic -->
+        <div style="position:relative;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px 22px 24px;display:flex;flex-direction:column;gap:0;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),border-color 0.3s,box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)';this.style.borderColor='rgba(212,175,55,0.4)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.1)';this.style.boxShadow=''">
+          <div style="font-size:32px;margin-bottom:12px;line-height:1;">&#127974;</div>
+          <div style="font-family:Cairo,sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;">الخادم — Basic</div>
+          <div style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:16px;">جهاز واحد · ترخيص مدى الحياة</div>
+          <div style="margin-bottom:4px;">
+            <span style="font-family:Cairo,sans-serif;font-size:13px;color:rgba(255,255,255,0.3);text-decoration:line-through;">199 جنيه</span>
+            <div style="font-family:Cairo,sans-serif;font-size:30px;font-weight:900;color:#fff;letter-spacing:-0.02em;line-height:1.1;">149 <span style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.5);vertical-align:super;">جنيه</span></div>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:4px;background:rgba(185,28,28,0.18);border:1px solid rgba(185,28,28,0.4);border-radius:6px;padding:4px 10px;font-family:Cairo,sans-serif;font-size:11px;font-weight:700;color:#fca5a5;margin-bottom:18px;width:fit-content;">&#9986; وفّر 50 جنيه</div>
+          <ul style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:7px;flex:1;">
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> جهاز واحد مرخّص</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> 2500+ سؤال كنسي</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> 4 أوضاع لعب متكاملة</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> تحديثات دورية مجانية</li>
+          </ul>
+          <button onclick="buyProduct('الخادم — Basic (عرض الصيف 2026)', '149 جنيه — بدلاً من 199 جنيه', 'جهاز واحد · ترخيص مدى الحياة · خصم 50 جنيه · كود: SUMMER26-BASIC')" style="width:100%;padding:13px;border-radius:12px;border:1.5px solid rgba(37,211,102,0.35);background:rgba(37,211,102,0.12);color:#4ade80;font-family:Cairo,sans-serif;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.25s;" onmouseover="this.style.background='rgba(37,211,102,0.22)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(37,211,102,0.12)';this.style.transform=''">
+            <span>&#128172;</span> اطلب الآن عبر واتساب
+          </button>
+        </div>
+
+        <!-- Card 2: Gold -->
+        <div style="position:relative;background:rgba(255,255,255,0.04);border:1.5px solid rgba(212,175,55,0.35);border-radius:20px;padding:28px 22px 24px;display:flex;flex-direction:column;gap:0;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),border-color 0.3s,box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px) scale(1.02)';this.style.borderColor='rgba(212,175,55,0.7)';this.style.boxShadow='0 20px 50px rgba(212,175,55,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(212,175,55,0.35)';this.style.boxShadow=''">
+          <div style="position:absolute;top:-1px;right:18px;background:rgba(59,130,246,0.22);border:1px solid rgba(59,130,246,0.45);color:#93c5fd;font-family:Cairo,sans-serif;font-size:9.5px;font-weight:800;letter-spacing:0.06em;padding:5px 12px;border-radius:0 0 10px 10px;">الأكثر طلباً &#11088;</div>
+          <div style="font-size:32px;margin-bottom:12px;line-height:1;">&#129351;</div>
+          <div style="font-family:Cairo,sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;">الذهبية — Gold</div>
+          <div style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:16px;">3 أجهزة · ترخيص مدى الحياة</div>
+          <div style="margin-bottom:4px;">
+            <span style="font-family:Cairo,sans-serif;font-size:13px;color:rgba(255,255,255,0.3);text-decoration:line-through;">449 جنيه</span>
+            <div style="font-family:Cairo,sans-serif;font-size:30px;font-weight:900;color:var(--gold);letter-spacing:-0.02em;line-height:1.1;">349 <span style="font-size:14px;font-weight:600;color:rgba(212,175,55,0.55);vertical-align:super;">جنيه</span></div>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:4px;background:rgba(185,28,28,0.18);border:1px solid rgba(185,28,28,0.4);border-radius:6px;padding:4px 10px;font-family:Cairo,sans-serif;font-size:11px;font-weight:700;color:#fca5a5;margin-bottom:18px;width:fit-content;">&#9986; وفّر 100 جنيه</div>
+          <ul style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:7px;flex:1;">
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> 3 أجهزة مرخّصة</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> 2500+ سؤال كنسي</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> 4 أوضاع لعب متكاملة</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:flex-start;gap:7px;"><span style="color:#4ade80;flex-shrink:0;">&#10003;</span> دعم فني أولوية</li>
+          </ul>
+          <button onclick="buyProduct('الذهبية — Gold (عرض الصيف 2026)', '349 جنيه — بدلاً من 449 جنيه', '3 أجهزة · ترخيص مدى الحياة · خصم 100 جنيه · كود: SUMMER26-GOLD')" style="width:100%;padding:13px;border-radius:12px;border:1.5px solid rgba(37,211,102,0.35);background:rgba(37,211,102,0.12);color:#4ade80;font-family:Cairo,sans-serif;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.25s;" onmouseover="this.style.background='rgba(37,211,102,0.22)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(37,211,102,0.12)';this.style.transform=''">
+            <span>&#128172;</span> اطلب الآن عبر واتساب
+          </button>
+        </div>
+
+        <!-- Card 3: VIP -->
+        <div style="position:relative;background:linear-gradient(160deg,rgba(30,20,5,0.95) 0%,rgba(18,12,2,0.98) 100%);border:1.5px solid rgba(212,175,55,0.6);border-radius:20px;padding:28px 22px 24px;display:flex;flex-direction:column;gap:0;overflow:hidden;box-shadow:0 16px 56px rgba(212,175,55,0.2);animation:vipBreathePulse 3.2s ease-in-out infinite;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),border-color 0.3s,box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-7px) scale(1.03)';this.style.borderColor='rgba(212,175,55,0.9)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(212,175,55,0.6)'">
+          <div style="position:absolute;top:-1px;right:18px;background:linear-gradient(135deg,#D4AF37 0%,#a8881c 100%);color:#0B3B60;font-family:Cairo,sans-serif;font-size:9.5px;font-weight:900;padding:5px 12px;border-radius:0 0 10px 10px;box-shadow:0 4px 14px rgba(212,175,55,0.5);">&#11088; العرض الأقوى</div>
+          <div style="font-size:32px;margin-bottom:12px;line-height:1;">&#128142;</div>
+          <div style="font-family:Cairo,sans-serif;font-size:16px;font-weight:800;color:var(--gold);margin-bottom:4px;">VIP — تخصيص كامل</div>
+          <div style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(212,175,55,0.6);margin-bottom:16px;">3 أجهزة + شعار الكنيسة الكامل</div>
+          <div style="margin-bottom:4px;">
+            <span style="font-family:Cairo,sans-serif;font-size:13px;color:rgba(255,255,255,0.3);text-decoration:line-through;">699 جنيه</span>
+            <div style="font-family:Cairo,sans-serif;font-size:30px;font-weight:900;color:var(--gold);letter-spacing:-0.02em;line-height:1.1;">499 <span style="font-size:14px;font-weight:600;color:rgba(212,175,55,0.55);vertical-align:super;">جنيه</span></div>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:4px;background:rgba(212,175,55,0.14);border:1px solid rgba(212,175,55,0.45);border-radius:6px;padding:4px 10px;font-family:Cairo,sans-serif;font-size:11px;font-weight:700;color:var(--gold);margin-bottom:18px;width:fit-content;">&#9986; وفّر 200 جنيه!</div>
+          <ul style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:7px;flex:1;">
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(212,175,55,0.8);display:flex;align-items:flex-start;gap:7px;"><span style="color:var(--gold);flex-shrink:0;">&#10022;</span> 3 أجهزة مرخّصة</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(212,175,55,0.8);display:flex;align-items:flex-start;gap:7px;"><span style="color:var(--gold);flex-shrink:0;">&#10022;</span> تخصيص كامل بشعار الكنيسة</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(212,175,55,0.8);display:flex;align-items:flex-start;gap:7px;"><span style="color:var(--gold);flex-shrink:0;">&#10022;</span> 2500+ سؤال كنسي</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(212,175,55,0.8);display:flex;align-items:flex-start;gap:7px;"><span style="color:var(--gold);flex-shrink:0;">&#10022;</span> 4 أوضاع لعب + كل المميزات</li>
+            <li style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(212,175,55,0.8);display:flex;align-items:flex-start;gap:7px;"><span style="color:var(--gold);flex-shrink:0;">&#10022;</span> دعم VIP مباشر</li>
+          </ul>
+          <button onclick="buyProduct('VIP — تخصيص كامل (عرض الصيف 2026)', '499 جنيه — بدلاً من 699 جنيه', '3 أجهزة · تخصيص كامل بشعار الكنيسة · خصم 200 جنيه · كود: SUMMER26-VIP')" style="width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#D4AF37 0%,#a8881c 100%);color:#0B3B60;font-family:Cairo,sans-serif;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 24px rgba(212,175,55,0.35);transition:all 0.25s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 32px rgba(212,175,55,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 24px rgba(212,175,55,0.35)'">
+            <span>&#128172;</span> احجز عرض VIP الآن
+          </button>
+        </div>
+
+      </div><!-- /grid -->
+
+    </div>
+  </section>
+
+  <!-- WHY NOW URGENCY SECTION -->
+  <section style="background:#030b16;padding:56px 40px;direction:rtl;border-top:1px solid rgba(212,175,55,0.1);">
+    <div style="max-width:860px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:40px;">
+        <h2 style="font-family:Cairo,Tajawal,sans-serif;font-size:clamp(18px,2.5vw,28px);font-weight:900;color:#fff;margin:0 0 10px;">&#128161; ليه تشتري دلوقتي؟</h2>
+        <p style="font-family:Cairo,sans-serif;font-size:14px;color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;line-height:1.7;">أسباب حقيقية تخليك ما تفوّتش العرض ده</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+        <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(212,175,55,0.12);border-radius:16px;padding:24px 20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:10px;">&#128274;</div>
+          <div style="font-family:Cairo,sans-serif;font-size:13px;font-weight:800;color:#fff;margin-bottom:6px;">ترخيص مدى الحياة</div>
+          <p style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;margin:0;">دفع مرة واحدة بس — مفيش اشتراكات شهرية أو سنوية أبداً</p>
+        </div>
+        <div style="background:rgba(185,28,28,0.08);border:1.5px solid rgba(185,28,28,0.25);border-radius:16px;padding:24px 20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:10px;">&#9201;</div>
+          <div style="font-family:Cairo,sans-serif;font-size:13px;font-weight:800;color:#fca5a5;margin-bottom:6px;">العرض لفترة محدودة</div>
+          <p style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;margin:0;">الخصومات دي مش هتتكرر بعد انتهاء حملة الصيف</p>
+        </div>
+        <div style="background:rgba(212,175,55,0.06);border:1.5px solid rgba(212,175,55,0.2);border-radius:16px;padding:24px 20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:10px;">&#127942;</div>
+          <div style="font-family:Cairo,sans-serif;font-size:13px;font-weight:800;color:var(--gold);margin-bottom:6px;">جودة تلفزيونية حقيقية</div>
+          <p style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;margin:0;">واجهة احترافية بتحوّل أي مسابقة كنسية لبرنامج تلفزيوني</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px 20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:10px;">&#128230;</div>
+          <div style="font-family:Cairo,sans-serif;font-size:13px;font-weight:800;color:#fff;margin-bottom:6px;">تسليم فوري</div>
+          <p style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;margin:0;">بعد التواصل عبر واتساب تستلم مفتاح التفعيل فوراً</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA BAND -->
+  <section style="background:linear-gradient(135deg,#0B3B60 0%,#081e35 100%);padding:48px 40px;direction:rtl;text-align:center;border-top:1px solid rgba(212,175,55,0.15);">
+    <div style="max-width:600px;margin:0 auto;">
+      <p style="font-family:Cairo,sans-serif;font-size:clamp(16px,2.5vw,22px);font-weight:800;color:#fff;margin:0 0 8px;">مش عارف تختار؟ تواصل معنا مباشرةً!</p>
+      <p style="font-family:Cairo,sans-serif;font-size:14px;color:rgba(255,255,255,0.55);margin:0 0 24px;line-height:1.7;">هنساعدك تختار الخطة المناسبة لكنيستك وحجمك</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <button onclick="buyProduct('استفسار عروض الصيف 2026', 'غير محدد', 'أحتاج مساعدة في اختيار الخطة المناسبة')" style="padding:14px 32px;border-radius:12px;border:none;background:linear-gradient(135deg,#D4AF37 0%,#a8881c 100%);color:#0B3B60;font-family:Cairo,sans-serif;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.25s;box-shadow:0 6px 24px rgba(212,175,55,0.4);" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+          <span>&#128172;</span> استشارة مجانية عبر واتساب
+        </button>
+        <button onclick="showMain()" style="padding:14px 28px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.75);font-family:Cairo,sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.5)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='rgba(255,255,255,0.75)'">
+          العودة للرئيسية
+        </button>
+      </div>
+    </div>
+  </section>
+
 </div><!-- /view-offers -->
 <!-- ════════════════════════════════════
      VIEW 4: ABOUT
@@ -3286,7 +4326,200 @@
     if (panel && panel.classList.contains('open') && !panel.contains(e.target) && !fab.contains(e.target))
       panel.classList.remove('open');
   });
+
+  /* ══════════════════════════════════════════════════════════════
+     PERSISTENT OFFER AWARENESS ENGINE
+     Sticky ribbon (scrolling ticker) + Floating deal pill
+  ══════════════════════════════════════════════════════════════ */
+  (function initOfferAwareness() {
+    var ribbon      = document.getElementById('offerRibbon');
+    var ribbonClose = document.getElementById('ribbonClose');
+    var pill        = document.getElementById('floatingDealPill');
+    var pillDismiss = document.getElementById('pillDismiss');
+    var ribbonKey   = 'ribbonDismissed';
+    var pillKey     = 'pillDismissed';
+
+    /* Show ribbon after splash closes (3.5s) unless dismissed */
+    if (!sessionStorage.getItem(ribbonKey)) {
+      setTimeout(function() {
+        if (ribbon) {
+          ribbon.classList.add('ribbon-visible');
+          document.body.classList.add('ribbon-open');
+        }
+      }, 3500);
+    }
+
+    /* Show floating pill after 8s unless dismissed */
+    if (!sessionStorage.getItem(pillKey)) {
+      setTimeout(function() {
+        if (pill) pill.classList.add('pill-visible');
+      }, 8000);
+    }
+
+    /* Ribbon close */
+    if (ribbonClose) {
+      ribbonClose.addEventListener('click', function(e) {
+        e.stopPropagation();
+        ribbon.classList.remove('ribbon-visible');
+        document.body.classList.remove('ribbon-open');
+        sessionStorage.setItem(ribbonKey, '1');
+      });
+    }
+
+    /* Pill click → go to offers */
+    if (pill) {
+      pill.addEventListener('click', function(e) {
+        if (e.target === pillDismiss || pillDismiss.contains(e.target)) return;
+        showOffers();
+      });
+      pill.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showOffers(); }
+      });
+    }
+
+    /* Pill dismiss */
+    if (pillDismiss) {
+      pillDismiss.addEventListener('click', function(e) {
+        e.stopPropagation();
+        pill.classList.remove('pill-visible');
+        sessionStorage.setItem(pillKey, '1');
+      });
+    }
+
+    /* Hide pill when on offers view, show when on other views */
+    var origShowOffers = window.showOffers;
+    window.showOffers = function() {
+      origShowOffers();
+      if (pill) pill.classList.remove('pill-visible');
+      if (ribbon) { ribbon.classList.remove('ribbon-visible'); document.body.classList.remove('ribbon-open'); }
+    };
+    var origShowMain = window.showMain;
+    window.showMain = function() {
+      origShowMain();
+      if (!sessionStorage.getItem(pillKey) && pill) pill.classList.add('pill-visible');
+    };
+    var origShowProduct = window.showProduct && window.showProduct;
+    if (origShowProduct) {
+      var _alreadyWrapped = origShowProduct._offerWrapped;
+      if (!_alreadyWrapped) {
+        window.showProduct = function() {
+          origShowProduct.apply(this, arguments);
+        };
+        window.showProduct._offerWrapped = true;
+      }
+    }
+  })();
 </script>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SUMMER 2026 SPLASH OVERLAY — 4Khedma / Khedma Bank
+══════════════════════════════════════════════════════════════ -->
+<div id="splashOverlay" role="dialog" aria-modal="true" aria-label="عروض صيف 2026 الحصرية" style="display:none;">
+  <div class="splash-modal">
+
+    <span class="splash-particle" style="width:5px;height:5px;bottom:18%;left:8%;animation-duration:7s;animation-delay:0s;"></span>
+    <span class="splash-particle" style="width:3px;height:3px;bottom:30%;left:22%;animation-duration:9s;animation-delay:1.5s;"></span>
+    <span class="splash-particle" style="width:4px;height:4px;bottom:12%;left:55%;animation-duration:11s;animation-delay:0.8s;"></span>
+    <span class="splash-particle" style="width:6px;height:6px;bottom:8%;left:80%;animation-duration:8s;animation-delay:2s;"></span>
+    <span class="splash-particle" style="width:3px;height:3px;bottom:40%;left:92%;animation-duration:10s;animation-delay:0.3s;"></span>
+
+    <button class="splash-close-btn" id="splashCloseBtn" aria-label="إغلاق العرض والعودة للموقع" title="إغلاق (Esc)">&#10005;</button>
+
+    <div class="splash-hero">
+      <div class="splash-campaign-badge">
+        <span class="badge-fire">&#128293;</span>
+        حملة صيف 2026 الحصرية &middot; 4Khedma
+      </div>
+      <h2 class="splash-headline">
+        &#128293; أقوى عروض الصيف من 4Khedma:<br>
+        سيستم <span class="hl-gold">Khedma Bank</span> التفاعلي!
+      </h2>
+      <p class="splash-subtitle">
+        انقل مسابقات كنيستك واجتماعك لمستوى برامج التلفزيون
+        بخصومات تصل لـ <strong>200 جنيه</strong> لفترة محدودة!
+      </p>
+    </div>
+
+
+    <div class="splash-cards-grid">
+
+      <div class="splash-card">
+        <span class="splash-plan-icon">&#127974;</span>
+        <div class="splash-plan-name">الخادم &mdash; Basic</div>
+        <div class="splash-plan-desc">جهاز واحد &middot; ترخيص مدى الحياة</div>
+        <div class="splash-pricing">
+          <span class="splash-price-original">199 جنيه</span>
+          <div class="splash-price-now">149 <span class="price-currency">جنيه</span></div>
+        </div>
+        <div class="splash-savings-tag">&#9986; وفّر 50 جنيه</div>
+        <ul class="splash-feature-list">
+          <li><span class="feat-check">&#10003;</span> جهاز واحد مرخّص</li>
+          <li><span class="feat-check">&#10003;</span> 2500+ سؤال كنسي</li>
+          <li><span class="feat-check">&#10003;</span> 4 أوضاع لعب متكاملة</li>
+          <li><span class="feat-check">&#10003;</span> تحديثات دورية مجانية</li>
+        </ul>
+        <button class="splash-cta-btn" onclick="closeSplashAndBuy('الخادم \u2014 Basic (عرض الصيف 2026)', '149 جنيه \u2014 بدلاً من 199 جنيه', 'جهاز واحد \u00b7 ترخيص مدى الحياة \u00b7 خصم 50 جنيه \u00b7 كود: SUMMER26-BASIC')">
+          <span class="cta-wa-icon">&#128172;</span> اطلب الآن عبر واتساب
+        </button>
+      </div>
+
+      <div class="splash-card">
+        <div class="splash-popular-badge">الأكثر طلباً &#11088;</div>
+        <span class="splash-plan-icon">&#129351;</span>
+        <div class="splash-plan-name">الذهبية &mdash; Gold</div>
+        <div class="splash-plan-desc">3 أجهزة &middot; ترخيص مدى الحياة</div>
+        <div class="splash-pricing">
+          <span class="splash-price-original">449 جنيه</span>
+          <div class="splash-price-now">349 <span class="price-currency">جنيه</span></div>
+        </div>
+        <div class="splash-savings-tag">&#9986; وفّر 100 جنيه</div>
+        <ul class="splash-feature-list">
+          <li><span class="feat-check">&#10003;</span> 3 أجهزة مرخّصة</li>
+          <li><span class="feat-check">&#10003;</span> 2500+ سؤال كنسي</li>
+          <li><span class="feat-check">&#10003;</span> 4 أوضاع لعب متكاملة</li>
+          <li><span class="feat-check">&#10003;</span> دعم فني أولوية</li>
+        </ul>
+        <button class="splash-cta-btn" onclick="closeSplashAndBuy('الذهبية \u2014 Gold (عرض الصيف 2026)', '349 جنيه \u2014 بدلاً من 449 جنيه', '3 أجهزة \u00b7 ترخيص مدى الحياة \u00b7 خصم 100 جنيه \u00b7 كود: SUMMER26-GOLD')">
+          <span class="cta-wa-icon">&#128172;</span> اطلب الآن عبر واتساب
+        </button>
+      </div>
+
+      <div class="splash-card vip-card">
+        <div class="splash-star-badge">&#11088; العرض الأقوى</div>
+        <span class="splash-plan-icon">&#128142;</span>
+        <div class="splash-plan-name">VIP &mdash; تخصيص كامل</div>
+        <div class="splash-plan-desc">3 أجهزة + شعار الكنيسة الكامل</div>
+        <div class="splash-pricing">
+          <span class="splash-price-original">699 جنيه</span>
+          <div class="splash-price-now">499 <span class="price-currency">جنيه</span></div>
+        </div>
+        <div class="splash-savings-tag">&#9986; وفّر 200 جنيه!</div>
+        <ul class="splash-feature-list">
+          <li><span class="feat-check">&#10022;</span> 3 أجهزة مرخّصة</li>
+          <li><span class="feat-check">&#10022;</span> تخصيص كامل بشعار الكنيسة</li>
+          <li><span class="feat-check">&#10022;</span> 2500+ سؤال كنسي</li>
+          <li><span class="feat-check">&#10022;</span> 4 أوضاع لعب + كل المميزات</li>
+          <li><span class="feat-check">&#10022;</span> دعم VIP مباشر</li>
+        </ul>
+        <button class="splash-cta-btn" onclick="closeSplashAndBuy('VIP \u2014 تخصيص كامل بشعار الكنيسة (عرض الصيف 2026)', '499 جنيه \u2014 بدلاً من 699 جنيه', '3 أجهزة \u00b7 تخصيص كامل بشعار الكنيسة أو الخدمة \u00b7 خصم 200 جنيه \u00b7 كود: SUMMER26-VIP')">
+          <span class="cta-wa-icon">&#128172;</span> احجز عرض VIP الآن
+        </button>
+      </div>
+
+    </div>
+
+    <div class="splash-footer-strip">
+      <span>&#128274; الدفع آمن عبر واتساب المباشر</span>
+      <span class="sf-sep">&middot;</span>
+      <span class="sf-gold">4Khedma</span>
+      <span class="sf-sep">&middot;</span>
+      <span>العرض ساري لفترة محدودة فقط</span>
+      <span class="sf-sep">&middot;</span>
+      <span>ترخيص مدى الحياة لكل الخطط</span>
+    </div>
+
+  </div>
+</div>
 
 <!-- ══ WHATSAPP CHAT WIDGET ══════════════════ -->
 <button class="wa-fab" id="waFab" onclick="toggleWaPanel()" aria-label="تواصل معنا عبر واتساب">
@@ -3323,5 +4556,69 @@
     </div>
   </div>
 </div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   SUMMER 2026 SPLASH OVERLAY — Initialization Logic
+   sessionStorage guard · 1.5s delay · full animation lifecycle
+══════════════════════════════════════════════════════════════ */
+(function initSplashOverlay() {
+  var SESSION_KEY = 'summerOffersSeen';
+  var overlay     = document.getElementById('splashOverlay');
+  var closeBtn    = document.getElementById('splashCloseBtn');
+  var modal       = overlay ? overlay.querySelector('.splash-modal') : null;
+
+  if (!overlay || !modal) return;
+
+  /* Guard: only once per session */
+  if (sessionStorage.getItem(SESSION_KEY)) return;
+
+  /* Open */
+  function openSplash() {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    overlay.setAttribute('aria-hidden', 'false');
+  }
+
+  /* Close */
+  function closeSplash() {
+    overlay.classList.add('splash-closing');
+    sessionStorage.setItem(SESSION_KEY, '1');
+    setTimeout(function() {
+      overlay.style.display = 'none';
+      overlay.classList.remove('splash-closing');
+      document.body.style.overflow = '';
+    }, 420);
+  }
+
+  /* Trigger after 1.5 s */
+  setTimeout(openSplash, 1500);
+
+  /* Close button */
+  closeBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    closeSplash();
+  });
+
+  /* Click outside modal */
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeSplash();
+  });
+
+  /* Escape key */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.style.display === 'flex') closeSplash();
+  });
+
+  /* Global helper called by CTA buttons */
+  window.closeSplashAndBuy = function(plan, price, features) {
+    closeSplash();
+    setTimeout(function() {
+      buyProduct(plan, price, features);
+    }, 300);
+  };
+
+})();
+</script>
 
 </body></html>
