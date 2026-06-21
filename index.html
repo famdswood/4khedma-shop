@@ -70,7 +70,7 @@
 
 
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
 
   body {
     font-family: 'Cairo', 'Tajawal', sans-serif;
@@ -80,6 +80,7 @@
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    max-width: 100%;
   }
 
 
@@ -121,7 +122,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    overflow: hidden;
+    overflow: visible;
     transition: opacity 0.2s;
     flex-shrink: 0;
   }
@@ -235,6 +236,7 @@
     padding: 90px 40px 80px;
     position: relative;
     overflow: hidden;
+    max-width: 100%;
   }
   .hero::before {
     content: '';
@@ -1528,6 +1530,10 @@
     .logo-icon img { width: 40px; height: 40px; }
     .mobile-nav { top: 62px; }
 
+    .hero-orb-1 { width: 200px; height: 200px; right: -40px; top: -60px; }
+    .hero-orb-2 { width: 150px; height: 150px; }
+    .hero-orb-3 { width: 120px; height: 120px; left: -20px; }
+
     .hero { padding: 48px 16px 40px; }
     .hero-inner { gap: 24px; }
     .hero-eyebrow { font-size: 10px; padding: 5px 14px; letter-spacing: 0.1em; }
@@ -2530,6 +2536,21 @@
             <div>
               <div style="font-size:14px;font-weight:800;color:var(--blue);">مينا عزت كمال</div>
               <div style="font-size:12px;color:var(--gray-500);">كنيسة العذراء — عزبة عبده بك ميخائيل — بني سويف</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;"><span style="color:var(--gold);font-size:16px;">★★★★★</span></div>
+        </div>
+
+        <div style="background:var(--white);border:1.5px solid var(--gray-100);border-radius:var(--radius-xl);padding:32px 28px;box-shadow:var(--shadow-sm);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gray-100)'">
+          <div style="font-size:36px;color:var(--gold);font-weight:900;line-height:1;margin-bottom:16px;font-family:Georgia,serif;opacity:0.6;">"</div>
+          <p style="font-size:15px;line-height:1.9;color:var(--gray-700);margin-bottom:24px;">السيستم تحفهههههههه و التعامل لطيف اوي اوي و بتساعدوا الواحد لحد ما يدخل و يفعله و بجد يعني قمه السكر بسم الصليب ❤️</p>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1a6399,var(--blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--blue);">مارينا عماد</div>
+              <div style="font-size:12px;color:var(--gray-500);">كنيسة مارجرجس — حدائق حلوان — القاهرة</div>
             </div>
           </div>
           <div style="margin-top:16px;"><span style="color:var(--gold);font-size:16px;">★★★★★</span></div>
