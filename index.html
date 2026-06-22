@@ -2836,6 +2836,108 @@
 .gallery-item.has-img { cursor: zoom-in; }
 
 
+/* ══ POST-SUMMER SPLASH ═══════════════════════════════════ */
+#postSplashOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(4, 14, 28, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  direction: rtl;
+}
+#postSplashOverlay.ps-visible { display: flex; }
+.ps-modal {
+  background: linear-gradient(160deg, #0c2a47 0%, #071524 100%);
+  border: 1.5px solid rgba(212,175,55,0.3);
+  border-radius: 24px;
+  max-width: 760px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,175,55,0.08);
+  animation: psSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes psSlideUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.ps-header { padding: 32px 32px 0; text-align: center; position: relative; }
+.ps-close {
+  position: absolute; top: 16px; left: 16px;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5);
+  font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.ps-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.ps-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(34,197,94,0.1); border: 1.5px solid rgba(34,197,94,0.3);
+  border-radius: 40px; padding: 6px 18px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  color: #86efac; font-family: Cairo, sans-serif; margin-bottom: 18px;
+}
+.ps-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+.ps-headline {
+  font-family: Cairo, Tajawal, sans-serif;
+  font-size: clamp(20px, 3vw, 30px); font-weight: 900;
+  color: #fff; line-height: 1.4; margin: 0 0 12px; letter-spacing: -0.02em;
+}
+.ps-headline span { color: var(--gold, #D4AF37); }
+.ps-sub {
+  font-family: Cairo, sans-serif; font-size: 14px;
+  color: rgba(255,255,255,0.55); line-height: 1.8;
+  max-width: 520px; margin: 0 auto 28px;
+}
+.ps-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent); margin: 0 32px; }
+.ps-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 24px 24px 0; }
+.ps-card {
+  background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 18px; padding: 22px 16px 18px;
+  display: flex; flex-direction: column;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.ps-card:hover { border-color: rgba(212,175,55,0.4); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+.ps-card.gold-card { border-color: rgba(212,175,55,0.35); background: rgba(212,175,55,0.05); }
+.ps-card.vip-card { background: linear-gradient(160deg, rgba(30,20,5,0.9) 0%, rgba(15,10,2,0.98) 100%); border-color: rgba(212,175,55,0.55); box-shadow: 0 10px 40px rgba(212,175,55,0.15); }
+.ps-popular-tag { display: inline-block; background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.4); color: #93c5fd; font-family: Cairo,sans-serif; font-size: 9px; font-weight: 800; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.ps-vip-tag { display: inline-block; background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.45); color: var(--gold,#D4AF37); font-family: Cairo,sans-serif; font-size: 9px; font-weight: 800; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.ps-plan-icon { font-size: 26px; margin-bottom: 8px; display: block; }
+.ps-plan-name { font-family: Cairo,sans-serif; font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+.ps-card.vip-card .ps-plan-name { color: var(--gold,#D4AF37); }
+.ps-plan-sub { font-family: Cairo,sans-serif; font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+.ps-price { font-family: Cairo,sans-serif; font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -0.02em; line-height: 1; margin-bottom: 3px; }
+.ps-card.gold-card .ps-price, .ps-card.vip-card .ps-price { color: var(--gold,#D4AF37); }
+.ps-price-unit { font-family: Cairo,sans-serif; font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+.ps-features { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.ps-features li { font-family: Cairo,sans-serif; font-size: 11px; color: rgba(255,255,255,0.55); display: flex; align-items: flex-start; gap: 6px; }
+.ps-card.vip-card .ps-features li { color: rgba(212,175,55,0.75); }
+.ps-feat-check { color: #4ade80; flex-shrink: 0; }
+.ps-card.vip-card .ps-feat-check { color: var(--gold,#D4AF37); }
+.ps-buy-btn { width: 100%; padding: 11px; border-radius: 10px; border: 1.5px solid rgba(37,211,102,0.35); background: rgba(37,211,102,0.1); color: #4ade80; font-family: Cairo,sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.22s; }
+.ps-buy-btn:hover { background: rgba(37,211,102,0.2); transform: translateY(-2px); }
+.ps-buy-btn.vip-btn { border: none; background: linear-gradient(135deg,#D4AF37 0%,#a8881c 100%); color: #0B3B60; box-shadow: 0 4px 18px rgba(212,175,55,0.35); }
+.ps-buy-btn.vip-btn:hover { box-shadow: 0 8px 28px rgba(212,175,55,0.5); }
+.ps-footer { padding: 20px 24px 28px; text-align: center; }
+.ps-footer p { font-family: Cairo,sans-serif; font-size: 12px; color: rgba(255,255,255,0.3); margin: 0; }
+.ps-footer p span { color: rgba(212,175,55,0.6); }
+@media (max-width: 620px) {
+  .ps-cards { grid-template-columns: 1fr; padding: 20px 16px 0; }
+  .ps-header { padding: 24px 20px 0; }
+  .ps-divider { margin: 0 20px; }
+}
+@media (min-width: 421px) and (max-width: 620px) {
+  .ps-cards { grid-template-columns: repeat(2,1fr); }
+  .ps-card.vip-card { grid-column: span 2; }
+}
+
 </style>
 
 <!-- ════════════════════════════════════
@@ -3492,5 +3594,129 @@
     </div>
   </div>
 </div>
+
+<!-- ══ POST-SUMMER SPLASH OVERLAY ══════════════════════════ -->
+<div id="postSplashOverlay">
+  <div class="ps-modal">
+
+    <div class="ps-header">
+      <button class="ps-close" id="psCloseBtn" aria-label="إغلاق">✕</button>
+
+      <div class="ps-badge">
+        <span class="ps-badge-dot"></span>
+        انتهت حملة صيف 2026 — الأسعار الرسمية سارية
+      </div>
+
+      <h2 class="ps-headline">
+        عرض الصيف خلص ✅<br>
+        بس <span>الأسعار لسه رمزية</span> 🎉
+      </h2>
+      <p class="ps-sub">
+        الـ50 نسخة المخصصة للعرض اتباعت بالكامل — الحمد لله!
+        لو فاتك العرض متقلقش، الأسعار الرسمية لـ <strong style="color:rgba(212,175,55,0.85)">Khedma Bank</strong> لسه كويسة جداً وبتجيب نفس القيمة.
+        اختار الباقة اللي تناسبك واطلب دلوقتي عبر واتساب.
+      </p>
+    </div>
+
+    <div class="ps-divider"></div>
+
+    <div class="ps-cards">
+
+      <!-- الخادم -->
+      <div class="ps-card">
+        <span class="ps-plan-icon">🏛️</span>
+        <div class="ps-plan-name">الخادم</div>
+        <div class="ps-plan-sub">جهاز واحد · ترخيص مدى الحياة</div>
+        <div class="ps-price">199</div>
+        <div class="ps-price-unit">جنيه مصري — دفع مرة واحدة</div>
+        <ul class="ps-features">
+          <li><span class="ps-feat-check">✦</span> ترخيص جهاز واحد</li>
+          <li><span class="ps-feat-check">✦</span> 2500+ سؤال كنسي</li>
+          <li><span class="ps-feat-check">✦</span> 4 أوضاع لعب متكاملة</li>
+          <li><span class="ps-feat-check">✦</span> دعم كامل للغة العربية</li>
+        </ul>
+        <button class="ps-buy-btn" onclick="closePsSplash(); buyProduct('الخادم — جهاز واحد', '199 جنيه', 'جهاز واحد · ترخيص مدى الحياة')">
+          <span>💬</span> اطلب عبر واتساب
+        </button>
+      </div>
+
+      <!-- الذهبية -->
+      <div class="ps-card gold-card">
+        <div class="ps-popular-tag">الأكثر طلباً ⭐</div>
+        <span class="ps-plan-icon">🥇</span>
+        <div class="ps-plan-name">الذهبية</div>
+        <div class="ps-plan-sub">3 أجهزة · ترخيص مدى الحياة</div>
+        <div class="ps-price">449</div>
+        <div class="ps-price-unit">جنيه مصري — دفع مرة واحدة</div>
+        <ul class="ps-features">
+          <li><span class="ps-feat-check">✦</span> ترخيص 3 أجهزة</li>
+          <li><span class="ps-feat-check">✦</span> 2500+ سؤال كنسي</li>
+          <li><span class="ps-feat-check">✦</span> 4 أوضاع لعب متكاملة</li>
+          <li><span class="ps-feat-check">✦</span> دعم فني أولوية</li>
+        </ul>
+        <button class="ps-buy-btn" onclick="closePsSplash(); buyProduct('الذهبية — 3 أجهزة', '449 جنيه', '3 أجهزة · ترخيص مدى الحياة')">
+          <span>💬</span> اطلب عبر واتساب
+        </button>
+      </div>
+
+      <!-- VIP -->
+      <div class="ps-card vip-card">
+        <div class="ps-vip-tag">💎 الأقوى</div>
+        <span class="ps-plan-icon">💎</span>
+        <div class="ps-plan-name">VIP</div>
+        <div class="ps-plan-sub">3 أجهزة + تخصيص بشعار الكنيسة</div>
+        <div class="ps-price">699</div>
+        <div class="ps-price-unit">جنيه مصري — دفع مرة واحدة</div>
+        <ul class="ps-features">
+          <li><span class="ps-feat-check">✦</span> ترخيص 3 أجهزة</li>
+          <li><span class="ps-feat-check">✦</span> تخصيص بأسم الكنيسة أو الخدمة</li>
+          <li><span class="ps-feat-check">✦</span> 2500+ سؤال كنسي</li>
+          <li><span class="ps-feat-check">✦</span> كل أوضاع اللعب + دعم VIP</li>
+        </ul>
+        <button class="ps-buy-btn vip-btn" onclick="closePsSplash(); buyProduct('VIP — 3 أجهزة + تخصيص', '699 جنيه', '3 أجهزة · تخصيص بأسم الكنيسة أو الخدمة')">
+          <span>💬</span> اطلب VIP عبر واتساب
+        </button>
+      </div>
+
+    </div>
+
+    <div class="ps-footer">
+      <p>🔒 الدفع آمن عبر واتساب المباشر · <span>4Khedma</span> · ترخيص مدى الحياة لكل الخطط</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function initPostSplash() {
+  var SESSION_KEY = 'postSplash2026_dismissed';
+  var overlay = document.getElementById('postSplashOverlay');
+  if (!overlay) return;
+
+  // Show after 1.2s if not dismissed this session
+  if (!sessionStorage.getItem(SESSION_KEY)) {
+    setTimeout(function() {
+      overlay.classList.add('ps-visible');
+      document.body.style.overflow = 'hidden';
+    }, 1200);
+  }
+
+  window.closePsSplash = function() {
+    overlay.classList.remove('ps-visible');
+    document.body.style.overflow = '';
+    sessionStorage.setItem(SESSION_KEY, '1');
+  };
+
+  document.getElementById('psCloseBtn').addEventListener('click', closePsSplash);
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closePsSplash();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('ps-visible')) closePsSplash();
+  });
+})();
+</script>
 
 </body></html>
