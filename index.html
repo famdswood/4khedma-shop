@@ -1832,6 +1832,429 @@
   }
   .price-card .btn-buy:hover::after { width: 100%; }
 
+  /* ══════════════════════════════════════════════════════
+     صفحة "من نحن" — ريديزاين كامل مع Typewriter Animation
+  ══════════════════════════════════════════════════════ */
+
+  /* ── الخلفية الرئيسية ── */
+  .about-section {
+    background: #080e1a;
+    padding: 80px 40px 100px;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    min-height: 100vh;
+  }
+
+  /* شبكة ضوئية في الخلفية */
+  .about-pattern-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  /* توهج زرقاوي في المنتصف */
+  .about-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 600px;
+    background: radial-gradient(ellipse at center, rgba(11,59,96,0.55) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* توهج ذهبي سفلي */
+  .about-section::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse at center, rgba(212,175,55,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .about-container { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* ── الهيدر العلوي ── */
+  .about-header { text-align: center; margin-bottom: 80px; }
+
+  .about-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(212,175,55,0.3);
+    padding: 7px 22px; border-radius: 40px;
+    background: rgba(212,175,55,0.06);
+    margin-bottom: 32px;
+    position: relative; overflow: hidden;
+  }
+  .about-badge::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.12), transparent);
+    transform: translateX(-200%);
+    animation: badgeSweep 3s ease-in-out infinite;
+  }
+  @keyframes badgeSweep {
+    0%   { transform: translateX(-200%); }
+    50%  { transform: translateX(200%); }
+    100% { transform: translateX(200%); }
+  }
+  .about-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .about-title {
+    font-size: clamp(30px, 4.5vw, 54px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .gold-text { color: var(--gold); }
+
+  .about-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.9;
+    font-weight: 400;
+  }
+
+  /* ── شريط الإحصائيات ── */
+  .about-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(212,175,55,0.15);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 56px;
+    border: 1px solid rgba(212,175,55,0.15);
+  }
+  .about-stat {
+    background: rgba(255,255,255,0.03);
+    padding: 32px 24px;
+    text-align: center;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .about-stat:hover { background: rgba(212,175,55,0.06); }
+  .about-stat-num {
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .about-stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── بلوكات المحتوى الرئيسية ── */
+  .about-blocks { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+
+  /* بلوك نصي عام */
+  .about-block {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 44px 52px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s, background 0.4s;
+  }
+  .about-block:hover {
+    border-color: rgba(212,175,55,0.25);
+    background: rgba(255,255,255,0.05);
+  }
+  /* خط ذهبي على الجانب */
+  .about-block::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 3px; height: 0;
+    background: linear-gradient(to bottom, var(--gold), rgba(212,175,55,0.2));
+    border-radius: 0 20px 20px 0;
+    transition: height 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+  .about-block:hover::before { height: 100%; }
+
+  .about-block-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-size: 22px;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .about-block:hover .about-block-icon {
+    transform: scale(1.1) rotate(-5deg);
+    background: rgba(212,175,55,0.18);
+  }
+  .about-block-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px; display: block;
+  }
+
+  /* ── Typewriter Text ── */
+  .typewriter-wrap {
+    position: relative;
+    display: inline;
+  }
+  .tw-text {
+    font-size: 17px;
+    line-height: 2.05;
+    color: rgba(255,255,255,0.88);
+    font-weight: 400;
+  }
+  .tw-text .tw-char {
+    opacity: 0;
+    display: inline;
+    transition: opacity 0.01s;
+  }
+  .tw-text .tw-char.visible { opacity: 1; }
+  /* الكيرسور */
+  .tw-cursor {
+    display: inline-block;
+    width: 2px; height: 1.1em;
+    background: var(--gold);
+    vertical-align: text-bottom;
+    margin-right: 2px;
+    border-radius: 1px;
+    animation: cursorBlink 0.7s step-end infinite;
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+  .tw-cursor.active { opacity: 1; }
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* بلوك المؤسس — تصميم مختلف */
+  .about-founder-block {
+    background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, rgba(11,59,96,0.15) 100%);
+    border: 1px solid rgba(212,175,55,0.22);
+    border-radius: 20px;
+    padding: 48px 52px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 44px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s;
+    margin-bottom: 24px;
+  }
+  .about-founder-block:hover { border-color: rgba(212,175,55,0.4); }
+  /* ظل ذهبي خلفي */
+  .about-founder-block::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    background: radial-gradient(ellipse, rgba(212,175,55,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .founder-avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .founder-avatar {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(212,175,55,0.5);
+    background: linear-gradient(135deg, #1a3d5c, #0b3b60);
+    box-shadow: 0 0 0 6px rgba(212,175,55,0.08), 0 12px 40px rgba(0,0,0,0.4);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .founder-avatar img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    position: absolute; inset: 0;
+  }
+  .founder-avatar-fallback {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .founder-social-mini {
+    display: flex; gap: 8px;
+  }
+  .fsm-btn {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .fsm-btn:hover {
+    background: rgba(212,175,55,0.15);
+    border-color: rgba(212,175,55,0.4);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .founder-content { min-width: 0; }
+  .founder-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .founder-name-big {
+    font-size: 32px; font-weight: 900; color: #fff;
+    letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px;
+  }
+  .founder-role-sub {
+    font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 500;
+    margin-bottom: 28px; padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  /* ── قسم الهدف — بتصميم Terminal ── */
+  .about-terminal {
+    background: #0d1117;
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .terminal-bar {
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .t-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .t-dot-r { background: rgba(255,95,87,0.7); }
+  .t-dot-y { background: rgba(255,189,46,0.7); }
+  .t-dot-g { background: rgba(40,200,64,0.7); }
+  .terminal-title {
+    font-size: 11px; color: rgba(255,255,255,0.3);
+    font-family: monospace; margin-right: auto;
+  }
+  .terminal-body {
+    padding: 28px 32px;
+    font-family: 'Courier New', monospace;
+    direction: rtl;
+  }
+  .t-line {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .t-prompt {
+    color: var(--gold); font-weight: 700; font-size: 15px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .t-output {
+    font-size: 15px; line-height: 1.9;
+    color: rgba(255,255,255,0.75);
+    font-family: 'Cairo', sans-serif;
+    flex: 1;
+  }
+  .t-output .tw-char { opacity: 0; display: inline; }
+  .t-output .tw-char.visible { opacity: 1; }
+  .t-comment {
+    color: rgba(212,175,55,0.5); font-size: 13px;
+    margin-bottom: 20px; padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-family: 'Courier New', monospace;
+  }
+  .t-highlight { color: #7dd3fc; }
+  .t-gold { color: var(--gold); }
+
+  /* ── CTA ── */
+  .about-cta { text-align: center; padding: 48px 0 0; }
+  .about-cta-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .about-cta-btn {
+    background: var(--gold); color: var(--blue);
+    font-family: Cairo, sans-serif; font-size: 16px; font-weight: 800;
+    padding: 16px 48px; border-radius: 14px; border: none;
+    cursor: pointer; box-shadow: 0 4px 24px rgba(212,175,55,0.35);
+    transition: all 0.25s; letter-spacing: -0.01em;
+  }
+  .about-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(212,175,55,0.5); }
+  .about-cta-ghost {
+    background: transparent; color: rgba(255,255,255,0.6);
+    font-family: Cairo, sans-serif; font-size: 15px; font-weight: 600;
+    padding: 15px 32px; border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer; transition: all 0.25s; text-decoration: none;
+    display: inline-block;
+  }
+  .about-cta-ghost:hover {
+    border-color: rgba(212,175,55,0.4);
+    color: var(--gold);
+    background: rgba(212,175,55,0.05);
+  }
+
+  /* موبايل */
+  @media (max-width: 600px) {
+    .about-section { padding: 60px 16px 72px; }
+    .about-header { margin-bottom: 48px; }
+    .about-stats-row { grid-template-columns: 1fr; gap: 0; }
+    .about-stat { padding: 24px 20px; }
+    .about-block { padding: 28px 22px; border-radius: 16px; }
+    .about-block::before { display: none; }
+    .tw-text { font-size: 15px; line-height: 1.9; }
+    .about-founder-block {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 30px 22px;
+      border-radius: 16px;
+    }
+    .about-founder-block::after { display: none; }
+    .founder-avatar-wrap { flex-direction: row; }
+    .founder-avatar { width: 88px; height: 88px; }
+    .founder-name-big { font-size: 26px; }
+    .about-terminal { border-radius: 14px; }
+    .terminal-body { padding: 20px 18px; }
+    .t-output { font-size: 14px; }
+    .about-cta-row { flex-direction: column; }
+  }
+  @media (max-width: 400px) {
+    .about-section { padding: 48px 12px 56px; }
+    .about-block { padding: 22px 16px; }
+    .about-founder-block { padding: 24px 16px; }
+    .terminal-body { padding: 16px 14px; }
+  }
+
   /* ══ MOBILE POLISH ═══════════════════════════════════
      شاشات 600px فأقل — تحسينات شاملة
   ═══════════════════════════════════════════════════ */
@@ -1860,15 +2283,29 @@
     /* ── Pricing toggle ── */
     .pricing-section { overflow: hidden; }
 
-    /* ── view-about inline sections ── */
-    #view-about section { padding: 64px 16px 48px !important; }
-    #view-about section > div > div[style*="padding:52px"] {
-      padding: 28px 20px !important;
+    /* ── صفحة "من نحن" — موبايل ── */
+    .about-section{ padding: 64px 16px 48px; }
+    .about-header{ margin-bottom: 40px; }
+    .about-title{ line-height: 1.4; }
+
+    .about-story-card{ padding: 28px 20px; border-radius: 18px; }
+    .story-quote-mark{ font-size: 46px; margin-bottom: 16px; }
+    .story-text{ font-size: 16px; line-height: 1.9; }
+
+    .founder-card{
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 32px 22px;
+      gap: 20px;
+      border-radius: 18px;
     }
-    #view-about section > div > div[style*="padding:48px"] {
-      padding: 28px 20px !important;
-      gap: 24px !important;
-    }
+    .founder-photo{ width: 108px; height: 108px; }
+    .founder-info{ width: 100%; }
+    .founder-name{ font-size: 21px; }
+    .founder-role{ margin-bottom: 16px; }
+    .founder-text{ font-size: 15px; line-height: 1.85; }
+    .founder-social{ justify-content: center; }
     #view-about .footer-social-btn { width: 40px !important; height: 40px !important; }
   }
 
@@ -1877,11 +2314,10 @@
     #testimonials-anchor { padding: 36px 12px !important; }
     .yt-section { padding: 36px 12px !important; }
     .yt-section iframe { height: 190px !important; }
-    #view-about section { padding: 48px 12px 36px !important; }
-    #view-about section > div > div[style*="padding:52px"],
-    #view-about section > div > div[style*="padding:48px"] {
-      padding: 22px 16px !important;
-    }
+    .about-section{ padding: 48px 12px 36px; }
+    .about-story-card{ padding: 22px 16px; }
+    .founder-card{ padding: 26px 18px; }
+    .founder-photo{ width: 92px; height: 92px; }
   }
 
 /* ── Offers Page Grid — Responsive ──────────────────────────── */
@@ -2064,7 +2500,7 @@
         <a class="footer-social-btn" href="https://instagram.com/4khedma" target="_blank" rel="noopener noreferrer" title="انستا">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
         </a>
-        <a class="footer-social-btn" href="https://tiktok.com/@4khedma" target="_blank" rel="noopener noreferrer" title="تيك توك">
+        <a class="footer-social-btn" href="https://tiktok.com/@4_khedma" target="_blank" rel="noopener noreferrer" title="تيك توك">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
         </a>
       </div>
@@ -2704,7 +3140,7 @@
         <a class="footer-social-btn" href="https://instagram.com/4khedma" target="_blank" rel="noopener noreferrer" title="انستا">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
         </a>
-        <a class="footer-social-btn" href="https://tiktok.com/@4khedma" target="_blank" rel="noopener noreferrer" title="تيك توك">
+        <a class="footer-social-btn" href="https://tiktok.com/@_4khedma" target="_blank" rel="noopener noreferrer" title="تيك توك">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
         </a>
       </div>
@@ -3058,56 +3494,127 @@
 <div id="view-about" class="view">
 
   <!-- BACK BAR -->
-  <div class="back-bar" style="background:var(--blue-light);border-bottom:1px solid var(--gray-100);padding:12px 40px;">
-    <a class="back-btn" href="#main" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--blue);font-family:Cairo,sans-serif;font-size:14px;font-weight:700;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+  <div class="back-bar" style="background:#080e1a;border-bottom:1px solid rgba(212,175,55,0.12);padding:12px 40px;">
+    <a class="back-btn" href="#main" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:rgba(255,255,255,0.55);font-family:Cairo,sans-serif;font-size:14px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
       <span>الرئيسية</span>
-    </button>
-    <span style="color:var(--gray-300);font-size:14px;">›</span>
-    <span style="color:var(--gray-500);font-size:14px;">من نحن</span>
+    </a>
+    <span style="color:rgba(255,255,255,0.2);font-size:14px;margin:0 4px;">›</span>
+    <span style="color:rgba(255,255,255,0.35);font-size:14px;">من نحن</span>
   </div>
 
   <!-- ABOUT CONTENT -->
-  <section style="background:var(--blue);padding:96px 40px 80px;position:relative;overflow:hidden;direction:rtl;min-height:80vh;">
-    <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(212,175,55,0.05) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(212,175,55,0.05) 40px);pointer-events:none;"></div>
-    <div style="max-width:900px;margin:0 auto;position:relative;">
+  <section class="about-section">
+    <div class="about-pattern-bg"></div>
+    <div class="about-container">
 
-      <div style="text-align:center;margin-bottom:72px;">
-        <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);border:1.5px solid rgba(212,175,55,0.4);padding:6px 20px;border-radius:40px;background:rgba(212,175,55,0.08);margin-bottom:24px;">من نحن</span>
-        <h1 style="font-size:clamp(28px,4vw,48px);font-weight:900;color:#fff;line-height:1.3;letter-spacing:-0.02em;margin-bottom:16px;">حكاية 4Khedma.. <span style="color:var(--gold);">من خادم وإلى الخدام</span></h1>
-        <p style="font-size:16px;color:rgba(255,255,255,0.5);max-width:520px;margin:0 auto;line-height:1.8;">قصة بدأت من تحدي حقيقي وتحولت لأداة يستفيد منها خدام الكنيسة في كل مكان</p>
+      <!-- الهيدر -->
+      <div class="about-header">
+        <span class="about-badge">
+          <span class="about-badge-dot"></span>
+          من نحن
+        </span>
+        <h1 class="about-title">
+          حكاية <span class="gold-text">4Khedma</span><br>من خادم.. وإلى الخدام
+        </h1>
+        <p class="about-subtitle">قصة بدأت من تحدي حقيقي في قلب الكنيسة، وتحوّلت لمنصة تخدم الخدام في كل مكان</p>
       </div>
 
-      <!-- بوكس الحكاية -->
-      <div style="background:rgba(255,255,255,0.05);border:1.5px solid rgba(212,175,55,0.2);border-radius:24px;padding:52px 56px;margin-bottom:40px;">
-        <div style="font-size:64px;color:var(--gold);font-weight:900;line-height:0.8;margin-bottom:28px;opacity:0.45;font-family:Georgia,serif;">"</div>
-        <p style="font-size:19px;line-height:2.1;color:rgba(255,255,255,0.9);">بدأت فكرة 4Khedma من قلب الخدمة الكنسية. كخدام، كنا دايمًا بنواجه نفس التحدي: إزاي نقدّم محتوى روحي وتعليمي جذاب للشباب والأطفال، وفي نفس الوقت نقدّم ده بجودة احترافية ومن غير ما نستهلك ساعات طويلة في التحضير الورقي التقليدي.</p>
-        <p style="font-size:19px;line-height:2.1;color:rgba(255,255,255,0.9);margin-top:24px;">من هنا قررنا في 4Khedma إننا ندمج الخبرة التقنية بالروح الخدمية، عشان نبتكر أدوات برمجية ذكية بتساعد الخادم إنه يوفر وقته ومجهوده ويركز في جوهر خدمته، مع ضمان تقديم فقرات تفاعلية بتكسر الملل وبتخلق جو من الحماس والمعرفة.</p>
-        <p style="font-size:19px;line-height:2.1;color:rgba(255,255,255,0.9);margin-top:24px;"><strong style="color:var(--gold);">هدفنا بسيط:</strong> إن التكنولوجيا تكون في خدمة الكنيسة، وبأعلى معايير الجودة.</p>
-      </div>
-
-      <!-- كارت المؤسس -->
-      <div style="background:rgba(212,175,55,0.08);border:1.5px solid rgba(212,175,55,0.35);border-radius:24px;padding:48px 56px;display:flex;gap:44px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px;">
-        <div style="width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a8881c);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 32px rgba(212,175,55,0.45);">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      <!-- إحصائيات -->
+      <div class="about-stats-row">
+        <div class="about-stat">
+          <span class="about-stat-num" data-count="2500">2500+</span>
+          <span class="about-stat-label">سؤال كنسي في Khedma Bank</span>
         </div>
-        <div style="flex:1;min-width:220px;">
-          <div style="font-size:26px;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-0.01em;">فام داود</div>
-          <div style="font-size:12px;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;">مؤسس 4Khedma · مطور برمجيات وصانع محتوى تقني</div>
-          <p style="font-size:18px;line-height:2.1;color:rgba(255,255,255,0.88);">مؤمن جداً إن الجودة والإبداع هما لغة العصر، وإن الخدمة في الكنيسة دايماً تستحق أحسن حاجة. عشان كده أسست <strong style="color:var(--gold);">4Khedma</strong> عشان تكون حلقة الوصل بين التكنولوجيا المتقدمة والاحتياجات الحقيقية للخدام على أرض الواقع.</p>
-          <p style="font-size:18px;line-height:2.1;color:rgba(255,255,255,0.88);margin-top:20px;">من خلال دمج خبرتي في البرمجة والتصميم، هدفي إني أقدم أدوات مش بس "بتقضي الغرض" وخلاص — دي بتقدم <strong style="color:#fff;">تجربة ممتعة، شكلها شيك ومريحة، وسهلة في الاستخدام</strong> للخادم والمخدوم في نفس الوقت.</p>
-          <!-- سوشيال -->
-          <div style="display:flex;gap:12px;margin-top:28px;">
-            <a href="https://youtube.com/@4khedma" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="يوتيوب"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            <a href="https://instagram.com/4khedma" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="انستا"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
-            <a href="https://tiktok.com/@4khedma" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="تيك توك"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        <div class="about-stat">
+          <span class="about-stat-num" data-count="50">50</span>
+          <span class="about-stat-label">نسخة صيف 2026 — نفدت بالكامل</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-num" data-suffix="+">50+</span>
+          <span class="about-stat-label">خادم استفاد من أدواتنا منذ الإطلاق</span>
+        </div>
+      </div>
+
+      <!-- البلوكات -->
+      <div class="about-blocks">
+
+        <!-- بلوك ١ — بداية الحكاية -->
+        <div class="about-block" data-tw-block>
+          <div class="about-block-icon">⚡</div>
+          <span class="about-block-label">البداية</span>
+          <p class="tw-text" data-tw-id="tw1">بدأت فكرة 4Khedma من قلب الخدمة الكنسية. كخدام، كنّا دايمًا بنواجه نفس التحدي — إزاي نقدّم محتوى روحي وتعليمي جذاب للشباب والأطفال، وفي نفس الوقت نقدّم ده بجودة احترافية ومن غير ما نستهلك ساعات طويلة في التحضير الورقي التقليدي.</p>
+          <span class="tw-cursor" id="cursor-tw1"></span>
+        </div>
+
+        <!-- بلوك ٢ — الحل -->
+        <div class="about-block" data-tw-block>
+          <div class="about-block-icon">🔧</div>
+          <span class="about-block-label">الحل</span>
+          <p class="tw-text" data-tw-id="tw2">من هنا قررنا في 4Khedma إننا ندمج الخبرة التقنية بالروح الخدمية، عشان نبتكر أدوات برمجية ذكية بتساعد الخادم إنه يوفر وقته ومجهوده ويركز في جوهر خدمته — مع ضمان تقديم فقرات تفاعلية بتكسر الملل وبتخلق جو من الحماس والمعرفة.</p>
+          <span class="tw-cursor" id="cursor-tw2"></span>
+        </div>
+
+      </div>
+
+      <!-- ترمينال الهدف -->
+      <div class="about-terminal">
+        <div class="terminal-bar">
+          <span class="t-dot t-dot-r"></span>
+          <span class="t-dot t-dot-y"></span>
+          <span class="t-dot t-dot-g"></span>
+          <span class="terminal-title">4khedma — mission.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-comment"># هدفنا في سطر واحد</div>
+          <div class="t-line">
+            <span class="t-prompt">$</span>
+            <span class="t-output" data-tw-id="tw3">إن التكنولوجيا تكون <span class="t-gold">في خدمة الكنيسة</span>، وبأعلى معايير الجودة — مش بس أدوات "بتقضي الغرض"، دي <span class="t-highlight">تجربة كاملة شكلها شيك ومريحة وسهلة في الاستخدام</span> للخادم والمخدوم في نفس الوقت.</span>
+            <span class="tw-cursor" id="cursor-tw3"></span>
           </div>
         </div>
       </div>
 
+      <!-- كارت المؤسس -->
+      <div class="about-founder-block">
+        <div class="founder-avatar-wrap">
+          <div class="founder-avatar">
+            <div class="founder-avatar-fallback">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="rgba(255,255,255,0.3)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            </div>
+            <img loading="lazy" decoding="async" src="img/fam.png" alt="فام داود - مؤسس 4Khedma" onerror="this.style.display='none'">
+          </div>
+          <div class="founder-social-mini">
+            <a href="https://youtube.com/@4khedma" target="_blank" rel="noopener noreferrer" class="fsm-btn" title="يوتيوب">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://instagram.com/4khedma" target="_blank" rel="noopener noreferrer" class="fsm-btn" title="انستا">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://tiktok.com/@4_khedma" target="_blank" rel="noopener noreferrer" class="fsm-btn" title="تيك توك">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="founder-content">
+          <span class="founder-tag">المؤسس</span>
+          <div class="founder-name-big">فام داود</div>
+          <div class="founder-role-sub">مطور برمجيات · صانع محتوى تقني · خادم في كنيسة الأرثوذكسية</div>
+          <p class="tw-text" data-tw-id="tw4">مؤمن جداً إن الجودة والإبداع هما لغة العصر، وإن الخدمة في الكنيسة دايماً تستحق أحسن حاجة. عشان كده أسست 4Khedma عشان تكون حلقة الوصل بين التكنولوجيا المتقدمة والاحتياجات الحقيقية للخدام على أرض الواقع.</p>
+          <span class="tw-cursor" id="cursor-tw4"></span>
+        </div>
+      </div>
+
       <!-- CTA -->
-      <div style="text-align:center;padding:40px 0 0;">
-        <button onclick="window.location.hash='#main';setTimeout(()=>document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'}),80)" style="background:var(--gold);color:var(--blue);font-family:Cairo,sans-serif;font-size:16px;font-weight:800;padding:16px 48px;border-radius:14px;border:none;cursor:pointer;box-shadow:0 4px 24px rgba(212,175,55,0.4);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">استكشف منتجاتنا ←</button>
+      <div class="about-cta">
+        <div class="about-cta-row">
+          <button class="about-cta-btn" onclick="window.location.hash='#main';setTimeout(()=>document.getElementById('products-anchor').scrollIntoView({behavior:'smooth'}),80)">
+            استكشف منتجاتنا ←
+          </button>
+          <a href="https://wa.me/201207737965" target="_blank" rel="noopener noreferrer" class="about-cta-ghost">
+            💬 تواصل معنا
+          </a>
+        </div>
       </div>
 
     </div>
@@ -3128,7 +3635,7 @@
         <a class="footer-social-btn" href="https://facebook.com/4khedma" target="_blank" rel="noopener noreferrer" title="فيسبوك"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
         <a class="footer-social-btn" href="https://youtube.com/@4khedma" target="_blank" rel="noopener noreferrer" title="يوتيوب"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <a class="footer-social-btn" href="https://instagram.com/4khedma" target="_blank" rel="noopener noreferrer" title="انستا"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
-        <a class="footer-social-btn" href="https://tiktok.com/@4khedma" target="_blank" rel="noopener noreferrer" title="تيك توك"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        <a class="footer-social-btn" href="https://tiktok.com/@4_khedma" target="_blank" rel="noopener noreferrer" title="تيك توك"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
       </div>
       <div class="footer-divider"></div>
       <p class="footer-text">© 2026 <span class="gold">4Khedma</span> — Fam Dawood — جميع الحقوق محفوظة</p>
