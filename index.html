@@ -2960,54 +2960,390 @@
       <h2 class="section-title">كلام <span>من القلب</span></h2>
       <div class="divider"></div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-bottom:56px;">
+      <!-- ══ TESTIMONIALS CAROUSEL ══ -->
+      <style>
+        /* ── Carousel wrapper ── */
+        .tcarousel {
+          position: relative;
+          margin-bottom: 56px;
+          direction: rtl;
+        }
 
-        <div style="background:var(--white);border:1.5px solid var(--gray-100);border-radius:var(--radius-xl);padding:32px 28px;box-shadow:var(--shadow-sm);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gray-100)'">
-          <div style="font-size:36px;color:var(--gold);font-weight:900;line-height:1;margin-bottom:16px;font-family:Georgia,serif;opacity:0.6;">"</div>
-          <p style="font-size:15px;line-height:1.9;color:var(--gray-700);margin-bottom:24px;">البرنامج منتهي الروعه بجد والسيستم سلس جدا في التعامل وتعيشوا وتخدموا وتمتعونا اكتر واكتر 🥰🥰♥️</p>
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1a6399,var(--blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        /* ── Track ── */
+        .tcarousel-track-wrap {
+          overflow: hidden;
+          border-radius: var(--radius-xl);
+        }
+        .tcarousel-track {
+          display: flex;
+          transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+          will-change: transform;
+        }
+
+        /* ── Single slide ── */
+        .tcarousel-slide {
+          min-width: 100%;
+          padding: 0 4px;
+          box-sizing: border-box;
+        }
+        .tcarousel-card {
+          background: var(--white);
+          border: 1.5px solid var(--gray-100);
+          border-radius: var(--radius-xl);
+          padding: 40px 44px 36px;
+          box-shadow: var(--shadow-md);
+          position: relative;
+          overflow: hidden;
+          min-height: 240px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        /* شريط ذهبي ديكوري */
+        .tcarousel-card::before {
+          content: '';
+          position: absolute;
+          top: 0; right: 0;
+          width: 4px; height: 100%;
+          background: linear-gradient(to bottom, var(--gold), rgba(212,175,55,0.15));
+          border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+        }
+        /* علامة التنصيص الكبيرة */
+        .tcarousel-quote-mark {
+          position: absolute;
+          top: 20px;
+          left: 28px;
+          font-size: 120px;
+          color: var(--gold);
+          font-family: Georgia, serif;
+          line-height: 1;
+          opacity: 0.06;
+          pointer-events: none;
+          user-select: none;
+        }
+
+        .tcarousel-text {
+          font-size: 17px;
+          line-height: 2;
+          color: var(--gray-700);
+          margin-bottom: 28px;
+          position: relative;
+          z-index: 1;
+        }
+        .tcarousel-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .tcarousel-person {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+        .tcarousel-avatar {
+          width: 48px; height: 48px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #1a6399, var(--blue));
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+          border: 2px solid rgba(212,175,55,0.3);
+        }
+        .tcarousel-name {
+          font-size: 15px;
+          font-weight: 800;
+          color: var(--blue);
+          margin-bottom: 3px;
+        }
+        .tcarousel-church {
+          font-size: 12px;
+          color: var(--gray-500);
+          line-height: 1.5;
+        }
+        .tcarousel-stars {
+          color: var(--gold);
+          font-size: 17px;
+          letter-spacing: 2px;
+        }
+
+        /* ── Nav controls ── */
+        .tcarousel-controls {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-top: 28px;
+        }
+        .tc-btn {
+          width: 44px; height: 44px;
+          border-radius: 50%;
+          background: var(--white);
+          border: 2px solid var(--gray-100);
+          color: var(--blue);
+          cursor: pointer;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 18px;
+          transition: all 0.25s cubic-bezier(0.22,1,0.36,1);
+          flex-shrink: 0;
+        }
+        .tc-btn:hover:not(:disabled) {
+          background: var(--gold);
+          border-color: var(--gold);
+          color: var(--blue);
+          transform: scale(1.1);
+          box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+        }
+        .tc-btn:disabled { opacity: 0.3; cursor: default; }
+
+        /* ── Dots ── */
+        .tc-dots {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .tc-dot {
+          width: 8px; height: 8px;
+          border-radius: 50%;
+          background: var(--gray-300);
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+          padding: 0;
+        }
+        .tc-dot.active {
+          background: var(--gold);
+          width: 28px;
+          border-radius: 4px;
+          box-shadow: 0 2px 8px rgba(212,175,55,0.5);
+        }
+        .tc-dot:hover:not(.active) { background: var(--blue); transform: scale(1.2); }
+
+        /* ── Counter pill ── */
+        .tc-counter {
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--gray-500);
+          background: var(--gray-50);
+          border: 1px solid var(--gray-100);
+          padding: 4px 14px;
+          border-radius: 40px;
+          letter-spacing: 0.04em;
+        }
+
+        /* ── Slide-in animation ── */
+        @keyframes tcSlideIn {
+          from { opacity: 0; transform: translateX(24px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        .tcarousel-card.tc-animating {
+          animation: tcSlideIn 0.45s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        /* ── Progress bar ── */
+        .tc-progress {
+          height: 3px;
+          background: var(--gray-100);
+          border-radius: 2px;
+          margin-top: 20px;
+          overflow: hidden;
+        }
+        .tc-progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, var(--gold), #e8c43a);
+          border-radius: 2px;
+          transition: width 0.35s ease;
+        }
+
+        /* ── Pause on hover ── */
+        .tcarousel:hover .tc-progress-fill {
+          animation-play-state: paused !important;
+        }
+
+        /* موبايل */
+        @media (max-width: 600px) {
+          .tcarousel-card { padding: 28px 22px 24px; min-height: 200px; }
+          .tcarousel-text { font-size: 15px; }
+          .tcarousel-quote-mark { font-size: 80px; }
+          .tc-btn { width: 38px; height: 38px; font-size: 16px; }
+        }
+        @media (max-width: 400px) {
+          .tcarousel-card { padding: 22px 16px 20px; }
+          .tcarousel-text { font-size: 14px; line-height: 1.9; }
+        }
+      </style>
+
+      <div class="tcarousel" id="testimonialsCarousel">
+        <div class="tcarousel-track-wrap">
+          <div class="tcarousel-track" id="tcTrack">
+
+            <!-- SLIDE 1 -->
+            <div class="tcarousel-slide">
+              <div class="tcarousel-card">
+                <div class="tcarousel-quote-mark">"</div>
+                <p class="tcarousel-text">البرنامج منتهي الروعه بجد والسيستم سلس جدا في التعامل وتعيشوا وتخدموا وتمتعونا اكتر واكتر 🥰🥰♥️</p>
+                <div class="tcarousel-footer">
+                  <div class="tcarousel-person">
+                    <div class="tcarousel-avatar">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    </div>
+                    <div>
+                      <div class="tcarousel-name">مينا عزت كمال</div>
+                      <div class="tcarousel-church">كنيسة العذراء — عزبة عبده بك ميخائيل — بني سويف</div>
+                    </div>
+                  </div>
+                  <span class="tcarousel-stars">★★★★★</span>
+                </div>
+              </div>
             </div>
-            <div>
-              <div style="font-size:14px;font-weight:800;color:var(--blue);">مينا عزت كمال</div>
-              <div style="font-size:12px;color:var(--gray-500);">كنيسة العذراء — عزبة عبده بك ميخائيل — بني سويف</div>
+
+            <!-- SLIDE 2 -->
+            <div class="tcarousel-slide">
+              <div class="tcarousel-card">
+                <div class="tcarousel-quote-mark">"</div>
+                <p class="tcarousel-text">السيستم تحفهههههههه و التعامل لطيف اوي اوي و بتساعدوا الواحد لحد ما يدخل و يفعله و بجد يعني قمه السكر بسم الصليب ❤️</p>
+                <div class="tcarousel-footer">
+                  <div class="tcarousel-person">
+                    <div class="tcarousel-avatar">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    </div>
+                    <div>
+                      <div class="tcarousel-name">مارينا عماد</div>
+                      <div class="tcarousel-church">كنيسة مارجرجس — حدائق حلوان — القاهرة</div>
+                    </div>
+                  </div>
+                  <span class="tcarousel-stars">★★★★★</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div style="margin-top:16px;"><span style="color:var(--gold);font-size:16px;">★★★★★</span></div>
+
+            <!-- SLIDE 3 -->
+            <div class="tcarousel-slide">
+              <div class="tcarousel-card">
+                <div class="tcarousel-quote-mark">"</div>
+                <p class="tcarousel-text">حقيقي عايز اشكر كل القائمين علي هذا العمل ♥️ ربنا يبارك خدمتكم و بجد الشباب اتبسطوا جدا في الاجتماع و السيستم خلق جو من المنافسة جميل جدا و مبهج ♥️♥️</p>
+                <div class="tcarousel-footer">
+                  <div class="tcarousel-person">
+                    <div class="tcarousel-avatar">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    </div>
+                    <div>
+                      <div class="tcarousel-name">مينا شريف شفيق</div>
+                      <div class="tcarousel-church">كنيسة العذراء القطامية — القاهرة</div>
+                    </div>
+                  </div>
+                  <span class="tcarousel-stars">★★★★★</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /tcTrack -->
+        </div><!-- /track-wrap -->
+
+        <!-- Progress bar -->
+        <div class="tc-progress">
+          <div class="tc-progress-fill" id="tcProgress" style="width:33.33%"></div>
         </div>
 
-        <div style="background:var(--white);border:1.5px solid var(--gray-100);border-radius:var(--radius-xl);padding:32px 28px;box-shadow:var(--shadow-sm);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gray-100)'">
-          <div style="font-size:36px;color:var(--gold);font-weight:900;line-height:1;margin-bottom:16px;font-family:Georgia,serif;opacity:0.6;">"</div>
-          <p style="font-size:15px;line-height:1.9;color:var(--gray-700);margin-bottom:24px;">السيستم تحفهههههههه و التعامل لطيف اوي اوي و بتساعدوا الواحد لحد ما يدخل و يفعله و بجد يعني قمه السكر بسم الصليب ❤️</p>
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1a6399,var(--blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-            </div>
-            <div>
-              <div style="font-size:14px;font-weight:800;color:var(--blue);">مارينا عماد</div>
-              <div style="font-size:12px;color:var(--gray-500);">كنيسة مارجرجس — حدائق حلوان — القاهرة</div>
-            </div>
-          </div>
-          <div style="margin-top:16px;"><span style="color:var(--gold);font-size:16px;">★★★★★</span></div>
+        <!-- Controls -->
+        <div class="tcarousel-controls">
+          <button class="tc-btn" id="tcPrev" aria-label="السابق" onclick="tcMove(-1)">›</button>
+          <div class="tc-dots" id="tcDots"></div>
+          <span class="tc-counter" id="tcCounter">1 / 3</span>
+          <button class="tc-btn" id="tcNext" aria-label="التالي" onclick="tcMove(1)">‹</button>
         </div>
-
-        <div style="background:var(--white);border:1.5px solid var(--gray-100);border-radius:var(--radius-xl);padding:32px 28px;box-shadow:var(--shadow-sm);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gray-100)'">
-          <div style="font-size:36px;color:var(--gold);font-weight:900;line-height:1;margin-bottom:16px;font-family:Georgia,serif;opacity:0.6;">"</div>
-          <p style="font-size:15px;line-height:1.9;color:var(--gray-700);margin-bottom:24px;">حقيقي عايز اشكر كل القائمين علي هذا العمل ♥️ ربنا يبارك خدمتكم و بجد الشباب اتبسطوا جدا في الاجتماع و السيستم خلق جو من المنافسة جميل جدا و مبهج ♥️♥️</p>
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1a6399,var(--blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-            </div>
-            <div>
-              <div style="font-size:14px;font-weight:800;color:var(--blue);">مينا شريف شفيق</div>
-              <div style="font-size:12px;color:var(--gray-500);">كنيسة العذراء القطامية — القاهرة</div>
-            </div>
-          </div>
-          <div style="margin-top:16px;"><span style="color:var(--gold);font-size:16px;">★★★★★</span></div>
-        </div>
-
       </div>
+
+      <script>
+      (function() {
+        var SLIDES = Array.from(document.querySelectorAll('#tcTrack .tcarousel-slide'));
+        var total  = SLIDES.length;
+        var cur    = 0;
+        var autoId = null;
+        var DELAY  = 5000;
+
+        var track    = document.getElementById('tcTrack');
+        var dotsWrap = document.getElementById('tcDots');
+        var counter  = document.getElementById('tcCounter');
+        var progress = document.getElementById('tcProgress');
+        var btnPrev  = document.getElementById('tcPrev');
+        var btnNext  = document.getElementById('tcNext');
+
+        /* ── Build dots ── */
+        var dots = [];
+        for (var i = 0; i < total; i++) {
+          var d = document.createElement('button');
+          d.className = 'tc-dot' + (i === 0 ? ' active' : '');
+          d.setAttribute('aria-label', 'الانتقال لرأي ' + (i + 1));
+          d.dataset.idx = i;
+          d.addEventListener('click', (function(idx){ return function(){ goTo(idx, true); }; })(i));
+          dotsWrap.appendChild(d);
+          dots.push(d);
+        }
+
+        function render() {
+          /* move track */
+          /* RTL: نحرك للجانب الآخر */
+          track.style.transform = 'translateX(' + (cur * 100) + '%)';
+
+          /* dots */
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', i === cur);
+          });
+
+          /* counter */
+          counter.textContent = (cur + 1) + ' / ' + total;
+
+          /* progress */
+          progress.style.width = ((cur + 1) / total * 100) + '%';
+
+          /* card animation */
+          var card = SLIDES[cur].querySelector('.tcarousel-card');
+          card.classList.remove('tc-animating');
+          void card.offsetWidth; /* reflow */
+          card.classList.add('tc-animating');
+        }
+
+        function goTo(idx, resetTimer) {
+          cur = ((idx % total) + total) % total;
+          render();
+          if (resetTimer) startAuto();
+        }
+
+        window.tcMove = function(dir) { goTo(cur + dir, true); };
+
+        /* ── Auto-play ── */
+        function startAuto() {
+          clearInterval(autoId);
+          autoId = setInterval(function() { goTo(cur + 1, false); }, DELAY);
+        }
+
+        /* ── Pause on hover ── */
+        var carousel = document.getElementById('testimonialsCarousel');
+        carousel.addEventListener('mouseenter', function() { clearInterval(autoId); });
+        carousel.addEventListener('mouseleave', startAuto);
+
+        /* ── Touch / swipe ── */
+        var touchX = null;
+        carousel.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
+        carousel.addEventListener('touchend', function(e) {
+          if (touchX === null) return;
+          var diff = touchX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) goTo(cur + (diff > 0 ? 1 : -1), true);
+          touchX = null;
+        }, { passive: true });
+
+        /* ── Keyboard ── */
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft')  goTo(cur + 1, true);
+          if (e.key === 'ArrowRight') goTo(cur - 1, true);
+        });
+
+        /* ── Init ── */
+        render();
+        startAuto();
+      })();
+      </script>
 
       <!-- ── TRUST BADGES ── -->
       <div style="background:linear-gradient(135deg,var(--blue) 0%,#0d4a79 100%);border-radius:var(--radius-xl);padding:40px 48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:28px;">
