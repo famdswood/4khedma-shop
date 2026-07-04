@@ -209,6 +209,117 @@
   </div>
 </section>
 
+<!-- ══ QUESTION ENCYCLOPEDIA ══ -->
+<style>
+  .encyclopedia-section{ padding:80px 40px; background:#fff; }
+  .encyclopedia-inner{ max-width:1200px; margin:0 auto; text-align:center; }
+  .encyclopedia-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px; margin-top:44px;
+  }
+  .enc-card{
+    position:relative; padding:26px 18px; border-radius:18px; background:var(--off-white,#f7f5f0);
+    border:1px solid rgba(19,58,94,0.08); transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .enc-card:hover{ transform:translateY(-5px); box-shadow:0 14px 30px rgba(19,58,94,0.1); border-color:rgba(212,175,55,0.35); }
+  .enc-icon{ font-size:30px; margin-bottom:12px; display:block; }
+  .enc-count{ font-family:Cairo,sans-serif; font-weight:900; font-size:26px; color:var(--blue); direction:ltr; display:block; }
+  .enc-name{ font-family:Tajawal,sans-serif; font-weight:700; font-size:14px; color:#444; margin-top:4px; }
+  .encyclopedia-note{ font-family:Tajawal,sans-serif; font-size:13.5px; color:#777; margin-top:28px; }
+</style>
+<section class="encyclopedia-section">
+  <div class="encyclopedia-inner">
+    <span class="section-label">موسوعة الأسئلة</span>
+    <h2 class="section-title">أكثر من <span>2550 سؤال</span> بتصنيفات متنوعة</h2>
+    <div class="divider"></div>
+    <div class="encyclopedia-grid">
+      <div class="enc-card"><span class="enc-icon">✝️</span><span class="enc-count">600</span><p class="enc-name">مسيحية</p></div>
+      <div class="enc-card"><span class="enc-icon">🧩</span><span class="enc-count">300</span><p class="enc-name">ألغاز</p></div>
+      <div class="enc-card"><span class="enc-icon">💻</span><span class="enc-count">300</span><p class="enc-name">تكنولوجيا</p></div>
+      <div class="enc-card"><span class="enc-icon">🎬</span><span class="enc-count">300</span><p class="enc-name">فنية (مسلسلات وأفلام)</p></div>
+      <div class="enc-card"><span class="enc-icon">🔬</span><span class="enc-count">300</span><p class="enc-name">علوم</p></div>
+      <div class="enc-card"><span class="enc-icon">⚽</span><span class="enc-count">200</span><p class="enc-name">رياضية</p></div>
+      <div class="enc-card"><span class="enc-icon">🔢</span><span class="enc-count">200</span><p class="enc-name">حسابية</p></div>
+      <div class="enc-card"><span class="enc-icon">🌍</span><span class="enc-count">200</span><p class="enc-name">جغرافيا</p></div>
+      <div class="enc-card"><span class="enc-icon">🏛️</span><span class="enc-count">150</span><p class="enc-name">تاريخية</p></div>
+    </div>
+    <p class="encyclopedia-note">📌 تحديثات مستمرة تضيف أسئلة جديدة باستمرار، خصوصاً في المناسبات الكنسية.</p>
+  </div>
+</section>
+
+<!-- ══ GAME MODES ══ -->
+<style>
+  .modes-section{ padding:84px 40px; background:var(--off-white,#f7f9fc); }
+  .modes-inner{ max-width:1200px; margin:0 auto; text-align:center; }
+  .modes-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:26px; margin-top:44px; text-align:right; }
+  .mode-card{
+    position:relative; padding:32px 28px; border-radius:22px; background:#fff;
+    box-shadow:0 12px 32px rgba(19,58,94,0.08); border:1px solid rgba(19,58,94,0.06);
+    display:flex; flex-direction:column; gap:14px; transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .mode-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(19,58,94,0.14); }
+  .mode-icon-wrap{
+    width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    font-size:26px; background:linear-gradient(135deg, var(--gold) 0%, #b5892a 100%);
+  }
+  .mode-card:nth-child(2) .mode-icon-wrap{ background:linear-gradient(135deg, var(--blue) 0%, #1c6ea8 100%); }
+  .mode-card:nth-child(3) .mode-icon-wrap{ background:linear-gradient(135deg, #2e9e6d 0%, #1c6f4c 100%); }
+  .mode-card:nth-child(4) .mode-icon-wrap{ background:linear-gradient(135deg, #c0392b 0%, #922b21 100%); }
+  .mode-title{ font-family:Cairo,sans-serif; font-weight:900; font-size:19px; color:var(--blue); }
+  .mode-desc{ font-family:Tajawal,sans-serif; font-size:14px; line-height:1.9; color:#555; }
+  .mode-points{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+  .mode-points li{ font-family:Tajawal,sans-serif; font-size:13.5px; color:#444; line-height:1.7; padding-inline-start:20px; position:relative; }
+  .mode-points li::before{ content:'✦'; position:absolute; inline-size:16px; inset-inline-start:0; color:var(--gold); font-size:12px; top:2px; }
+</style>
+<section class="modes-section">
+  <div class="modes-inner">
+    <span class="section-label">أنظمة اللعب</span>
+    <h2 class="section-title">4 أساليب <span>مختلفة ومبتكرة</span></h2>
+    <div class="divider"></div>
+    <div class="modes-grid">
+      <div class="mode-card">
+        <div class="mode-icon-wrap">🎯</div>
+        <p class="mode-title">الكلاسيكي</p>
+        <p class="mode-desc">الطريقة التقليدية المحبوبة بثلاث صور مختلفة للعب.</p>
+        <ul class="mode-points">
+          <li>لعب فردي — مخدوم واحد يتحدى نفسه</li>
+          <li>واحد ضد واحد (1vs1) بإدخال الأسماء</li>
+          <li>فريق ضد فريق مع تناوب تلقائي للأدوار بنفس مستوى الصعوبة</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon-wrap">⏱️</div>
+        <p class="mode-title">العباقرة</p>
+        <p class="mode-desc">حماس وضغط عصبي إيجابي بنظام "خزنة الوقت" لكل فريق.</p>
+        <ul class="mode-points">
+          <li>من فريقين حتى 10 فرق، وخزنة وقت (60 / 90 / 120 / 150 ثانية)</li>
+          <li>خصم 5 ثوانٍ فوري عند كل إجابة خاطئة</li>
+          <li>انتقال تلقائي بين الفرق و"لوحة شرف" بالإحصائيات في النهاية</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon-wrap">🎡</div>
+        <p class="mode-title">عجلة الحظ</p>
+        <p class="mode-desc">لوحة تفاعلية سريعة ومثالية للفقرات الترفيهية.</p>
+        <ul class="mode-points">
+          <li>لف العجلة تلقائياً بضغطة واحدة</li>
+          <li>سؤال مباشر من القسم اللي هيوقف عليه المؤشر</li>
+          <li>تحكم في حجم العجلة واختيار الأقسام المشاركة</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon-wrap">🏆</div>
+        <p class="mode-title">البطولة الإقصائية</p>
+        <p class="mode-desc">إدارة دورات وبطولات متكاملة داخل الاجتماع.</p>
+        <ul class="mode-points">
+          <li>أفراد أو فرق (4 / 8 / 12 / 16 منافس) وعدد أسئلة لكل مواجهة</li>
+          <li>جدول بطولة تلقائي (ربع نهائي، نصف نهائي، نهائي)</li>
+          <li>"سؤال فاصل" عند التعادل حتى يتأهل الفائز، ومنصة تتويج في النهاية</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ FEATURES ══ -->
 <style>
   .features-grid .feature-item{
@@ -237,13 +348,15 @@
     <div class="divider"></div>
     <div class="features-grid">
       <div class="feature-item"><div class="feature-marker">01</div><div class="feature-text"><p class="feature-title">أكثر من 2500 سؤال كنسي</p><p class="feature-desc">مكتبة ضخمة من الأسئلة المصنفة بعناية تشمل الدينية المسيحية، التاريخ، الجغرافيا، الألغاز، الرياضية وغيرها.</p></div></div>
-      <div class="feature-item"><div class="feature-marker">02</div><div class="feature-text"><p class="feature-title">أوضاع لعب متعددة</p><p class="feature-desc">وضع الفردي، الفرق، والتحدي السريع — لكل مناسبة خدمية الأسلوب المناسب.</p></div></div>
-      <div class="feature-item"><div class="feature-marker">03</div><div class="feature-text"><p class="feature-title">واجهة عربية كاملة</p><p class="feature-desc">مصمم من الأساس للغة العربية مع دعم كامل للاتجاه من اليمين إلى اليسار وخطوط احترافية.</p></div></div>
-      <div class="feature-item"><div class="feature-marker">04</div><div class="feature-text"><p class="feature-title">تصنيفات ومستويات صعوبة</p><p class="feature-desc">مستويات سهل، متوسط، وصعب مع تصنيفات موضوعية تمكّن الخادم من استهداف مجال معين.</p></div></div>
-      <div class="feature-item"><div class="feature-marker">05</div><div class="feature-text"><p class="feature-title">تثبيت بدون إنترنت</p><p class="feature-desc">يعمل البرنامج بالكامل دون الحاجة لاتصال دائم بالإنترنت — مثالي لبيئات الخدمة المختلفة.</p></div></div>
-      <div class="feature-item"><div class="feature-marker">06</div><div class="feature-text"><p class="feature-title">لوحة نتائج ومتابعة</p><p class="feature-desc">سجّل نتائج الجلسات وتابع تطور المشاركين عبر جلسات متعددة بلوحة تحكم واضحة.</p></div></div>
-      <div class="feature-item"><div class="feature-marker">07</div><div class="feature-text"><p class="feature-title">أسعار مناسبة لكل الأنشطة الكنسية</p><p class="feature-desc">بمبلغ رمزي ستحصل على مكتبة أسئلة توّفر الكثير من الوقت لاستغلاله في خدمات أخرى!</p></div></div>
-      <div class="feature-item"><div class="feature-marker">08</div><div class="feature-text"><p class="feature-title">تحديثات مستمرة</p><p class="feature-desc">نضيف أسئلة جديدة وميزات باستمرار كي تخلق جو ممتع من المعرفة بدون ملل.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">02</div><div class="feature-text"><p class="feature-title">فصّل على مزاجك</p><p class="feature-desc">اختر ودمج تصنيفات معينة فقط للعب بها، أو العب بقسم واحد، أو فعّل "عشوائي" شامل لكل الأقسام.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">03</div><div class="feature-text"><p class="feature-title">تحكم كامل في الصعوبة والتايمر</p><p class="feature-desc">3 مستويات (سهل 30 ث، متوسط 25 ث، صعب 20 ث) أو عشوائي بينهم، مع خيار "بدون مؤقت" لترك المخدوم يفكر براحته.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">04</div><div class="feature-text"><p class="feature-title">واجهة عربية كاملة</p><p class="feature-desc">مصمم من الأساس للغة العربية مع دعم كامل للاتجاه من اليمين إلى اليسار وخطوط احترافية.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">05</div><div class="feature-text"><p class="feature-title">تحكم في حجم الخط</p><p class="feature-desc">عدّل حجم خط الأسئلة (صغير، عادي، كبير، كبير جداً) لضمان وضوح القراءة على الشاشات الكبيرة والبروجيكتور.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">06</div><div class="feature-text"><p class="feature-title">تثبيت بدون إنترنت</p><p class="feature-desc">يعمل البرنامج بالكامل دون الحاجة لاتصال دائم بالإنترنت — مثالي لبيئات الخدمة المختلفة.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">07</div><div class="feature-text"><p class="feature-title">وضع الإيقاف المؤقت</p><p class="feature-desc">عند تفعيل الإيقاف المؤقت، يختفي نص السؤال والإجابات تماماً لمنع الغش أو التفكير في الإجابة أثناء التوقف.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">08</div><div class="feature-text"><p class="feature-title">لوحة نتائج ومتابعة</p><p class="feature-desc">سجّل نتائج الجلسات وتابع تطور المشاركين عبر جلسات متعددة بلوحة تحكم واضحة.</p></div></div>
+      <div class="feature-item"><div class="feature-marker">09</div><div class="feature-text"><p class="feature-title">أسعار مناسبة لكل الأنشطة الكنسية</p><p class="feature-desc">بمبلغ رمزي ستحصل على مكتبة أسئلة توّفر الكثير من الوقت لاستغلاله في خدمات أخرى!</p></div></div>
+      <div class="feature-item"><div class="feature-marker">10</div><div class="feature-text"><p class="feature-title">تحديثات مستمرة</p><p class="feature-desc">نضيف أسئلة جديدة وميزات باستمرار كي تخلق جو ممتع من المعرفة بدون ملل.</p></div></div>
     </div>
   </div>
 </section>
@@ -263,6 +376,77 @@
         <span class="dl-title">تحميل النسخة الأساسية</span>
         <span class="dl-sub">يتطلب رمز تفعيل</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SMART FAIRNESS ══ -->
+<style>
+  .fairness-section{ padding:64px 40px 12px; background:#fff; }
+  .fairness-inner{ max-width:980px; margin:0 auto; }
+  .fairness-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; margin-top:36px; }
+  .fairness-card{
+    display:flex; gap:16px; align-items:flex-start; padding:24px; border-radius:18px;
+    background:linear-gradient(155deg, rgba(19,58,94,0.04) 0%, rgba(212,175,55,0.05) 100%);
+    border:1px solid rgba(19,58,94,0.08);
+  }
+  .fairness-icon{
+    width:44px; height:44px; flex-shrink:0; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    font-size:20px; background:var(--blue); color:var(--gold);
+  }
+  .fairness-title{ font-family:Cairo,sans-serif; font-weight:800; font-size:15.5px; color:var(--blue); margin-bottom:6px; }
+  .fairness-desc{ font-family:Tajawal,sans-serif; font-size:13.5px; line-height:1.85; color:#555; }
+</style>
+<section class="fairness-section">
+  <div class="fairness-inner" style="text-align:center;">
+    <span class="section-label">عقل السيستم</span>
+    <h2 class="section-title">عدالة ذكية <span>في كل تفصيلة</span></h2>
+    <div class="divider"></div>
+    <div class="fairness-grid" style="text-align:right;">
+      <div class="fairness-card">
+        <div class="fairness-icon">⚖️</div>
+        <div><p class="fairness-title">عدالة مطلقة بين المتنافسين</p><p class="fairness-desc">حتى مع اختيار الصعوبة "عشوائي"، يضمن السيستم نفس توزيع الأسئلة (سهل/متوسط/صعب) لكل الأطراف، فمفيش فريق بياخد أسئلة أسهل أو أصعب من التاني.</p></div>
+      </div>
+      <div class="fairness-card">
+        <div class="fairness-icon">🔁</div>
+        <div><p class="fairness-title">منع التكرار تماماً</p><p class="fairness-desc">مستحيل يتكرر نفس السؤال مرتين في نفس الجلسة، ولا تتم إعادة تدوير الأسئلة إلا بعد عرض 80–90% من أسئلة القسم بالكامل.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PURCHASE GUARANTEE ══ -->
+<style>
+  .guarantee-section{ padding:12px 40px 64px; background:#fff; }
+  .guarantee-inner{ max-width:980px; margin:0 auto; text-align:center; }
+  .guarantee-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; margin-top:36px; text-align:right; }
+  .guarantee-card{
+    display:flex; gap:16px; align-items:flex-start; padding:24px; border-radius:18px;
+    background:var(--off-white,#f7f5f0); border:1px solid rgba(19,58,94,0.08);
+  }
+  .guarantee-card.positive{ background:linear-gradient(155deg, rgba(15,122,68,0.06) 0%, rgba(15,122,68,0.02) 100%); border-color:rgba(15,122,68,0.18); }
+  .guarantee-icon{
+    width:44px; height:44px; flex-shrink:0; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .guarantee-card.positive .guarantee-icon{ background:#0f7a44; color:#fff; }
+  .guarantee-card:not(.positive) .guarantee-icon{ background:var(--blue); color:var(--gold); }
+  .guarantee-title{ font-family:Cairo,sans-serif; font-weight:800; font-size:15.5px; color:var(--blue); margin-bottom:6px; }
+  .guarantee-desc{ font-family:Tajawal,sans-serif; font-size:13.5px; line-height:1.85; color:#555; }
+</style>
+<section class="guarantee-section">
+  <div class="guarantee-inner">
+    <span class="section-label">أمانك التعاقدي</span>
+    <h2 class="section-title">ضمانك <span>قبل وبعد الشراء</span></h2>
+    <div class="divider"></div>
+    <div class="guarantee-grid">
+      <div class="guarantee-card positive">
+        <div class="guarantee-icon">↩️</div>
+        <div><p class="guarantee-title">قبل ما تستلم الكود</p><p class="guarantee-desc">لو غيّرت رأيك بعد الدفع وقبل استلام كود التفعيل، تقدر تسترجع فلوسك كاملة من غير أي تعقيد — كل اللي عليك تواصل معنا عبر واتساب.</p></div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">🛠️</div>
+        <div><p class="guarantee-title">بعد ما تستلم الكود</p><p class="guarantee-desc">بمجرد استلام كود التفعيل، ميبقاش في استرداد للمبلغ لأن الكود بيتفعل فوراً. لكن فريق الدعم معاك خطوة بخطوة لحل أي مشكلة تقنية تواجهك.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -297,7 +481,7 @@
     .price-card.featured{ animation:none; }
   }  .plan-trust-line{
     display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap;
-    font-family:Tajawal,sans-serif; font-size:11px; color:rgba(255,255,255,0.5);
+    font-family:Tajawal,sans-serif; font-size:11px; color:rgba(19,58,94,0.62);
     margin-top:12px; line-height:1.6; text-align:center;
   }
   .pricing-decision-helper{
@@ -307,6 +491,12 @@
     font-family:Tajawal,sans-serif; font-size:13px; color:rgba(255,255,255,0.8); line-height:1.9;
   }
   .pricing-decision-helper strong{ color:var(--gold); font-family:Cairo,sans-serif; }
+  .btn-vipplus-cta{
+    display:inline-flex; align-items:center; gap:8px; font-family:Cairo,sans-serif; font-weight:800; font-size:14.5px;
+    color:var(--gold); background:rgba(212,175,55,0.1); border:1.5px solid rgba(212,175,55,0.45);
+    padding:14px 28px; border-radius:14px; text-decoration:none; transition:background .25s ease, transform .25s ease;
+  }
+  .btn-vipplus-cta:hover{ background:rgba(212,175,55,0.18); transform:translateY(-2px); }
 </style>
 <section class="pricing-section" id="pricing-hub">
   <div class="pricing-inner">
@@ -321,6 +511,10 @@
         <span id="toggle-knob" style="position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background:var(--blue);transition:transform 0.3s;display:block;"></span>
       </button>
       <span id="toggle-label-usd" style="font-weight:700;font-size:15px;color:rgba(255,255,255,0.4);">🌍 دولار أمريكي</span>
+    </div>
+
+    <div style="text-align:center;margin-bottom:28px;">
+      <a href="#vip-plus" onclick="document.getElementById('vip-plus').scrollIntoView({behavior:'smooth'}); return false;" style="font-family:Tajawal,sans-serif;font-size:13.5px;color:var(--gold);font-weight:800;text-decoration:none;">✨ عايز أسئلة مخصصة لكنيستك بالذات؟ شوف VIP Plus ↓</a>
     </div>
 
     <!-- Sold-out banner -->
@@ -452,6 +646,81 @@
       </div>
     </div>
 
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#vip-plus" class="btn-vipplus-cta" onclick="document.getElementById('vip-plus').scrollIntoView({behavior:'smooth'}); return false;">✨ عايز باقة مخصصة لكنيستك أكتر؟</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ VIP PLUS — CUSTOM CONTENT ══ -->
+<style>
+  .vipplus-section{ padding:70px 40px; background:linear-gradient(155deg,#0c2d4e 0%,#081e35 100%); }
+  .vipplus-inner{ max-width:1000px; margin:0 auto; text-align:center; }
+  .vipplus-inner .section-title{ color:#fff; }
+  .vipplus-inner .section-title span{ color:var(--gold); }
+  .vipplus-card{
+    position:relative; margin-top:40px; border-radius:26px; padding:2px; overflow:hidden;
+    background:linear-gradient(120deg, rgba(212,175,55,0.15), rgba(212,175,55,0.7), rgba(212,175,55,0.15));
+  }
+  .vipplus-card-inner{
+    border-radius:24px; background:linear-gradient(155deg,#0f3559 0%,#0a2744 100%);
+    padding:40px; text-align:right;
+  }
+  .vipplus-badge{
+    display:inline-block; font-family:Cairo,sans-serif; font-weight:800; font-size:12.5px; color:#0c2d4e;
+    background:linear-gradient(135deg, var(--gold) 0%, #f0d878 100%); padding:7px 16px; border-radius:20px; margin-bottom:22px;
+  }
+  .vipplus-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:36px; align-items:center; }
+  .vipplus-desc{ font-family:Tajawal,sans-serif; font-size:15px; line-height:1.95; color:rgba(255,255,255,0.85); margin-bottom:18px; }
+  .vipplus-points{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
+  .vipplus-points li{
+    font-family:Tajawal,sans-serif; font-size:13.5px; color:rgba(255,255,255,0.85); line-height:1.7;
+    padding-inline-start:22px; position:relative;
+  }
+  .vipplus-points li::before{ content:'✦'; position:absolute; inset-inline-start:0; color:var(--gold); font-size:12px; top:2px; }
+  .vipplus-price-box{
+    background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.25); border-radius:18px;
+    padding:28px 22px; text-align:center;
+  }
+  .vipplus-price{ font-family:Cairo,sans-serif; font-weight:900; color:#fff; margin:0; }
+  .vipplus-price .currency{ font-size:20px; color:var(--gold); margin-inline-end:4px; }
+  .vipplus-price span:last-child{ font-size:42px; }
+  .vipplus-price-usd{ font-family:Tajawal,sans-serif; font-size:12.5px; color:rgba(255,255,255,0.55); margin-top:4px; margin-bottom:18px; }
+  .vipplus-price-box .btn-buy{ width:100%; }
+  .vipplus-price-box .plan-trust-line{ color:rgba(255,255,255,0.5); }
+  @media (max-width:760px){
+    .vipplus-grid{ grid-template-columns:1fr; }
+    .vipplus-card-inner{ padding:28px 22px; }
+  }
+</style>
+<section class="vipplus-section" id="vip-plus">
+  <div class="vipplus-inner">
+    <span class="section-label" style="color:var(--gold);">توسعة اختيارية</span>
+    <h2 class="section-title">VIP Plus <span>— أسئلة كنيستكم الخاصة</span></h2>
+    <div class="divider"></div>
+    <div class="vipplus-card">
+      <div class="vipplus-card-inner">
+        <span class="vipplus-badge">🌟 الأكثر تخصيصاً</span>
+        <div class="vipplus-grid">
+          <div>
+            <p class="vipplus-desc">فوق كل مميزات ترخيص الجهاز الواحد، ابعتولنا من 200 إلى 500 سؤال خاصة بكنيستكم أو خدمتكم — كل سؤال بـ4 اختيارات، واحد منهم هو الإجابة الصحيحة — وإحنا بنضيفهم للسيستم ونسلّمكم نسخة جاهزة ومخصصة بالكامل.</p>
+            <ul class="vipplus-points">
+              <li>من 200 إلى 500 سؤال مخصص — سعر ثابت أياً كان العدد داخل النطاق</li>
+              <li>المكتبة الكاملة (2500+ سؤال) + أسئلتكم الخاصة مع بعض في نفس النسخة</li>
+              <li>تسليم خلال 2-3 أيام عمل بعد استلام الأسئلة كاملة منكم</li>
+              <li>ترخيص جهاز واحد، بنفس آلية التفعيل المعتادة</li>
+            </ul>
+          </div>
+          <div class="vipplus-price-box">
+            <p class="vipplus-price"><span class="currency">ج</span><span>799</span></p>
+            <p class="vipplus-price-usd">أو $199 للخدمات خارج مصر</p>
+            <button class="btn-buy gold" onclick="buyProduct('VIP Plus','799 جنيه','جهاز واحد + محتوى أسئلة مخصص (200-500 سؤال)')">اطلب باقتك المخصصة</button>
+            <p class="plan-trust-line">🔒 دفع مباشر عبر واتساب · 📝 هنبعتلك القالب المطلوب بعد التواصل</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -596,9 +865,10 @@
         <div style="text-align:center;color:white;"><div style="font-size:36px;margin-bottom:10px;">♾️</div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">ترخيص مدى الحياة</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">ادفع مرة واحدة واستخدم للأبد بدون اشتراكات</div></div>
         <div style="text-align:center;color:white;"><div style="font-size:36px;margin-bottom:10px;">⚡</div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">تفعيل فوري</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">مفتاح التفعيل يوصلك خلال دقائق بعد الدفع</div></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;max-width:620px;margin:28px auto 0;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;max-width:900px;margin:28px auto 0;">
         <div style="text-align:center;color:white;"><div style="font-size:36px;margin-bottom:10px;">🔄</div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">تحديثات مجانية</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">كل التحديثات المستقبلية مجانية لحاملي الترخيص</div></div>
         <div style="text-align:center;color:white;"><div style="font-size:36px;margin-bottom:10px;">🤝</div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">مش هتكون لوحدك</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">لو واجهت أي مشكلة في التفعيل أو التشغيل، فريق الدعم معاك خطوة بخطوة لحد ما تتحل</div></div>
+        <div style="text-align:center;color:white;"><div style="font-size:36px;margin-bottom:10px;">🖥️</div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">يعمل على الأجهزة الضعيفة</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">مبرمج خصيصاً ليعمل بسلاسة حتى على الأجهزة القديمة أو الضعيفة الخاصة بالكنائس</div></div>
       </div>
     </div>
   </div>
@@ -612,10 +882,13 @@
     <div class="divider"></div>
     <div class="faq-list">
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>ما هي طرق الدفع المتاحة، وهل الدفع آمن؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>الدفع عبر <strong>واتساب</strong> مباشرةً. بعد ما تضغط "شراء الآن" هتتحول لمحادثة واتساب معانا ونتفق على طريقة الدفع (إنستا باي / فودافون كاش / تحويل بنكي).</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>لو غيّرت رأيي بعد الدفع، هل أقدر أسترجع فلوسي؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، لو غيّرت رأيك <strong>بعد الدفع وقبل استلام كود التفعيل</strong>، تقدر تسترجع المبلغ كاملاً من غير أي تعقيد. أما بعد استلام الكود، فلا يوجد استرداد للمبلغ لأن الكود بيتفعل فوراً — لكن فريق الدعم هيكون معاك لحل أي مشكلة تقنية تواجهك.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل مفتاح التفعيل مرتبط بجهاز واحد فقط؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، كل مفتاح مرتبط بالجهاز الذي فُعِّل عليه أول مرة. الباقة الذهبية والـ VIP تدعم حتى 3 أجهزة.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>كيف أستلم مفتاح التفعيل بعد الشراء؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>بعد إتمام الدفع عبر واتساب، يتم إرسال مفتاح التفعيل خلال دقائق معدودة على نفس المحادثة.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>ما الفرق بين النسخة الديمو والنسخة الأساسية؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>النسخة الديمو مجانية وتتيح لك تجربة البرنامج بشكل محدود. النسخة الأساسية (بعد التفعيل) تفتح المكتبة الكاملة بأكثر من 2500 سؤال مع جميع أوضاع اللعب.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>إزاي أطلب باقة VIP Plus بالأسئلة المخصصة؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>بعد التواصل معنا وإتمام الدفع، هنبعتلك قالب بسيط تملاه بأسئلتكم الخاصة (من 200 إلى 500 سؤال)، كل سؤال يشمل 4 اختيارات مع تحديد الإجابة الصحيحة. بعد استلام القالب كاملاً، بنضيف الأسئلة للسيستم ونسلّمكم النسخة الجاهزة خلال 2-3 أيام عمل.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل البرنامج يشتغل على أي ويندوز؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، البرنامج متوافق مع جميع إصدارات ويندوز بدايةً من <strong>ويندوز 7</strong> وحتى <strong>ويندوز 11</strong>.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل البرنامج بيشتغل بسلاسة على أجهزة الكنيسة القديمة أو الضعيفة؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، البرنامج خفيف ومبرمج خصيصاً ليعمل بسلاسة حتى على الأجهزة القديمة أو الضعيفة المتاحة في الكنائس، من غير ما يحتاج مواصفات عالية.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل يوجد تحديثات مستقبلية؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، جميع التحديثات المستقبلية على نفس الإصدار مجانية لحاملي النسخة الأساسية.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل يمكنني استخدام البرنامج بدون إنترنت؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم تماماً. البرنامج يعمل بشكل كامل بدون اتصال بالإنترنت بعد التثبيت والتفعيل.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>لو واجهت مشكلة بعد الشراء، هعمل إيه؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>تواصل معنا فورًا عبر واتساب في أي وقت — سواء مشكلة في التفعيل، التثبيت، أو حتى استفسار بسيط، وهنكون معاك خطوة بخطوة لحد ما تتحل. الدعم مستمر معاك بعد الشراء، مش بس وقته.</p></div></div>
@@ -676,15 +949,13 @@
       transition:transform .2s ease, filter .2s ease;
     }
     .sticky-cta-btn:active{ transform:scale(.97); }
-    .sticky-cta-btn.primary{ background:linear-gradient(135deg, var(--gold) 0%, #d4b13a 100%); color:#0c2d4e; flex:1.4; }
-    .sticky-cta-btn.wa{ background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.18); }
+    .sticky-cta-btn.primary{ background:linear-gradient(135deg, var(--gold) 0%, #d4b13a 100%); color:#0c2d4e; }
     #waFab{ bottom:82px !important; }
     .site-footer{ padding-bottom:88px; }
   }
 </style>
 <div class="sticky-cta-bar" id="stickyCtaBar">
   <a class="sticky-cta-btn primary" href="#pricing-hub" onclick="document.getElementById('pricing-hub').scrollIntoView({behavior:'smooth'}); return false;">💳 اشترِ الآن</a>
-  <button class="sticky-cta-btn wa" onclick="toggleWaPanel()">💬 واتساب</button>
 </div>
 
 <!-- WhatsApp Widget -->
