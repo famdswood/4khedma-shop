@@ -168,25 +168,62 @@ function toggleWaPanel() {
   if (panel) panel.classList.toggle('open', waOpen);
   if (badge) badge.style.display = waOpen ? 'none' : '';
 }
+/* ── بيانات باقات عرض صيف 2026 (مصدر واحد يُستخدم في قائمة الواتساب وصفحة العرض) ── */
+var SUMMER26_PLANS = {
+  basic:   { name: 'الخادم',            tierEn: 'Basic',    price: 149, oldPrice: 199, discount: 50,  features: 'جهاز واحد · ترخيص مدى الحياة · خصم 50 جنيه · كود: SUMMER26-BASIC' },
+  gold:    { name: 'الذهبية',           tierEn: 'Gold',     price: 349, oldPrice: 449, discount: 100, features: '3 أجهزة · ترخيص مدى الحياة · خصم 100 جنيه · كود: SUMMER26-GOLD' },
+  vip:     { name: 'VIP',               tierEn: 'VIP',      price: 599, oldPrice: 699, discount: 100, features: '3 أجهزة + تخصيص باسم الكنيسة · ترخيص مدى الحياة · خصم 100 جنيه · كود: SUMMER26-VIP' },
+  vipplus: { name: 'VIP Plus المخصصة', tierEn: 'VIP Plus', price: 699, oldPrice: 799, discount: 100, features: 'جهاز واحد + أسئلة مخصصة (200-500 سؤال) · خصم 100 جنيه · كود: SUMMER26-VIPPLUS' }
+};
+
 function waShowProducts() {
   var menu = document.getElementById('waMainMenu');
   if (!menu) return;
-  menu.innerHTML = [
-    {name:'الخادم',    price:'199 جنيه', devices:'جهاز واحد'},
-    {name:'الذهبية',   price:'449 جنيه', devices:'3 أجهزة'},
-    {name:'VIP',       price:'699 جنيه', devices:'3 أجهزة + تخصيص'},
-    {name:'مخصص',     price:'تواصل معنا', devices:'أجهزة غير محدودة'}
-  ].map(function(p) {
-    return '<button class="wa-menu-btn" onclick="buyProduct(\'' + p.name + '\',\'' + p.price + '\',\'' + p.devices + '\'); event.stopPropagation()">' +
-      '<span>📦 ' + p.name + ' — ' + p.price + '</span><span class="wa-arrow">←</span></button>';
+  menu.innerHTML = Object.keys(SUMMER26_PLANS).map(function(key) {
+    var p = SUMMER26_PLANS[key];
+    return '<button class="wa-menu-btn" onclick="buyOfferProduct(\'' + key + '\'); event.stopPropagation()">' +
+      '<span>📦 ' + p.name + ' — ' + p.price + ' جنيه <s style="opacity:.55;font-weight:400">' + p.oldPrice + ' جنيه</s></span><span class="wa-arrow">←</span></button>';
   }).join('');
 }
+
+/* رسالة واتساب عامة (بدون عرض) — تُستخدم للبيع بالسعر الرسمي العادي */
 function buyProduct(plan, price, devices) {
   var msg = 'أهلاً 👋 أنا مهتم بـ Khedma Bank\n\nالخطة: ' + plan + '\nالسعر: ' + price + (devices ? '\nالتفاصيل: ' + devices : '') + '\n\nممكن تساعدني في إتمام الطلب؟';
   window.open('https://wa.me/201207737965?text=' + encodeURIComponent(msg), '_blank');
 }
+
+/* تاريخ ووقت الطلب بالأرقام العربية وبالتقويم الميلادي، مثال: ٢٠ يونيو ٢٠٢٦ — ١٢:١٥ م */
+function formatArabicOrderDateTime() {
+  var now = new Date();
+  var date = now.toLocaleDateString('ar-EG-u-nu-arab-ca-gregory', { day: 'numeric', month: 'long', year: 'numeric' });
+  var time = now.toLocaleTimeString('ar-EG-u-nu-arab', { hour: '2-digit', minute: '2-digit', hour12: true });
+  return { date: date, time: time };
+}
+
+/* رسالة واتساب رسمية لعرض صيف 2026 — بالفورمات المعتمد */
+function buyOfferProduct(planKey) {
+  var p = SUMMER26_PLANS[planKey];
+  if (!p) return;
+  var dt = formatArabicOrderDateTime();
+  var msg =
+    '✦ طلب شراء جديد — 4Khedma ✦\n' +
+    '────────────────────\n' +
+    'المنتج   :  Khedma Bank\n' +
+    'الخطة    :  ' + p.name + ' — ' + p.tierEn + ' (عرض صيف 2026)\n' +
+    'السعر    :  ' + p.price + ' جنيه — بدلاً من ' + p.oldPrice + ' جنيه\n' +
+    'المميزات  :  ' + p.features + '\n' +
+    '────────────────────\n' +
+    'التاريخ  :  ' + dt.date + '\n' +
+    'الوقت    :  ' + dt.time + '\n' +
+    '────────────────────\n' +
+    'أود إتمام عملية الشراء للخطة المذكورة أعلاه.\n' +
+    'يُرجى التواصل معي لاستكمال إجراءات الدفع والتفعيل.\n' +
+    'شكراً — 4Khedma';
+  window.open('https://wa.me/201207737965?text=' + encodeURIComponent(msg), '_blank');
+}
+
 function contactEnterprise() {
-  buyProduct('مخصص', 'تواصل معنا', 'أجهزة غير محدودة');
+  buyOfferProduct('vipplus');
 }
 document.addEventListener('click', function(e) {
   var panel = document.getElementById('waPanel');
@@ -275,3 +312,70 @@ window.closeFamPhoto = function() {
     document.body.style.overflow = '';
   }
 };
+
+/* ── لوحة إعلان عرض الصيف (لوحة إعلان) ──
+   بتظهر لأول مرة لكل زائر عند فتح المنصة، وتفضل مقفولة لمدة يوم
+   لو المستخدم قفلها بنفسه، عشان متبقاش مزعجة. */
+(function() {
+  var overlay = document.getElementById('khedmaAnnounceOverlay');
+  if (!overlay) return; /* الصفحة دي معندهاش لوحة إعلان (زي صفحة العرض نفسها) */
+
+  var STORAGE_KEY = '4khedma_announce_dismissed_until';
+
+  /* تبني صفوف الباقات جوه اللوحة من نفس مصدر بيانات الأسعار (SUMMER26_PLANS) */
+  function renderAnnouncePlans() {
+    var box = document.getElementById('khedmaAnnouncePlans');
+    if (!box || typeof SUMMER26_PLANS === 'undefined') return;
+    box.innerHTML = Object.keys(SUMMER26_PLANS).map(function(key) {
+      var p = SUMMER26_PLANS[key];
+      return (
+        '<div class="khedma-plan-row">' +
+          '<div class="khedma-plan-info">' +
+            '<span class="khedma-plan-name">' + p.name + '</span>' +
+            '<span class="khedma-plan-price"><s>' + p.oldPrice + ' ج</s><strong>' + p.price + ' ج</strong></span>' +
+          '</div>' +
+          '<button class="khedma-plan-buy" onclick="buyOfferProduct(\'' + key + '\'); event.stopPropagation()">اطلب</button>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  function isSnoozed() {
+    try {
+      var until = localStorage.getItem(STORAGE_KEY);
+      return until && Date.now() < parseInt(until, 10);
+    } catch (e) {
+      return false; /* لو التخزين مش متاح، نعتبرها مش متأجلة وتظهر عادي */
+    }
+  }
+
+  function snooze() {
+    try {
+      /* تفضل مقفولة 24 ساعة بعد ما المستخدم يقفلها بنفسه */
+      localStorage.setItem(STORAGE_KEY, String(Date.now() + 24 * 60 * 60 * 1000));
+    } catch (e) { /* تجاهل لو التخزين ممنوع */ }
+  }
+
+  window.openKhedmaAnnounce = function() {
+    renderAnnouncePlans();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeKhedmaAnnounce = function(remember) {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (remember) snooze();
+  };
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) window.closeKhedmaAnnounce(true);
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) window.closeKhedmaAnnounce(true);
+  });
+
+  if (!isSnoozed()) {
+    /* تأخير بسيط عشان الصفحة تحمّل الأول وتبقى تجربة أنعم */
+    setTimeout(function() { window.openKhedmaAnnounce(); }, 900);
+  }
+})();
