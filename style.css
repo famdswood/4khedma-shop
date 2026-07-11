@@ -3151,11 +3151,6 @@
   50%       { transform: scale(1.06); box-shadow: 0 3px 18px rgba(185,28,28,0.75); }
 }
 
-/* ── وميض ذهبي عام (Gold Shimmer Sweep) ── */
-@keyframes goldShimmerSweep {
-  0%   { transform: translateX(-120%) skewX(-15deg); }
-  55%, 100% { transform: translateX(220%) skewX(-15deg); }
-}
 @keyframes emgIconPulse {
   0%, 100% { transform: scale(1) rotate(0deg); }
   50%      { transform: scale(1.15) rotate(-6deg); }
@@ -3224,30 +3219,8 @@
   transition: transform 0.2s;
 }
 .emg-cta:hover { transform: translateY(-2px); background: #e8c43a; }
-.emg-cta::after {
-  content: '';
-  position: absolute;
-  top: 0; right: -30%;
-  width: 40%; height: 100%;
-  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
-  animation: goldShimmerSweep 2.6s ease-in-out infinite;
-  animation-delay: 0.5s;
-  pointer-events: none;
-}
 .emg-arrow { transition: transform 0.2s; }
 .emg-cta:hover .emg-arrow { transform: translateX(-4px); }
-
-/* شريحة الوميض الذهبي المارّة عبر خلفية البانر بالكامل */
-.emg-banner::before {
-  content: '';
-  position: absolute;
-  top: 0; right: -40%;
-  width: 30%; height: 100%;
-  background: linear-gradient(115deg, transparent, rgba(212,175,55,0.22), transparent);
-  animation: goldShimmerSweep 4.5s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
 
 @media (max-width: 640px) {
   .emg-banner { padding: 14px 16px; }
@@ -3472,16 +3445,6 @@
 }
 .khedma-announce-overlay.is-open .khedma-announce { transform: translateY(0) scale(1); }
 
-.khedma-announce::before {
-  content: '';
-  position: absolute;
-  top: 0; right: -50%;
-  width: 40%; height: 100%;
-  background: linear-gradient(115deg, transparent, rgba(212,175,55,0.16), transparent);
-  animation: goldShimmerSweep 5s ease-in-out infinite;
-  pointer-events: none;
-}
-
 .khedma-announce-close {
   position: absolute;
   top: 14px;
@@ -3611,16 +3574,6 @@
   margin-bottom: 12px;
 }
 .khedma-announce-cta:hover { transform: translateY(-2px); background: #e8c43a; }
-.khedma-announce-cta::after {
-  content: '';
-  position: absolute;
-  top: 0; right: -30%;
-  width: 40%; height: 100%;
-  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
-  animation: goldShimmerSweep 2.6s ease-in-out infinite;
-  animation-delay: 1s;
-  pointer-events: none;
-}
 .khedma-announce-dismiss {
   display: block;
   width: 100%;
@@ -3647,10 +3600,11 @@
   .khedma-plan-buy { padding: 7px 12px; font-size: 12px; }
 }
 
-/* حماية للمستخدمين اللي بيفضّلوا تقليل الحركة */
+/* حماية للمستخدمين اللي بيفضّلوا تقليل الحركة — بس بنسيب اللمعة الخفيفة شغالة
+   لأنها حركة بسيطة جدًا ومفيهاش أي تكبير/تصغير يضايق حد، وإيقافها بالكامل كان
+   بيخلي المستخدم يشوف "ومضة واحدة بس" (حركة فتح اللوحة) بدل اللمعة المتكررة */
 @media (prefers-reduced-motion: reduce) {
-  .emg-icon, .emg-cta, .khedma-announce-cta, .offer-card-discount,
-  .emg-banner::before, .emg-cta::after, .khedma-announce::before, .khedma-announce-cta::after {
+  .emg-icon, .emg-cta, .khedma-announce-cta, .offer-card-discount {
     animation: none !important;
   }
 }
