@@ -3307,8 +3307,10 @@
   flex-shrink: 0;
 }
 .wn-icon-wrap svg {
-  width: 26px;
-  height: 26px;
+  width: 26px !important;
+  height: 26px !important;
+  max-width: 26px !important;
+  max-height: 26px !important;
   display: block;
 }
 .wn-card-title {
@@ -3366,8 +3368,11 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 .winter-icon-badge svg {
-  width: 38px;
-  height: 38px;
+  width: 38px !important;
+  height: 38px !important;
+  max-width: 38px !important;
+  max-height: 38px !important;
+  display: block;
 }
 .product-badge.badge-soon {
   background: linear-gradient(135deg, #1c6ea8 0%, #0b3b60 100%);

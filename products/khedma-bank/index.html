@@ -39,7 +39,76 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../style.css?v=1.1.5">
+  <style>
+    /* Critical fallback styles to prevent any cache lag */
+    .announcement-bar {
+      background: linear-gradient(90deg, #091c2f 0%, #0d2944 50%, #091c2f 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+      color: #ffffff;
+      padding: 10px 16px;
+      position: relative;
+      z-index: 1000;
+      text-align: center;
+      font-family: 'Cairo', sans-serif;
+    }
+    .announcement-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13.5px;
+    }
+    .announcement-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 12px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.1) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      color: #d4af37;
+      font-weight: 800;
+      font-size: 11.5px;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+    .announcement-text {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.5;
+    }
+    .announcement-text strong {
+      color: #d4af37;
+      font-weight: 800;
+    }
+    .announcement-link {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s, transform 0.2s;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.6);
+      padding-bottom: 1px;
+      white-space: nowrap;
+    }
+    .announcement-link:hover {
+      color: #ffffff;
+      border-color: #ffffff;
+      transform: translateX(-3px);
+    }
+    @media (max-width: 640px) {
+      .announcement-inner {
+        padding: 8px 14px;
+        font-size: 12px;
+        gap: 8px;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -247,10 +316,126 @@
 </section>
 
 <!-- ══ WHAT'S NEW IN V1.1 ══ -->
+<style>
+  .whats-new-section {
+    padding: 88px 40px;
+    background: linear-gradient(180deg, #091c2f 0%, #0d2944 50%, #071726 100%);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  .whats-new-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(22, 78, 122, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .whats-new-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .wn-version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold, #d4af37);
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 6px 20px;
+    border-radius: 24px;
+    margin-bottom: 18px;
+  }
+  .whats-new-title {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(26px, 3.2vw, 40px);
+    color: #ffffff;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .whats-new-title span {
+    color: var(--gold, #d4af37);
+  }
+  .whats-new-sub {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 720px;
+    margin: 0 auto 52px;
+    line-height: 1.9;
+  }
+  .wn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    text-align: right;
+  }
+  .wn-card {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 22px;
+    padding: 30px 24px;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .wn-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212, 175, 55, 0.55);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.3), 0 0 24px rgba(212, 175, 55, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .wn-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(11, 59, 96, 0.45) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold, #d4af37);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .wn-icon-wrap svg {
+    width: 26px !important;
+    height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    display: block;
+  }
+  .wn-card-title {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    font-size: 17.5px;
+    color: #ffffff;
+    line-height: 1.45;
+  }
+  .wn-card-desc {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.72);
+  }
+</style>
 <section class="whats-new-section" id="whats-new">
   <div class="whats-new-inner">
     <span class="wn-version-badge">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <svg viewBox="0 0 24 24" width="14" height="14" style="width:14px;height:14px;max-width:14px;max-height:14px;display:inline-block;" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
       الإصدار الجديد v1.1
     </span>
     <h2 class="whats-new-title">ما الجديد في <span>تحديث بنك الخدمة v1.1</span></h2>
@@ -262,7 +447,7 @@
       <!-- Card 1: Timer 60s -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="13" r="8"></circle>
             <line x1="12" y1="13" x2="12" y2="9"></line>
             <line x1="12" y1="13" x2="15" y2="15"></line>
@@ -277,7 +462,7 @@
       <!-- Card 2: Font scaling -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="4 7 4 4 20 4 20 7"></polyline>
             <line x1="9" y1="20" x2="15" y2="20"></line>
             <line x1="12" y1="4" x2="12" y2="20"></line>
@@ -290,7 +475,7 @@
       <!-- Card 3: 1v1 live scoreboard -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"></rect>
             <line x1="12" y1="3" x2="12" y2="21"></line>
             <path d="M8 8h.01M8 12h.01M8 16h.01M16 8h.01M16 12h.01M16 16h.01"></path>
@@ -303,7 +488,7 @@
       <!-- Card 4: Quick rematch -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="1 4 1 10 7 10"></polyline>
             <polyline points="23 20 23 14 17 14"></polyline>
             <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
@@ -316,7 +501,7 @@
       <!-- Card 5: Tournament engine -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
             <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
             <path d="M4 22h16"></path>
@@ -331,7 +516,7 @@
       <!-- Card 6: Wheel physics -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="9"></circle>
             <line x1="12" y1="3" x2="12" y2="21"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -347,7 +532,7 @@
       <!-- Card 7: Remote & Keyboard -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="4" width="20" height="16" rx="2"></rect>
             <line x1="6" y1="8" x2="6.01" y2="8"></line>
             <line x1="10" y1="8" x2="10.01" y2="8"></line>
@@ -365,7 +550,7 @@
       <!-- Card 8: Size & Speed -->
       <div class="wn-card">
         <div class="wn-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
           </svg>
         </div>
@@ -428,7 +613,7 @@
     width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center;
     color:#fff; background:linear-gradient(135deg, var(--gold) 0%, #b5892a 100%);
   }
-  .mode-icon-wrap svg{ width:26px; height:26px; }
+  .mode-icon-wrap svg{ width:26px !important; height:26px !important; max-width:26px; max-height:26px; display:block; }
   .mode-card:nth-child(2) .mode-icon-wrap{ background:linear-gradient(135deg, var(--blue) 0%, #1c6ea8 100%); }
   .mode-card:nth-child(3) .mode-icon-wrap{ background:linear-gradient(135deg, #2e9e6d 0%, #1c6f4c 100%); }
   .mode-card:nth-child(4) .mode-icon-wrap{ background:linear-gradient(135deg, #c0392b 0%, #922b21 100%); }
@@ -445,7 +630,7 @@
     <div class="divider"></div>
     <div class="modes-grid">
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5.5" opacity="0.6"></circle><circle cx="12" cy="12" r="2" fill="currentColor" fill-opacity="0.3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3" opacity="0.5"></path><path d="M14.5 9.5L20 4M20 4h-4M20 4v4" stroke-width="2"></path></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5.5" opacity="0.6"></circle><circle cx="12" cy="12" r="2" fill="currentColor" fill-opacity="0.3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3" opacity="0.5"></path><path d="M14.5 9.5L20 4M20 4h-4M20 4v4" stroke-width="2"></path></svg></div>
         <p class="mode-title">الكلاسيكي</p>
         <p class="mode-desc">الطريقة التقليدية المحبوبة بثلاث صور مختلفة للعب.</p>
         <ul class="mode-points">
@@ -455,7 +640,7 @@
         </ul>
       </div>
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2" stroke-width="2"></path><path d="M12 2v3M9 2h6M19 6l-1.5 1.5M5 6l1.5 1.5"></path><path d="M2 13h2M20 13h2" opacity="0.5"></path><polygon points="12 11 11 13 13 13 12 15" fill="currentColor" opacity="0.9"></polygon></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2" stroke-width="2"></path><path d="M12 2v3M9 2h6M19 6l-1.5 1.5M5 6l1.5 1.5"></path><path d="M2 13h2M20 13h2" opacity="0.5"></path><polygon points="12 11 11 13 13 13 12 15" fill="currentColor" opacity="0.9"></polygon></svg></div>
         <p class="mode-title">العباقرة</p>
         <p class="mode-desc">حماس وضغط عصبي إيجابي بنظام "خزنة الوقت" لكل فريق.</p>
         <ul class="mode-points">
@@ -465,7 +650,7 @@
         </ul>
       </div>
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12.5" r="8.5"></circle><circle cx="12" cy="12.5" r="2.2" fill="currentColor" fill-opacity="0.25"></circle><path d="M12 4v6M12 15v6M4 12.5h6M15 12.5h6M6.3 6.8l4.2 4.2M13.5 14l4.2 4.2M6.3 18.2l4.2-4.2M13.5 11l4.2-4.2" opacity="0.65"></path><polygon points="12 1.5 14 5 10 5" fill="currentColor" stroke="none"></polygon></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12.5" r="8.5"></circle><circle cx="12" cy="12.5" r="2.2" fill="currentColor" fill-opacity="0.25"></circle><path d="M12 4v6M12 15v6M4 12.5h6M15 12.5h6M6.3 6.8l4.2 4.2M13.5 14l4.2 4.2M6.3 18.2l4.2-4.2M13.5 11l4.2-4.2" opacity="0.65"></path><polygon points="12 1.5 14 5 10 5" fill="currentColor" stroke="none"></polygon></svg></div>
         <p class="mode-title">عجلة الحظ</p>
         <p class="mode-desc">لوحة تفاعلية سريعة ومثالية للفقرات الترفيهية.</p>
         <ul class="mode-points">
@@ -475,7 +660,7 @@
         </ul>
       </div>
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v6a6 6 0 0 1-12 0V3z"></path><path d="M6 5H3.5a2.5 2.5 0 0 0 0 5H6M18 5h2.5a2.5 2.5 0 0 1 0 5H18"></path><path d="M12 15v4M8 21h8M9 19h6"></path><polygon points="12 6.5 13 8.5 15.2 8.7 13.6 10.1 14 12.2 12 11.1 10 12.2 10.4 10.1 8.8 8.7 11 8.5" fill="currentColor" stroke="none"></polygon></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" width="26" height="26" style="width:26px;height:26px;max-width:26px;max-height:26px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v6a6 6 0 0 1-12 0V3z"></path><path d="M6 5H3.5a2.5 2.5 0 0 0 0 5H6M18 5h2.5a2.5 2.5 0 0 1 0 5H18"></path><path d="M12 15v4M8 21h8M9 19h6"></path><polygon points="12 6.5 13 8.5 15.2 8.7 13.6 10.1 14 12.2 12 11.1 10 12.2 10.4 10.1 8.8 8.7 11 8.5" fill="currentColor" stroke="none"></polygon></svg></div>
         <p class="mode-title">البطولة الإقصائية</p>
         <p class="mode-desc">إدارة دورات وبطولات متكاملة داخل الاجتماع.</p>
         <ul class="mode-points">
@@ -757,7 +942,7 @@
   .guarantee-icon{
     width:44px; height:44px; flex-shrink:0; border-radius:12px; display:flex; align-items:center; justify-content:center;
   }
-  .guarantee-icon svg{ width:21px; height:21px; }
+  .guarantee-icon svg{ width:21px !important; height:21px !important; max-width:21px; max-height:21px; display:block; }
   .guarantee-card.positive .guarantee-icon{ background:#0f7a44; color:#fff; }
   .guarantee-card:not(.positive) .guarantee-icon{ background:var(--blue); color:var(--gold); }
   .guarantee-title{ font-family:Cairo,sans-serif; font-weight:800; font-size:15.5px; color:var(--blue); margin-bottom:6px; }
@@ -770,11 +955,11 @@
     <div class="divider"></div>
     <div class="guarantee-grid">
       <div class="guarantee-card positive">
-        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V6l8-4z"></path><path d="M9 12h6M9 12l2.5-2.5M9 12l2.5 2.5" stroke-width="2"></path></svg></div>
+        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" width="21" height="21" style="width:21px;height:21px;max-width:21px;max-height:21px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V6l8-4z"></path><path d="M9 12h6M9 12l2.5-2.5M9 12l2.5 2.5" stroke-width="2"></path></svg></div>
         <div><p class="guarantee-title">قبل ما تستلم الكود</p><p class="guarantee-desc">لو غيّرت رأيك بعد الدفع وقبل استلام كود التفعيل، تقدر تسترجع فلوسك كاملة من غير أي تعقيد — كل اللي عليك تواصل معنا عبر واتساب.</p></div>
       </div>
       <div class="guarantee-card">
-        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V6l8-4z"></path><path d="M9 12l2 2 4-4" stroke-width="2.2"></path></svg></div>
+        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" width="21" height="21" style="width:21px;height:21px;max-width:21px;max-height:21px;display:block;" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V6l8-4z"></path><path d="M9 12l2 2 4-4" stroke-width="2.2"></path></svg></div>
         <div><p class="guarantee-title">بعد ما تستلم الكود</p><p class="guarantee-desc">بمجرد استلام كود التفعيل، ميبقاش في استرداد للمبلغ لأن الكود بيتفعل فوراً. لكن فريق الدعم معاك خطوة بخطوة لحل أي مشكلة تقنية تواجهك.</p></div>
       </div>
     </div>
