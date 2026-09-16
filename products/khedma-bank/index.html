@@ -62,6 +62,18 @@
 </head>
 <body>
 
+<!-- ══════ ANNOUNCEMENT BAR ══════ -->
+<div class="announcement-bar">
+  <div class="announcement-inner">
+    <span class="announcement-pill">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      تحديث شامل
+    </span>
+    <span class="announcement-text">إطلاق التحديث الجديد <strong>Khedma Bank v1.1</strong> — تايمر حتى 60 ثانية، لوحة نتائج مباشرة، وتحكم كامل بالخط</span>
+    <a class="announcement-link" href="#whats-new" onclick="document.getElementById('whats-new').scrollIntoView({behavior:'smooth'}); return false;">ما الجديد في التحديث؟ ↓</a>
+  </div>
+</div>
+
 <!-- ══════ SITE HEADER ══════ -->
 <header class="site-header">
   <div class="header-inner">
@@ -234,6 +246,137 @@
   </div>
 </section>
 
+<!-- ══ WHAT'S NEW IN V1.1 ══ -->
+<section class="whats-new-section" id="whats-new">
+  <div class="whats-new-inner">
+    <span class="wn-version-badge">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      الإصدار الجديد v1.1
+    </span>
+    <h2 class="whats-new-title">ما الجديد في <span>تحديث بنك الخدمة v1.1</span></h2>
+    <div class="divider" style="margin-bottom:20px;"></div>
+    <p class="whats-new-sub">تطوير شامل ومدروس لكافة أوضاع ومحركات اللعبة لضمان أعلى مستويات المتعة والعدالة في أنشطة الكنيسة واجتماعات الشباب.</p>
+
+    <div class="wn-grid">
+
+      <!-- Card 1: Timer 60s -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8"></circle>
+            <line x1="12" y1="13" x2="12" y2="9"></line>
+            <line x1="12" y1="13" x2="15" y2="15"></line>
+            <line x1="9" y1="2" x2="15" y2="2"></line>
+            <line x1="12" y1="2" x2="12" y2="5"></line>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">مؤقت أسئلة ممتد حتى 60 ثانية</h3>
+        <p class="wn-card-desc">إمكانية رفع وقت الإجابة حتى 60 ثانية لكل سؤال أو اختيار وضع "بدون تايمر"، لمنح المخدومين فرصة كافية للتفكير العميق في الأسئلة الصعبة والتنافس الهادئ.</p>
+      </div>
+
+      <!-- Card 2: Font scaling -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 7 4 4 20 4 20 7"></polyline>
+            <line x1="9" y1="20" x2="15" y2="20"></line>
+            <line x1="12" y1="4" x2="12" y2="20"></line>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">تحكم متكامل بحجم خط الأسئلة</h3>
+        <p class="wn-card-desc">سلايدر دقيق وأزرار سريعة لاختيار حجم الخط المناسب (85%، 100%، 120%، 140%) لضمان وضوح كامل ومريح للقراءة على شاشات العرض والبروجيكتور في القاعات الكبيرة.</p>
+      </div>
+
+      <!-- Card 3: 1v1 live scoreboard -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="12" y1="3" x2="12" y2="21"></line>
+            <path d="M8 8h.01M8 12h.01M8 16h.01M16 8h.01M16 12h.01M16 16h.01"></path>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">لوحة نتائج تفاعلية لمواجهات 1 ضد 1</h3>
+        <p class="wn-card-desc">إظهار النقاط المباشرة لكل متسابق لحظة بلحظة طوال المباراة، مع مؤشر ضوئي ذكي يوضح صاحب الدور الحالي بمنتهى الشفافية والتكافؤ.</p>
+      </div>
+
+      <!-- Card 4: Quick rematch -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <polyline points="23 20 23 14 17 14"></polyline>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">إعادة التحدي فوراً بنقرة واحدة</h3>
+        <p class="wn-card-desc">إمكانية بدء جولة جديدة فوراً بنفس المتنافسين ونفس الإعدادات وبسحب أسئلة جديدة غير مكررة مباشرة من شاشة النتيجة دون الحاجة لإعادة الضبط من البداية.</p>
+      </div>
+
+      <!-- Card 5: Tournament engine -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+            <path d="M4 22h16"></path>
+            <path d="M10 14.66V17c0 .55-.45 1-1 1H7v2h10v-2h-2c-.55 0-1-.45-1-1v-2.34"></path>
+            <path d="M6 4h12v6c0 3.31-2.69 6-6 6s-6-2.69-6-6V4z"></path>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">تنظيم بطولات إقصائية حتى 16 متسابقاً</h3>
+        <p class="wn-card-desc">دعم كامل لتنظيم دورات وبطولات كنسية (4، 8، 12، 16 متنافساً) مع معالجة حاسمة وتلقائية للسؤال الفاصل عند التعادل بدون أي بطء أو تجمد.</p>
+      </div>
+
+      <!-- Card 6: Wheel physics -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <line x1="12" y1="3" x2="12" y2="21"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="5.6" y1="5.6" x2="18.4" y2="18.4"></line>
+            <line x1="18.4" y1="5.6" x2="5.6" y2="18.4"></line>
+            <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">مزامنة تامة لدوران عجلة الحظ</h3>
+        <p class="wn-card-desc">ربط فيزيائي دقيق بين زاوية توقف المؤشر وقسم السؤال المسحوب بنسبة 100%، مع إمكانية استثناء أو تفعيل أقسام محددة بكل مرونة وسهولة.</p>
+      </div>
+
+      <!-- Card 7: Remote & Keyboard -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <line x1="6" y1="8" x2="6.01" y2="8"></line>
+            <line x1="10" y1="8" x2="10.01" y2="8"></line>
+            <line x1="14" y1="8" x2="14.01" y2="8"></line>
+            <line x1="18" y1="8" x2="18.01" y2="8"></line>
+            <line x1="6" y1="12" x2="6.01" y2="12"></line>
+            <line x1="18" y1="12" x2="18.01" y2="12"></line>
+            <line x1="9" y1="16" x2="15" y2="16"></line>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">دعم ريموت العرض واختصارات الكيبورد</h3>
+        <p class="wn-card-desc">إدارة فقرة الأسئلة والمسابقات عن بعد بسهولة تامة عبر الأرقام (1-4) لاختيار الإجابات وزر المسافة (Space) لإيقاف المؤقت مؤقتاً عند الحاجة للنقاش.</p>
+      </div>
+
+      <!-- Card 8: Size & Speed -->
+      <div class="wn-card">
+        <div class="wn-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3 class="wn-card-title">حجم أخف وسرعة استجابة فورية</h3>
+        <p class="wn-card-desc">ضغط ملف التثبيت ليصبح 122 ميجابايت فقط مع تحسين استهلاك الذاكرة والمعالج ليعمل بسلاسة وانسيابية تامة على أجهزة الكنائس والخدمة القديمة.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══ STORY ══ -->
 <section style="padding:80px 40px;background:#fff;">
   <div class="story-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
@@ -270,53 +413,6 @@
   </div>
 </section>
 
-<!-- ══ QUESTION ENCYCLOPEDIA ══ -->
-<style>
-  .encyclopedia-section{ padding:80px 40px; background:#fff; }
-  .encyclopedia-inner{ max-width:1200px; margin:0 auto; text-align:center; }
-  .encyclopedia-grid{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px; margin-top:44px;
-  }
-  .enc-card{
-    position:relative; padding:26px 18px; border-radius:18px; background:var(--off-white,#f7f5f0);
-    border:1px solid rgba(19,58,94,0.08); transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-  }
-  .enc-card:hover{ transform:translateY(-5px); box-shadow:0 14px 30px rgba(19,58,94,0.1); border-color:rgba(212,175,55,0.35); }
-  .enc-icon-wrap{ width:44px; height:44px; margin:0 auto 12px; border-radius:14px; display:flex; align-items:center; justify-content:center; }
-  .enc-icon-wrap svg{ width:22px; height:22px; }
-  .enc-card:nth-child(1) .enc-icon-wrap{ background:rgba(212,175,55,0.14); color:var(--gold-dark,#a8881c); }
-  .enc-card:nth-child(2) .enc-icon-wrap{ background:rgba(124,58,237,0.10); color:#7c3aed; }
-  .enc-card:nth-child(3) .enc-icon-wrap{ background:rgba(11,59,96,0.10); color:var(--blue); }
-  .enc-card:nth-child(4) .enc-icon-wrap{ background:rgba(219,39,119,0.10); color:#db2777; }
-  .enc-card:nth-child(5) .enc-icon-wrap{ background:rgba(22,163,74,0.10); color:#16a34a; }
-  .enc-card:nth-child(6) .enc-icon-wrap{ background:rgba(234,88,12,0.10); color:#ea580c; }
-  .enc-card:nth-child(7) .enc-icon-wrap{ background:rgba(37,99,235,0.10); color:#2563eb; }
-  .enc-card:nth-child(8) .enc-icon-wrap{ background:rgba(13,148,136,0.10); color:#0d9488; }
-  .enc-card:nth-child(9) .enc-icon-wrap{ background:rgba(138,90,43,0.12); color:#8a5a2b; }
-  .enc-count{ font-family:Cairo,sans-serif; font-weight:900; font-size:26px; color:var(--blue); direction:ltr; display:block; }
-  .enc-name{ font-family:Tajawal,sans-serif; font-weight:700; font-size:14px; color:#444; margin-top:4px; }
-  .encyclopedia-note{ font-family:Tajawal,sans-serif; font-size:13.5px; color:#777; margin-top:28px; }
-</style>
-<section class="encyclopedia-section">
-  <div class="encyclopedia-inner">
-    <span class="section-label">موسوعة الأسئلة</span>
-    <h2 class="section-title">أكثر من <span>2550 سؤال</span> بتصنيفات متنوعة</h2>
-    <div class="divider"></div>
-    <div class="encyclopedia-grid">
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="7" y1="8" x2="17" y2="8"></line></svg></span><span class="enc-count">600</span><p class="enc-name">مسيحية</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5h4V6a1.5 1.5 0 0 0 3 0V3.5h1a2 2 0 0 1 2 2v1H18a1.5 1.5 0 0 0 0 3h2V13h-2a1.5 1.5 0 0 0 0 3h2v1a2 2 0 0 1-2 2h-1v-2a1.5 1.5 0 0 0-3 0v2h-4v-2a1.5 1.5 0 0 0-3 0v2H6a2 2 0 0 1-2-2v-1h2a1.5 1.5 0 0 0 0-3H4V9.5h2a1.5 1.5 0 0 0 0-3H4v-1a2 2 0 0 1 2-2h1V6a1.5 1.5 0 0 0 3 0V3.5z"></path></svg></span><span class="enc-count">300</span><p class="enc-name">ألغاز</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"></rect><line x1="9" y1="2" x2="9" y2="6"></line><line x1="15" y1="2" x2="15" y2="6"></line><line x1="9" y1="18" x2="9" y2="22"></line><line x1="15" y1="18" x2="15" y2="22"></line><line x1="2" y1="9" x2="6" y2="9"></line><line x1="2" y1="15" x2="6" y2="15"></line><line x1="18" y1="9" x2="22" y2="9"></line><line x1="18" y1="15" x2="22" y2="15"></line></svg></span><span class="enc-count">300</span><p class="enc-name">تكنولوجيا</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="11" rx="1.5"></rect><path d="M3 9l1-4 16 3-1 4"></path><line x1="7.5" y1="9" x2="9" y2="5"></line><line x1="13" y1="9" x2="14.3" y2="5.3"></line></svg></span><span class="enc-count">300</span><p class="enc-name">فنية (مسلسلات وأفلام)</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6"></path><path d="M10 2v6l-6 10a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-6-10V2"></path><line x1="8" y1="15" x2="16" y2="15"></line></svg></span><span class="enc-count">300</span><p class="enc-name">علوم</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v6l5 3-2 6h-6l-2-6 5-3z"></path></svg></span><span class="enc-count">200</span><p class="enc-name">رياضية</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="9" y1="3" x2="7" y2="21"></line><line x1="17" y1="3" x2="15" y2="21"></line><line x1="4" y1="9" x2="20" y2="9"></line><line x1="3" y1="15" x2="19" y2="15"></line></svg></span><span class="enc-count">200</span><p class="enc-name">حسابية</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></svg></span><span class="enc-count">200</span><p class="enc-name">جغرافيا</p></div>
-      <div class="enc-card"><span class="enc-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 3 20 9 4 9"></polygon><line x1="5" y1="9" x2="19" y2="9"></line><line x1="6" y1="9" x2="6" y2="20"></line><line x1="10" y1="9" x2="10" y2="20"></line><line x1="14" y1="9" x2="14" y2="20"></line><line x1="18" y1="9" x2="18" y2="20"></line><line x1="4" y1="21" x2="20" y2="21"></line></svg></span><span class="enc-count">150</span><p class="enc-name">تاريخية</p></div>
-    </div>
-    <p class="encyclopedia-note">📌 تحديثات مستمرة تضيف أسئلة جديدة باستمرار، خصوصاً في المناسبات الكنسية.</p>
-  </div>
-</section>
-
 <!-- ══ GAME MODES ══ -->
 <style>
   .modes-section{ padding:84px 40px; background:var(--off-white,#f7f9fc); }
@@ -349,7 +445,7 @@
     <div class="divider"></div>
     <div class="modes-grid">
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4"></circle><circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none"></circle></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5.5" opacity="0.6"></circle><circle cx="12" cy="12" r="2" fill="currentColor" fill-opacity="0.3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3" opacity="0.5"></path><path d="M14.5 9.5L20 4M20 4h-4M20 4v4" stroke-width="2"></path></svg></div>
         <p class="mode-title">الكلاسيكي</p>
         <p class="mode-desc">الطريقة التقليدية المحبوبة بثلاث صور مختلفة للعب.</p>
         <ul class="mode-points">
@@ -359,7 +455,7 @@
         </ul>
       </div>
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><line x1="12" y1="13" x2="12" y2="9"></line><line x1="12" y1="13" x2="15" y2="15"></line><line x1="9" y1="2" x2="15" y2="2"></line><line x1="12" y1="2" x2="12" y2="5"></line></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2" stroke-width="2"></path><path d="M12 2v3M9 2h6M19 6l-1.5 1.5M5 6l1.5 1.5"></path><path d="M2 13h2M20 13h2" opacity="0.5"></path><polygon points="12 11 11 13 13 13 12 15" fill="currentColor" opacity="0.9"></polygon></svg></div>
         <p class="mode-title">العباقرة</p>
         <p class="mode-desc">حماس وضغط عصبي إيجابي بنظام "خزنة الوقت" لكل فريق.</p>
         <ul class="mode-points">
@@ -369,7 +465,7 @@
         </ul>
       </div>
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="3" x2="12" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="5.6" y1="5.6" x2="18.4" y2="18.4"></line><line x1="18.4" y1="5.6" x2="5.6" y2="18.4"></line><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"></circle></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12.5" r="8.5"></circle><circle cx="12" cy="12.5" r="2.2" fill="currentColor" fill-opacity="0.25"></circle><path d="M12 4v6M12 15v6M4 12.5h6M15 12.5h6M6.3 6.8l4.2 4.2M13.5 14l4.2 4.2M6.3 18.2l4.2-4.2M13.5 11l4.2-4.2" opacity="0.65"></path><polygon points="12 1.5 14 5 10 5" fill="currentColor" stroke="none"></polygon></svg></div>
         <p class="mode-title">عجلة الحظ</p>
         <p class="mode-desc">لوحة تفاعلية سريعة ومثالية للفقرات الترفيهية.</p>
         <ul class="mode-points">
@@ -379,7 +475,7 @@
         </ul>
       </div>
       <div class="mode-card">
-        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z"></path><path d="M8 5H5a2 2 0 0 0 0 4h2"></path><path d="M16 5h3a2 2 0 0 1 0 4h-2"></path><line x1="12" y1="12" x2="12" y2="17"></line><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="17" x2="12" y2="20"></line></svg></div>
+        <div class="mode-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v6a6 6 0 0 1-12 0V3z"></path><path d="M6 5H3.5a2.5 2.5 0 0 0 0 5H6M18 5h2.5a2.5 2.5 0 0 1 0 5H18"></path><path d="M12 15v4M8 21h8M9 19h6"></path><polygon points="12 6.5 13 8.5 15.2 8.7 13.6 10.1 14 12.2 12 11.1 10 12.2 10.4 10.1 8.8 8.7 11 8.5" fill="currentColor" stroke="none"></polygon></svg></div>
         <p class="mode-title">البطولة الإقصائية</p>
         <p class="mode-desc">إدارة دورات وبطولات متكاملة داخل الاجتماع.</p>
         <ul class="mode-points">
@@ -436,91 +532,18 @@
 <!-- ══ DOWNLOAD ══ -->
 <section class="download-section" id="download-zone">
   <div class="download-inner">
-    <span class="download-eyebrow">منطقة التحميل</span>
+    <span class="download-eyebrow">منطقة التحميل · إصدار v1.1 المحدث</span>
     <h2 class="download-title">جرّب قبل أن تقرر</h2>
-    <p class="download-sub">حمّل النسخة التجريبية المجانية واكتشف تجربة Khedma Bank كاملاً قبل الشراء.</p>
+    <p class="download-sub">حمّل النسخة التجريبية المجانية v1.1 بحجم 122 ميجابايت واكتشف تجربة Khedma Bank كاملة قبل الشراء.</p>
     <div class="download-buttons">
-      <a class="btn-download demo" href="https://github.com/famdswood/4khedma-shop/releases/download/v.1.0/Khedma_Bank_Demo_Setup.exe" download="Khedma_Bank_Demo_Setup.exe">
-        <span class="dl-title">تحميل النسخة الديمو</span>
-        <span class="dl-sub">مجاني — تجربة محدودة</span>
+      <a class="btn-download demo" href="https://github.com/famdswood/4khedma-shop/releases/download/v1.1/Khedma_Bank_Demo_v1.1_Setup.exe" download="Khedma_Bank_Demo_v1.1_Setup.exe">
+        <span class="dl-title">تحميل النسخة التجريبية (Demo)</span>
+        <span class="dl-sub">مجاني v1.1 — حجم 122 ميجابايت (45 سؤالاً)</span>
       </a>
-      <a class="btn-download full" href="https://github.com/famdswood/4khedma-shop/releases/download/v.1.0/Khedma_Bank_Setup.exe" download="Khedma_Bank_Setup.exe">
-        <span class="dl-title">تحميل النسخة الأساسية</span>
-        <span class="dl-sub">يتطلب رمز تفعيل</span>
+      <a class="btn-download full" href="https://github.com/famdswood/4khedma-shop/releases/download/v1.1/Khedma_Bank_v1.1_Setup.exe" download="Khedma_Bank_v1.1_Setup.exe">
+        <span class="dl-title">تحميل النسخة الأساسية (Full Pro)</span>
+        <span class="dl-sub">إصدار v1.1 — يتطلب كود تفعيل (2550 سؤالاً)</span>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SMART FAIRNESS ══ -->
-<style>
-  .fairness-section{ padding:64px 40px 12px; background:#fff; }
-  .fairness-inner{ max-width:980px; margin:0 auto; }
-  .fairness-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; margin-top:36px; }
-  .fairness-card{
-    display:flex; gap:16px; align-items:flex-start; padding:24px; border-radius:18px;
-    background:linear-gradient(155deg, rgba(19,58,94,0.04) 0%, rgba(212,175,55,0.05) 100%);
-    border:1px solid rgba(19,58,94,0.08);
-  }
-  .fairness-icon{
-    width:44px; height:44px; flex-shrink:0; border-radius:12px; display:flex; align-items:center; justify-content:center;
-    background:var(--blue); color:var(--gold);
-  }
-  .fairness-icon svg{ width:21px; height:21px; }
-  .fairness-title{ font-family:Cairo,sans-serif; font-weight:800; font-size:15.5px; color:var(--blue); margin-bottom:6px; }
-  .fairness-desc{ font-family:Tajawal,sans-serif; font-size:13.5px; line-height:1.85; color:#555; }
-</style>
-<section class="fairness-section">
-  <div class="fairness-inner" style="text-align:center;">
-    <span class="section-label">عقل السيستم</span>
-    <h2 class="section-title">عدالة ذكية <span>في كل تفصيلة</span></h2>
-    <div class="divider"></div>
-    <div class="fairness-grid" style="text-align:right;">
-      <div class="fairness-card">
-        <div class="fairness-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="5" y1="7" x2="19" y2="7"></line><path d="M5 7l-3 6a3 3 0 0 0 6 0L5 7z"></path><path d="M19 7l-3 6a3 3 0 0 0 6 0l-3-6z"></path><line x1="8" y1="21" x2="16" y2="21"></line></svg></div>
-        <div><p class="fairness-title">عدالة مطلقة بين المتنافسين</p><p class="fairness-desc">حتى مع اختيار الصعوبة "عشوائي"، يضمن السيستم نفس توزيع الأسئلة (سهل/متوسط/صعب) لكل الأطراف، فمفيش فريق بياخد أسئلة أسهل أو أصعب من التاني.</p></div>
-      </div>
-      <div class="fairness-card">
-        <div class="fairness-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h5"></path><path d="M20 20v-5h-5"></path><path d="M4 9a8 8 0 0 1 14-5l2 2"></path><path d="M20 15a8 8 0 0 1-14 5l-2-2"></path></svg></div>
-        <div><p class="fairness-title">منع التكرار تماماً</p><p class="fairness-desc">مستحيل يتكرر نفس السؤال مرتين في نفس الجلسة، ولا تتم إعادة تدوير الأسئلة إلا بعد عرض 80–90% من أسئلة القسم بالكامل.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PURCHASE GUARANTEE ══ -->
-<style>
-  .guarantee-section{ padding:12px 40px 64px; background:#fff; }
-  .guarantee-inner{ max-width:980px; margin:0 auto; text-align:center; }
-  .guarantee-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; margin-top:36px; text-align:right; }
-  .guarantee-card{
-    display:flex; gap:16px; align-items:flex-start; padding:24px; border-radius:18px;
-    background:var(--off-white,#f7f5f0); border:1px solid rgba(19,58,94,0.08);
-  }
-  .guarantee-card.positive{ background:linear-gradient(155deg, rgba(15,122,68,0.06) 0%, rgba(15,122,68,0.02) 100%); border-color:rgba(15,122,68,0.18); }
-  .guarantee-icon{
-    width:44px; height:44px; flex-shrink:0; border-radius:12px; display:flex; align-items:center; justify-content:center;
-  }
-  .guarantee-icon svg{ width:21px; height:21px; }
-  .guarantee-card.positive .guarantee-icon{ background:#0f7a44; color:#fff; }
-  .guarantee-card:not(.positive) .guarantee-icon{ background:var(--blue); color:var(--gold); }
-  .guarantee-title{ font-family:Cairo,sans-serif; font-weight:800; font-size:15.5px; color:var(--blue); margin-bottom:6px; }
-  .guarantee-desc{ font-family:Tajawal,sans-serif; font-size:13.5px; line-height:1.85; color:#555; }
-</style>
-<section class="guarantee-section">
-  <div class="guarantee-inner">
-    <span class="section-label">أمانك التعاقدي</span>
-    <h2 class="section-title">ضمانك <span>قبل وبعد الشراء</span></h2>
-    <div class="divider"></div>
-    <div class="guarantee-grid">
-      <div class="guarantee-card positive">
-        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l-5-5 5-5"></path><path d="M4 9h11a5 5 0 0 1 5 5v1"></path></svg></div>
-        <div><p class="guarantee-title">قبل ما تستلم الكود</p><p class="guarantee-desc">لو غيّرت رأيك بعد الدفع وقبل استلام كود التفعيل، تقدر تسترجع فلوسك كاملة من غير أي تعقيد — كل اللي عليك تواصل معنا عبر واتساب.</p></div>
-      </div>
-      <div class="guarantee-card">
-        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.1-3.1a6 6 0 0 1-7.94 7.94l-6.16 6.16a2.12 2.12 0 0 1-3-3l6.16-6.16a6 6 0 0 1 7.94-7.94l-3.1 3.1z"></path></svg></div>
-        <div><p class="guarantee-title">بعد ما تستلم الكود</p><p class="guarantee-desc">بمجرد استلام كود التفعيل، ميبقاش في استرداد للمبلغ لأن الكود بيتفعل فوراً. لكن فريق الدعم معاك خطوة بخطوة لحل أي مشكلة تقنية تواجهك.</p></div>
-      </div>
     </div>
   </div>
 </section>
@@ -587,20 +610,19 @@
       <span id="toggle-label-usd" style="font-weight:700;font-size:15px;color:rgba(255,255,255,0.4);">🌍 دولار أمريكي</span>
     </div>
 
-    <div style="text-align:center;margin-bottom:28px;">
-      <a href="#vip-plus" onclick="document.getElementById('vip-plus').scrollIntoView({behavior:'smooth'}); return false;" style="font-family:Tajawal,sans-serif;font-size:13.5px;color:var(--gold-dark,#a8881c);font-weight:800;text-decoration:none;">عايز أسئلة مخصصة لكنيستك بالذات؟ شوف VIP Plus ↓</a>
-    </div>
 
-    <!-- Sold-out banner -->
-    <div id="summer-discount-banner" style="background:linear-gradient(135deg,rgba(12,45,78,0.95) 0%,rgba(8,30,53,0.98) 100%);border:1.5px solid rgba(212,175,55,0.5);border-radius:16px;padding:18px 24px;margin-bottom:28px;direction:rtl;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(212,175,55,0.12);">
-      <div style="display:flex;align-items:center;gap:14px;position:relative;">
-        <div style="width:44px;height:44px;border-radius:12px;background:rgba(212,175,55,0.15);border:1.5px solid rgba(212,175,55,0.4);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🎉</div>
+    <!-- Update v1.1 Banner -->
+    <div id="v11-update-banner" style="background:linear-gradient(135deg,rgba(12,45,78,0.95) 0%,rgba(8,30,53,0.98) 100%);border:1.5px solid rgba(212,175,55,0.5);border-radius:16px;padding:20px 24px;margin-bottom:28px;direction:rtl;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(212,175,55,0.12);">
+      <div style="display:flex;align-items:center;gap:16px;position:relative;">
+        <div style="width:46px;height:46px;border-radius:14px;background:rgba(212,175,55,0.18);border:1.5px solid rgba(212,175,55,0.45);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
         <div>
-          <div style="font-family:Cairo,sans-serif;font-size:14px;font-weight:900;color:var(--gold);margin-bottom:3px;">عروض صيف 2026 خلصت رسمياً!</div>
-          <div style="font-family:Cairo,sans-serif;font-size:12px;color:rgba(255,255,255,0.65);line-height:1.5;">اتباعت كل الـ <strong style="color:#fca5a5;">50 نسخة</strong> المتاحة — شكراً لكل اللي وثقوا فينا 🙏 الأسعار الرسمية رجعت تاني</div>
+          <div style="font-family:Cairo,sans-serif;font-size:15px;font-weight:900;color:var(--gold);margin-bottom:3px;">تم إطلاق التحديث الشامل Khedma Bank v1.1 رسمياً!</div>
+          <div style="font-family:Cairo,sans-serif;font-size:12.5px;color:rgba(255,255,255,0.8);line-height:1.6;">تحديث مجاني يشمل مؤقتاً ممتداً حتى 60 ثانية، لوحة نتائج حية، تحكماً بالخط، ومحرك بطولات معالج — والطلبات الجديدة تُسلّم فوراً بأحدث إصدار.</div>
         </div>
       </div>
-      <span style="padding:10px 22px;border-radius:10px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(212,175,55,0.3);color:var(--gold);font-family:Cairo,sans-serif;font-size:13px;font-weight:800;white-space:nowrap;position:relative;flex-shrink:0;">الأسعار دي رسمية ودايمة</span>
+      <a href="#whats-new" onclick="document.getElementById('whats-new').scrollIntoView({behavior:'smooth'}); return false;" style="padding:10px 22px;border-radius:10px;background:rgba(212,175,55,0.15);border:1.5px solid rgba(212,175,55,0.45);color:var(--gold);font-family:Cairo,sans-serif;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;position:relative;flex-shrink:0;transition:all 0.2s;">استكشف ما الجديد v1.1 ←</a>
     </div>
 
     <!-- EGP -->
@@ -719,80 +741,41 @@
         </div>
       </div>
     </div>
-
-    <div style="text-align:center;margin-top:36px;">
-      <a href="#vip-plus" class="btn-vipplus-cta" onclick="document.getElementById('vip-plus').scrollIntoView({behavior:'smooth'}); return false;">✨ عايز باقة مخصصة لكنيستك أكتر؟</a>
-    </div>
-
   </div>
 </section>
 
-<!-- ══ VIP PLUS — CUSTOM CONTENT ══ -->
+<!-- ══ PURCHASE GUARANTEE ══ -->
 <style>
-  .vipplus-section{ padding:70px 40px; background:linear-gradient(155deg,#0c2d4e 0%,#081e35 100%); }
-  .vipplus-inner{ max-width:1000px; margin:0 auto; text-align:center; }
-  .vipplus-inner .section-title{ color:#fff; }
-  .vipplus-inner .section-title span{ color:var(--gold); }
-  .vipplus-card{
-    position:relative; margin-top:40px; border-radius:26px; padding:2px; overflow:hidden;
-    background:linear-gradient(120deg, rgba(212,175,55,0.15), rgba(212,175,55,0.7), rgba(212,175,55,0.15));
+  .guarantee-section{ padding:56px 40px 64px; background:#fff; }
+  .guarantee-inner{ max-width:980px; margin:0 auto; text-align:center; }
+  .guarantee-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; margin-top:36px; text-align:right; }
+  .guarantee-card{
+    display:flex; gap:16px; align-items:flex-start; padding:24px; border-radius:18px;
+    background:var(--off-white,#f7f5f0); border:1px solid rgba(19,58,94,0.08);
   }
-  .vipplus-card-inner{
-    border-radius:24px; background:linear-gradient(155deg,#0f3559 0%,#0a2744 100%);
-    padding:40px; text-align:right;
+  .guarantee-card.positive{ background:linear-gradient(155deg, rgba(15,122,68,0.06) 0%, rgba(15,122,68,0.02) 100%); border-color:rgba(15,122,68,0.18); }
+  .guarantee-icon{
+    width:44px; height:44px; flex-shrink:0; border-radius:12px; display:flex; align-items:center; justify-content:center;
   }
-  .vipplus-badge{
-    display:inline-block; font-family:Cairo,sans-serif; font-weight:800; font-size:12.5px; color:#0c2d4e;
-    background:linear-gradient(135deg, var(--gold) 0%, #f0d878 100%); padding:7px 16px; border-radius:20px; margin-bottom:22px;
-  }
-  .vipplus-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:36px; align-items:center; }
-  .vipplus-desc{ font-family:Tajawal,sans-serif; font-size:15px; line-height:1.95; color:rgba(255,255,255,0.85); margin-bottom:18px; }
-  .vipplus-points{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
-  .vipplus-points li{
-    font-family:Tajawal,sans-serif; font-size:13.5px; color:rgba(255,255,255,0.85); line-height:1.7;
-    padding-inline-start:22px; position:relative;
-  }
-  .vipplus-points li::before{ content:'✦'; position:absolute; inset-inline-start:0; color:var(--gold); font-size:12px; top:2px; }
-  .vipplus-price-box{
-    background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.25); border-radius:18px;
-    padding:28px 22px; text-align:center;
-  }
-  .vipplus-price{ font-family:Cairo,sans-serif; font-weight:900; color:#fff; margin:0; }
-  .vipplus-price .currency{ font-size:20px; color:var(--gold); margin-inline-end:4px; }
-  .vipplus-price span:last-child{ font-size:42px; }
-  .vipplus-price-usd{ font-family:Tajawal,sans-serif; font-size:12.5px; color:rgba(255,255,255,0.55); margin-top:4px; margin-bottom:18px; }
-  .vipplus-price-box .btn-buy{ width:100%; }
-  .vipplus-price-box .plan-trust-line{ color:rgba(255,255,255,0.5); }
-  @media (max-width:760px){
-    .vipplus-grid{ grid-template-columns:1fr; }
-    .vipplus-card-inner{ padding:28px 22px; }
-  }
+  .guarantee-icon svg{ width:21px; height:21px; }
+  .guarantee-card.positive .guarantee-icon{ background:#0f7a44; color:#fff; }
+  .guarantee-card:not(.positive) .guarantee-icon{ background:var(--blue); color:var(--gold); }
+  .guarantee-title{ font-family:Cairo,sans-serif; font-weight:800; font-size:15.5px; color:var(--blue); margin-bottom:6px; }
+  .guarantee-desc{ font-family:Tajawal,sans-serif; font-size:13.5px; line-height:1.85; color:#555; }
 </style>
-<section class="vipplus-section" id="vip-plus">
-  <div class="vipplus-inner">
-    <span class="section-label" style="color:var(--gold);">توسعة اختيارية</span>
-    <h2 class="section-title">VIP Plus <span>— أسئلة كنيستكم الخاصة</span></h2>
+<section class="guarantee-section">
+  <div class="guarantee-inner">
+    <span class="section-label">أمانك التعاقدي</span>
+    <h2 class="section-title">ضمانك <span>قبل وبعد الشراء</span></h2>
     <div class="divider"></div>
-    <div class="vipplus-card">
-      <div class="vipplus-card-inner">
-        <span class="vipplus-badge">🌟 الأكثر تخصيصاً</span>
-        <div class="vipplus-grid">
-          <div>
-            <p class="vipplus-desc">فوق كل مميزات ترخيص الجهاز الواحد، ابعتولنا من 200 إلى 500 سؤال خاصة بكنيستكم أو خدمتكم — كل سؤال بـ4 اختيارات، واحد منهم هو الإجابة الصحيحة — وإحنا بنضيفهم للسيستم ونسلّمكم نسخة جاهزة ومخصصة بالكامل.</p>
-            <ul class="vipplus-points">
-              <li>من 200 إلى 500 سؤال مخصص — سعر ثابت أياً كان العدد داخل النطاق</li>
-              <li>المكتبة الكاملة (2500+ سؤال) + أسئلتكم الخاصة مع بعض في نفس النسخة</li>
-              <li>تسليم خلال 2-3 أيام عمل بعد استلام الأسئلة كاملة منكم</li>
-              <li>ترخيص جهاز واحد، بنفس آلية التفعيل المعتادة</li>
-            </ul>
-          </div>
-          <div class="vipplus-price-box">
-            <p class="vipplus-price"><span class="currency">ج</span><span>799</span></p>
-            <p class="vipplus-price-usd">أو $199 للخدمات خارج مصر</p>
-            <button class="btn-buy gold" onclick="buyProduct('VIP Plus','799 جنيه','جهاز واحد + محتوى أسئلة مخصص (200-500 سؤال)')">اطلب باقتك المخصصة</button>
-            <p class="plan-trust-line">🔒 دفع مباشر عبر واتساب · 📝 هنبعتلك القالب المطلوب بعد التواصل</p>
-          </div>
-        </div>
+    <div class="guarantee-grid">
+      <div class="guarantee-card positive">
+        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V6l8-4z"></path><path d="M9 12h6M9 12l2.5-2.5M9 12l2.5 2.5" stroke-width="2"></path></svg></div>
+        <div><p class="guarantee-title">قبل ما تستلم الكود</p><p class="guarantee-desc">لو غيّرت رأيك بعد الدفع وقبل استلام كود التفعيل، تقدر تسترجع فلوسك كاملة من غير أي تعقيد — كل اللي عليك تواصل معنا عبر واتساب.</p></div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V6l8-4z"></path><path d="M9 12l2 2 4-4" stroke-width="2.2"></path></svg></div>
+        <div><p class="guarantee-title">بعد ما تستلم الكود</p><p class="guarantee-desc">بمجرد استلام كود التفعيل، ميبقاش في استرداد للمبلغ لأن الكود بيتفعل فوراً. لكن فريق الدعم معاك خطوة بخطوة لحل أي مشكلة تقنية تواجهك.</p></div>
       </div>
     </div>
   </div>
@@ -823,7 +806,7 @@
       </div>
     </div>
     <div class="warning-box">
-      <div class="warning-icon">!</div>
+      <div class="warning-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
       <div class="warning-content">
         <p class="warning-title">تنبيه هام — يُرجى القراءة بعناية</p>
         <p class="warning-text">يُرجى الاحتفاظ بكود التفعيل في مكان آمن لاستخدامه مرة أخرى عند الحاجة لإعادة التثبيت على نفس الجهاز. كل كود مرتبط بالجهاز المفعّل عليه أول مرة. في حال فقدان الكود، تواصل مع الدعم الفني مع إثبات الشراء الأصلي.</p>
@@ -931,20 +914,6 @@
       <div class="tspot-stage" id="tspotStage"></div>
       <div class="tspot-dots" id="tspotDots"></div>
     </div>
-
-    <!-- Trust Badges -->
-    <div style="background:linear-gradient(135deg,var(--blue) 0%,#0d4a79 100%);border-radius:var(--radius-xl);padding:40px 48px;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;">
-        <div style="text-align:center;color:white;"><div class="trust-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="21" height="21"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M7.5 11V7.5a4.5 4.5 0 0 1 9 0V11"></path></svg></div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">دفع آمن 100%</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">عبر واتساب مباشرةً — لا بيانات بنكية على الإنترنت</div></div>
-        <div style="text-align:center;color:white;"><div class="trust-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M18.2 8c5.1 0 5.1 8 0 8-5.1 0-7.1-8-12.7-8-4.6 0-4.6 8 0 8 5.6 0 7.6-8 12.7-8z"></path></svg></div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">ترخيص مدى الحياة</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">ادفع مرة واحدة واستخدم للأبد بدون اشتراكات</div></div>
-        <div style="text-align:center;color:white;"><div class="trust-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="20" height="20"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">تفعيل فوري</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">مفتاح التفعيل يوصلك خلال دقائق بعد الدفع</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;max-width:900px;margin:28px auto 0;">
-        <div style="text-align:center;color:white;"><div class="trust-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="21" height="21"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><polyline points="21 3 21 9 15 9"></polyline></svg></div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">تحديثات مجانية</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">كل التحديثات المستقبلية مجانية لحاملي الترخيص</div></div>
-        <div style="text-align:center;color:white;"><div class="trust-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M11 12l-2 2a2 2 0 0 1-3-3l4-4 3 3"></path><path d="M13 12l2 2a2 2 0 0 0 3-3l-4-4-3 3"></path><path d="M8 10L4.5 6.5"></path><path d="M16 10l3.5-3.5"></path></svg></div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">مش هتكون لوحدك</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">لو واجهت أي مشكلة في التفعيل أو التشغيل، فريق الدعم معاك خطوة بخطوة لحد ما تتحل</div></div>
-        <div style="text-align:center;color:white;"><div class="trust-icon-wrap icon-roundel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="21" height="21"><rect x="2.5" y="4.5" width="19" height="13" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17.5" x2="12" y2="21"></line></svg></div><div style="font-size:14px;font-weight:800;color:var(--gold);margin-bottom:6px;">يعمل على الأجهزة الضعيفة</div><div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">مبرمج خصيصاً ليعمل بسلاسة حتى على الأجهزة القديمة أو الضعيفة الخاصة بالكنائس</div></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -960,7 +929,6 @@
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل مفتاح التفعيل مرتبط بجهاز واحد فقط؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، كل مفتاح مرتبط بالجهاز الذي فُعِّل عليه أول مرة. الباقة الذهبية والـ VIP تدعم حتى 3 أجهزة.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>كيف أستلم مفتاح التفعيل بعد الشراء؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>بعد إتمام الدفع عبر واتساب، يتم إرسال مفتاح التفعيل خلال دقائق معدودة على نفس المحادثة.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>ما الفرق بين النسخة الديمو والنسخة الأساسية؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>النسخة الديمو مجانية وتتيح لك تجربة البرنامج بشكل محدود. النسخة الأساسية (بعد التفعيل) تفتح المكتبة الكاملة بأكثر من 2500 سؤال مع جميع أوضاع اللعب.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>إزاي أطلب باقة VIP Plus بالأسئلة المخصصة؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>بعد التواصل معنا وإتمام الدفع، هنبعتلك قالب بسيط تملاه بأسئلتكم الخاصة (من 200 إلى 500 سؤال)، كل سؤال يشمل 4 اختيارات مع تحديد الإجابة الصحيحة. بعد استلام القالب كاملاً، بنضيف الأسئلة للسيستم ونسلّمكم النسخة الجاهزة خلال 2-3 أيام عمل.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل البرنامج يشتغل على أي ويندوز؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، البرنامج متوافق مع جميع إصدارات ويندوز بدايةً من <strong>ويندوز 7</strong> وحتى <strong>ويندوز 11</strong>.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل البرنامج بيشتغل بسلاسة على أجهزة الكنيسة القديمة أو الضعيفة؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، البرنامج خفيف ومبرمج خصيصاً ليعمل بسلاسة حتى على الأجهزة القديمة أو الضعيفة المتاحة في الكنائس، من غير ما يحتاج مواصفات عالية.</p></div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>هل يوجد تحديثات مستقبلية؟</span><span class="faq-icon">+</span></button><div class="faq-a"><p>نعم، جميع التحديثات المستقبلية على نفس الإصدار مجانية لحاملي النسخة الأساسية.</p></div></div>
