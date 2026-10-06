@@ -115,7 +115,7 @@ function buyProduct(plan, price, devices) {
     '────────────────────\n\n' +
     'أود إتمام عملية الشراء للخطة المذكورة أعلاه. يُرجى التواصل معي لاستكمال إجراءات الدفع والتفعيل.\n\n' +
     'شكراً — 4Khedma';
-  window.open('https://wa.me/201207737965?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/201285458225?text=' + encodeURIComponent(msg), '_blank');
 }
 function contactEnterprise() {
   buyProduct('مخصص', 'تواصل معنا', 'أجهزة غير محدودة');
