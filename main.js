@@ -183,7 +183,7 @@ function waShowProducts() {
 }
 function buyProduct(plan, price, devices) {
   var msg = 'أهلاً 👋 أنا مهتم بـ Khedma Bank\n\nالخطة: ' + plan + '\nالسعر: ' + price + (devices ? '\nالتفاصيل: ' + devices : '') + '\n\nممكن تساعدني في إتمام الطلب؟';
-  window.open('https://wa.me/201207737965?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/201285458225?text=' + encodeURIComponent(msg), '_blank');
 }
 function contactEnterprise() {
   buyProduct('مخصص', 'تواصل معنا', 'أجهزة غير محدودة');
