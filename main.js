@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   main.js — Khedma Bank Product Page
+   main.js — 4Khedma Root (index.html)
    ═══════════════════════════════════════════════════════ */
 
 /* ── HAMBURGER MENU ── */
@@ -17,6 +17,34 @@ function closeMobileNav() {
   btn && btn.classList.remove('open');
 }
 
+/* ── PRODUCTS FILTER & SEARCH ── */
+function filterProducts() {
+  var q = (document.getElementById('productsSearch').value || '').toLowerCase();
+  var activeFilter = (document.querySelector('.filter-tab.active') || {}).dataset.filter || 'all';
+  document.querySelectorAll('#productsGrid .product-card').forEach(function(card) {
+    var name   = (card.dataset.name   || '').toLowerCase();
+    var status = (card.dataset.status || '');
+    var matchQ = !q || name.includes(q);
+    var matchF = activeFilter === 'all' || status === activeFilter;
+    card.style.display = (matchQ && matchF) ? '' : 'none';
+  });
+}
+function setFilter(btn, filter) {
+  document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  filterProducts();
+}
+
+/* ── SCROLL REVEAL ── */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function(el) { io.observe(el); });
+})();
+
 /* ── HEADER SCROLL SHADOW ── */
 (function() {
   var hdr = document.querySelector('.site-header');
@@ -26,39 +54,110 @@ function closeMobileNav() {
   }, { passive: true });
 })();
 
-/* ── FAQ ACCORDION ── */
-function toggleFaq(btn) {
-  var item = btn.closest('.faq-item');
-  var icon = btn.querySelector('.faq-icon');
-  var ans  = item.querySelector('.faq-a');
-  var open = item.classList.contains('open');
-  /* close all */
-  document.querySelectorAll('.faq-item.open').forEach(function(i) {
-    i.classList.remove('open');
-    i.querySelector('.faq-icon').textContent = '+';
-    i.querySelector('.faq-a').style.maxHeight = null;
-  });
-  if (!open) {
-    item.classList.add('open');
-    icon.textContent = '−';
-  }
-}
+/* ── STATS COUNTER ── */
+(function() {
+  var nums = document.querySelectorAll('.about-stat-num[data-count]');
+  if (!nums.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el  = e.target;
+      var end = parseInt(el.dataset.count, 10);
+      var dur = 1800, step = 16;
+      var inc = end / (dur / step);
+      var cur = 0;
+      var t = setInterval(function() {
+        cur = Math.min(cur + inc, end);
+        el.textContent = Math.floor(cur).toLocaleString('ar-EG') + '+';
+        if (cur >= end) clearInterval(t);
+      }, step);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  nums.forEach(function(n) { io.observe(n); });
+})();
 
-/* ── CURRENCY TOGGLE ── */
-var isUSD = false;
-function toggleCurrency() {
-  isUSD = !isUSD;
-  var knob    = document.getElementById('toggle-knob');
-  var lblEgp  = document.getElementById('toggle-label-egp');
-  var lblUsd  = document.getElementById('toggle-label-usd');
-  var blockEgp= document.getElementById('pricing-egp');
-  var blockUsd= document.getElementById('pricing-usd');
-  if (knob)     knob.style.transform    = isUSD ? 'translateX(-28px)' : '';
-  if (lblEgp)   lblEgp.style.color      = isUSD ? 'rgba(255,255,255,0.4)' : 'var(--gold)';
-  if (lblUsd)   lblUsd.style.color      = isUSD ? 'var(--gold)' : 'rgba(255,255,255,0.4)';
-  if (blockEgp) blockEgp.style.display  = isUSD ? 'none' : '';
-  if (blockUsd) blockUsd.style.display  = isUSD ? '' : 'none';
-}
+/* ── TYPEWRITER EFFECT (about page) ── */
+(function() {
+  var blocks = document.querySelectorAll('[data-tw-id]');
+  if (!blocks.length) return;
+
+  /* Recursively wraps every character in its own span.tw-char while keeping
+     nested formatting elements (like <span class="t-gold">) intact, so only
+     the letters fade in/out, not the whole colored phrase at once. */
+  function wrapChars(node) {
+    var frag = document.createDocumentFragment();
+    node.childNodes.forEach(function(child) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        var text = child.textContent;
+        for (var i = 0; i < text.length; i++) {
+          var ch = text[i];
+          if (ch.trim() === '') {
+            frag.appendChild(document.createTextNode(ch));
+          } else {
+            var span = document.createElement('span');
+            span.className = 'tw-char';
+            span.textContent = ch;
+            frag.appendChild(span);
+          }
+        }
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        var clone = child.cloneNode(false);
+        clone.appendChild(wrapChars(child));
+        frag.appendChild(clone);
+      }
+    });
+    return frag;
+  }
+
+  blocks.forEach(function(el) {
+    var id     = el.dataset.twId;
+    var cursor = document.getElementById('cursor-' + id);
+    var wrapped = wrapChars(el);
+    el.innerHTML = '';
+    el.appendChild(wrapped);
+    /* move the cursor to be the last node inside the text itself so it
+       flows inline right after the last letter instead of dropping to a
+       new line after the block */
+    if (cursor) el.appendChild(cursor);
+  });
+
+  function typeBlock(el) {
+    var id     = el.dataset.twId;
+    var cursor = document.getElementById('cursor-' + id);
+    var chars  = el.querySelectorAll('.tw-char');
+    var speed  = 16; /* ms per character */
+    if (!chars.length) return;
+    if (cursor) {
+      cursor.classList.add('active');
+      /* start right before the first letter */
+      chars[0].parentNode.insertBefore(cursor, chars[0]);
+    }
+    var i = 0;
+    (function step() {
+      if (i < chars.length) {
+        chars[i].classList.add('visible');
+        if (cursor) chars[i].parentNode.insertBefore(cursor, chars[i].nextSibling);
+        i++;
+        setTimeout(step, speed);
+      } else if (cursor) {
+        /* let it blink a little after finishing, then fade out */
+        setTimeout(function() { cursor.classList.remove('active'); }, 1400);
+      }
+    })();
+  }
+
+  var twIO = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        typeBlock(entry.target);
+        twIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.35 });
+
+  blocks.forEach(function(el) { twIO.observe(el); });
+})();
 
 /* ── WHATSAPP WIDGET ── */
 var waOpen = false;
@@ -73,48 +172,17 @@ function waShowProducts() {
   var menu = document.getElementById('waMainMenu');
   if (!menu) return;
   menu.innerHTML = [
-    {name:'الخادم',  price:'199 جنيه', devices:'جهاز واحد'},
-    {name:'الذهبية', price:'449 جنيه', devices:'3 أجهزة'},
-    {name:'VIP',     price:'699 جنيه', devices:'3 أجهزة + تخصيص'},
-    {name:'مخصص',   price:'تواصل معنا',devices:'أجهزة غير محدودة'}
+    {name:'الخادم',    price:'199 جنيه', devices:'جهاز واحد'},
+    {name:'الذهبية',   price:'449 جنيه', devices:'3 أجهزة'},
+    {name:'VIP',       price:'699 جنيه', devices:'3 أجهزة + تخصيص'},
+    {name:'مخصص',     price:'تواصل معنا', devices:'أجهزة غير محدودة'}
   ].map(function(p) {
     return '<button class="wa-menu-btn" onclick="buyProduct(\'' + p.name + '\',\'' + p.price + '\',\'' + p.devices + '\'); event.stopPropagation()">' +
       '<span>📦 ' + p.name + ' — ' + p.price + '</span><span class="wa-arrow">←</span></button>';
   }).join('');
 }
-/* ── ARABIC DATE/TIME HELPERS (for order message) ── */
-var AR_MONTHS = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-function toArabicDigits(input) {
-  var map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-  return String(input).replace(/[0-9]/g, function(d) { return map[+d]; });
-}
-function pad2(n) { return n < 10 ? '0' + n : '' + n; }
-function formatArabicDateTime() {
-  var now = new Date();
-  var dateStr = toArabicDigits(now.getDate()) + ' ' + AR_MONTHS[now.getMonth()] + ' ' + toArabicDigits(now.getFullYear());
-
-  var hours24 = now.getHours();
-  var hours12 = hours24 % 12; if (hours12 === 0) hours12 = 12;
-  var period = hours24 >= 12 ? 'م' : 'ص';
-  var timeStr = toArabicDigits(pad2(hours12)) + ':' + toArabicDigits(pad2(now.getMinutes())) + ' ' + period;
-
-  return { date: dateStr, time: timeStr };
-}
-
 function buyProduct(plan, price, devices) {
-  var dt = formatArabicDateTime();
-  var msg =
-    '✦ طلب شراء جديد — 4Khedma ✦\n' +
-    '────────────────────\n' +
-    'المنتج   :  Khedma Bank\n' +
-    'الخطة    :  ' + plan + '\n' +
-    'السعر    :  ' + price + '\n' +
-    '────────────────────\n' +
-    'التاريخ  :  ' + dt.date + '\n' +
-    'الوقت    :  ' + dt.time + '\n' +
-    '────────────────────\n\n' +
-    'أود إتمام عملية الشراء للخطة المذكورة أعلاه. يُرجى التواصل معي لاستكمال إجراءات الدفع والتفعيل.\n\n' +
-    'شكراً — 4Khedma';
+  var msg = 'أهلاً 👋 أنا مهتم بـ Khedma Bank\n\nالخطة: ' + plan + '\nالسعر: ' + price + (devices ? '\nالتفاصيل: ' + devices : '') + '\n\nممكن تساعدني في إتمام الطلب؟';
   window.open('https://wa.me/201285458225?text=' + encodeURIComponent(msg), '_blank');
 }
 function contactEnterprise() {
@@ -131,195 +199,79 @@ document.addEventListener('click', function(e) {
   }
 });
 
-/* ── TESTIMONIAL SPOTLIGHT (auto-rotating) ── */
+/* ── FAM PHOTO LIGHTBOX ── */
 (function() {
-  var stage = document.getElementById('tspotStage');
-  if (!stage) return;
-  var dotsWrap  = document.getElementById('tspotDots');
-  var progress  = document.getElementById('tspotProgress');
+  var overlay = document.getElementById('famPhotoOverlay');
+  if (!overlay) return;
 
-  var DATA = [
-    { text:'البرنامج منتهي الروعه بجد والسيستم سلس جدا في التعامل وتعيشوا وتخدموا وتمتعونا اكتر واكتر 🥰🥰♥️', name:'مينا عزت كمال', church:'كنيسة العذراء — عزبة عبده بك ميخائيل — بني سويف', gold:false },
-    { text:'السيستم تحفهههههههه و التعامل لطيف اوي اوي و بتساعدوا الواحد لحد ما يدخل و يفعله و بجد يعني قمه السكر بسم الصليب ❤️', name:'مارينا عماد', church:'كنيسة مارجرجس — حدائق حلوان — القاهرة', gold:true },
-    { text:'حقيقي عايز اشكر كل القائمين علي هذا العمل ♥️ ربنا يبارك خدمتكم و بجد الشباب اتبسطوا جدا في الاجتماع و السيستم خلق جو من المنافسة جميل جدا و مبهج ♥️♥️', name:'مينا شريف شفيق', church:'كنيسة العذراء القطامية — القاهرة', gold:false },
-    { text:'السيستم سهل وسلس جدا مش محتاج مجهود وبيشتغل علطول على أي نظام انت محتاجه في المسابقات ومناسب جدا لكل الأعمار والفئات شكرا جدا❤️', name:'بولا اسكندر', church:'كنيسة مارجرجس — عزبة روفائيل — القوصية — أسيوط', gold:true },
-    { text:'الابلكشن حلو جدا و في كذا نوع اسئله و الاولاد انبسطو ربنا يعوضكم', name:'فادي عادل', church:'كنيسة الملاك سوريال ومارمينا — العمرانية', gold:false },
-    { text:'التجربة كانت سهلة وخطواتها واضحة وانتم كمان نفسكم طويل معانا والبرنامج فعلا تحفة ومتنوع وشيق', name:'جانو', church:'جمعية خلاص النفوس — الجيزة', gold:true },
-    { text:'الابلكيشن جميل جدا وسلس ومسلي جدا جربت النسخه الديمو خدام ومخدومين انبسطو جدا واندمجو فيها شكرا جدا ل فام وحقيقي تسلم ايدك 🫶🏻♥️♥️♥️♥️ جربنا ف اسكندريه وعقبال ما يوصل لكل كنايس الجمهورية', name:'كيرلس سعيد', church:'الإسكندرية', gold:false }
-  ];
-
-  var DELAY = 3800; /* ms each card stays visible */
-  var TRANSITION_OUT = 400;
-  var cur = 0, nextTimerId = null;
-
-  function buildCard(item) {
-    var outer = document.createElement('div');
-    outer.className = 'tspot-card-outer' + (item.gold ? ' tspot-gold' : '');
-    var inner = document.createElement('div');
-    inner.className = 'tspot-card';
-    inner.innerHTML =
-      '<div class="tspot-glow"></div>' +
-      '<div class="tspot-quote-wrap">' +
-        '<div class="tspot-quote">&ldquo;</div>' +
-        '<p class="tspot-text">' + item.text + '</p>' +
-      '</div>' +
-      '<div class="tspot-hr"></div>' +
-      '<div class="tspot-person">' +
-        '<div class="tspot-avatar">' + item.name.charAt(0) + '</div>' +
-        '<div class="tspot-meta"><div class="tspot-name">' + item.name + '</div><div class="tspot-church">' + item.church + '</div></div>' +
-      '</div>';
-    outer.appendChild(inner);
-    return outer;
+  /* spawn particles */
+  var COLORS = ['#D4AF37','rgba(212,175,55,0.6)','rgba(255,255,255,0.4)','rgba(26,99,153,0.7)'];
+  for (var p = 0; p < 14; p++) {
+    var el   = document.createElement('div');
+    el.className = 'fpo-particle';
+    var size = 3 + Math.random() * 6;
+    el.style.cssText = [
+      'width:'+size+'px','height:'+size+'px',
+      'left:'+(20+Math.random()*60)+'%',
+      'bottom:'+(5+Math.random()*15)+'%',
+      'background:'+COLORS[Math.floor(Math.random()*COLORS.length)],
+      'animation-duration:'+(3+Math.random()*4)+'s',
+      'animation-delay:'+(Math.random()*3)+'s'
+    ].join(';');
+    overlay.appendChild(el);
   }
 
-  var dots = [];
-  DATA.forEach(function(_, i) {
-    var d = document.createElement('button');
-    d.className = 'tspot-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'رأي رقم ' + (i + 1));
-    d.addEventListener('click', function() { goTo(i); });
-    dotsWrap && dotsWrap.appendChild(d);
-    dots.push(d);
+  overlay.addEventListener('click', function(e) {
+    var inner = overlay.querySelector('.fpo-card');
+    var glow  = overlay.querySelector('.fpo-glow');
+    var hint  = overlay.querySelector('.fpo-hint');
+    if (e.target === overlay || e.target === glow || e.target === hint || e.target.classList.contains('fpo-particle')) {
+      closeFamPhoto();
+    }
   });
 
-  /* Measure the incoming card's natural height (off-screen, still in flow
-     since it's only opacity:0, not display:none) and animate the stage to it,
-     so cards of different lengths never overlap or clip each other. The card
-     is no longer forced to inset:0, so this reflects its real content size. */
-  function setStageHeight(card, instant) {
-    var h = card.offsetHeight;
-    if (instant) {
-      stage.style.transition = 'none';
-      stage.style.height = h + 'px';
-      void stage.offsetHeight; /* force reflow before re-enabling the transition */
-      stage.style.transition = '';
-    } else {
-      stage.style.height = h + 'px';
-    }
-  }
-
-  function runProgress() {
-    if (!progress) return;
-    progress.classList.remove('run');
-    progress.style.transition = 'none';
-    progress.style.width = '0%';
-    void progress.offsetWidth; /* force reflow so the reset registers before animating */
-    progress.classList.add('run');
-    progress.style.transition = 'width ' + DELAY + 'ms linear';
-    progress.style.width = '100%';
-  }
-
-  function render(first) {
-    var item = DATA[cur];
-    var incoming = buildCard(item);
-    stage.appendChild(incoming);
-    setStageHeight(incoming, first);
-
-    if (first) {
-      requestAnimationFrame(function() { incoming.classList.add('tspot-active'); });
-    } else {
-      var outgoing = null;
-      var cards = stage.querySelectorAll('.tspot-card-outer');
-      cards.forEach(function(c) { if (c !== incoming) outgoing = c; });
-      requestAnimationFrame(function() { incoming.classList.add('tspot-active'); });
-      if (outgoing) {
-        outgoing.classList.remove('tspot-active');
-        outgoing.classList.add('tspot-leaving');
-        setTimeout(function() { outgoing.remove(); }, TRANSITION_OUT);
-      }
-    }
-    dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
-  }
-
-  /* Single self-scheduling timer instead of setInterval: every switch clears
-     any pending timer and schedules exactly one fresh one, so pausing,
-     resuming, or jumping via the dots can never leave two timers racing
-     each other (which was causing random cards to appear "stuck"/delayed). */
-  function scheduleNext() {
-    clearTimeout(nextTimerId);
-    nextTimerId = setTimeout(function() {
-      cur = (cur + 1) % DATA.length;
-      render(false);
-      runProgress();
-      scheduleNext();
-    }, DELAY);
-  }
-
-  function goTo(idx) {
-    if (idx === cur) return;
-    cur = idx;
-    render(false);
-    runProgress();
-    scheduleNext();
-  }
-
-  render(true);
-  runProgress();
-  scheduleNext();
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('fpo-open')) closeFamPhoto();
+  });
 })();
 
-/* ── GALLERY LIGHTBOX ── */
-var LB_IMGS = [
-  '../../img/img_04.png',
-  '../../img/img_05.png',
-  '../../img/img_06.png',
-  '../../img/img_07.png',
-  '../../img/img_08.png',
-  '../../img/img_09.png',
-  '../../img/img_10.png',
-  '../../img/img_11.png'
-];
-var lbIdx = 0;
-function lbOpen(idx) {
-  lbIdx = idx;
-  var overlay = document.getElementById('lightbox');
-  if (!overlay) return;
-  overlay.classList.add('open');
-  requestAnimationFrame(function() { overlay.classList.add('visible'); });
-  document.body.style.overflow = 'hidden';
-  lbRender();
-  /* build thumbs once */
-  var thumbsBar = document.getElementById('lb-thumbs');
-  if (thumbsBar && !thumbsBar.children.length) {
-    LB_IMGS.forEach(function(src, i) {
-      var img = document.createElement('img');
-      img.src = src;
-      img.className = 'lb-thumb' + (i === lbIdx ? ' lb-thumb-active' : '');
-      img.onclick = function() { lbIdx = i; lbRender(); };
-      thumbsBar.appendChild(img);
-    });
+/* Smoothly ramps the fam-photo overlay's backdrop blur/darkness via
+   requestAnimationFrame, instead of relying on the browser to animate
+   `backdrop-filter` itself (support for that is inconsistent -- some
+   Chrome builds just jump straight to the end value with no interpolation). */
+function fpoAnimateBackdrop(el, fromBlur, toBlur, fromAlpha, toAlpha, duration, onDone) {
+  var start = null;
+  function ease(t) { return 1 - Math.pow(1 - t, 3); } /* ease-out cubic */
+  function frame(ts) {
+    if (start === null) start = ts;
+    var p = Math.min((ts - start) / duration, 1);
+    var e = ease(p);
+    var blur  = fromBlur  + (toBlur  - fromBlur)  * e;
+    var alpha = fromAlpha + (toAlpha - fromAlpha) * e;
+    el.style.setProperty('--fpo-blur', blur.toFixed(2) + 'px');
+    el.style.setProperty('--fpo-bg-alpha', alpha.toFixed(3));
+    if (p < 1) {
+      requestAnimationFrame(frame);
+    } else if (onDone) {
+      onDone();
+    }
   }
+  requestAnimationFrame(frame);
 }
-function lbClose() {
-  var overlay = document.getElementById('lightbox');
-  if (overlay) {
-    overlay.classList.remove('visible');
-    setTimeout(function() { overlay.classList.remove('open'); }, 300);
-  }
-  document.body.style.overflow = '';
-}
-function lbNav(dir) {
-  lbIdx = ((lbIdx + dir) + LB_IMGS.length) % LB_IMGS.length;
-  lbRender();
-}
-function lbRender() {
-  var img     = document.getElementById('lb-img');
-  var counter = document.getElementById('lb-counter');
-  if (img) {
-    img.style.opacity = '';
-    img.src = LB_IMGS[lbIdx];
-  }
-  if (counter) counter.textContent = (lbIdx + 1) + ' / ' + LB_IMGS.length;
-  document.querySelectorAll('.lb-thumb').forEach(function(t, i) {
-    t.classList.toggle('lb-thumb-active', i === lbIdx);
-  });
-}
-document.addEventListener('keydown', function(e) {
-  var lb = document.getElementById('lightbox');
-  if (!lb || !lb.classList.contains('open')) return;
-  if (e.key === 'Escape')     lbClose();
-  if (e.key === 'ArrowRight') lbNav(-1);
-  if (e.key === 'ArrowLeft')  lbNav(1);
-});
 
-
+window.openFamPhoto = function() {
+  var o = document.getElementById('famPhotoOverlay');
+  if (o) {
+    o.classList.add('fpo-open');
+    document.body.style.overflow = 'hidden';
+    fpoAnimateBackdrop(o, 0, 18, 0, 0.75, 550);
+  }
+};
+window.closeFamPhoto = function() {
+  var o = document.getElementById('famPhotoOverlay');
+  if (o) {
+    o.classList.remove('fpo-open');
+    fpoAnimateBackdrop(o, 18, 0, 0.75, 0, 400);
+    document.body.style.overflow = '';
+  }
+};
